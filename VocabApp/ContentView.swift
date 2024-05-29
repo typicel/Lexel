@@ -9,36 +9,30 @@ import SwiftUI
 import MLKit
 
 
-struct Story: Identifiable {
-    let id: UUID = UUID()
-    let title: String
-    let text: String
-    let language: TranslateLanguage
-}
 
 struct ContentView: View {
     
-    let story = Story(title: "Freundinnen",  text: "Ricarda ist 21 Jahre alt und wohnt in Lübeck. Lübeck ist eine sehr schöne Stadt im Norden von Deutschland. Ricarda studiert Medizin an der Universität von Lübeck. Sie hat viele Freunde dort.", language: .german)
+    @State private var selectedStoryIdx: Int? = 1
+    let stories = Story.sampleData
     
     var body: some View {
         NavigationSplitView {
-            Spacer()
-            
-            Button("Add Story") {
-                
+            List(stories.enumeratedArray(), id: \.offset) { offset, element in
+                NavigationLink(value: offset) {
+                    HStack {
+                        Text(element.title)
+                    }
+                }
             }
-            
-        } detail: {
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                
-                VocabParagraph(story: story)
+            .navigationDestination(for: Int.self) {
+                VocabParagraph(story: stories[$0])
                     .padding()
             }
-            .padding()
+            .navigationTitle("Stories")
+            .listStyle(.inset)
+        } detail: {
         }
+        .navigationSplitViewStyle(.prominentDetail)
     }
 }
 

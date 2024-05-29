@@ -14,6 +14,8 @@
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
 		C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */; };
+		C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */; };
+		C6FE78E22C06D561004D0C64 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* Story.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,8 @@
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabParagraph.swift; sourceTree = "<group>"; };
+		C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextToSpeech .swift"; sourceTree = "<group>"; };
+		C6FE78E12C06D561004D0C64 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,8 @@
 				C6333B992C01936B0044E7BA /* Preview Content */,
 				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
 				C607C09C2C02772600A0FD12 /* TranslationService.swift */,
+				C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */,
+				C6FE78E12C06D561004D0C64 /* Story.swift */,
 			);
 			path = VocabApp;
 			sourceTree = "<group>";
@@ -231,8 +237,10 @@
 			files = (
 				C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
+				C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
 				C6333B942C01936A0044E7BA /* VocabAppApp.swift in Sources */,
+				C6FE78E22C06D561004D0C64 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
