@@ -25,7 +25,7 @@ struct ContentView: View {
                 }
             }
             .navigationDestination(for: Int.self) {
-                VocabParagraph(story: stories[$0])
+                VocabParagraph(story: stories[$0], translator: TranslationService(sourceLanguage: stories[$0].ml_language))
                     .padding()
             }
             .navigationTitle("Stories")

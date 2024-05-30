@@ -8,7 +8,7 @@ import NaturalLanguage
 struct Story: Identifiable, Codable {
     let id: UUID
     let title: String
-    let tokens: [Token]
+    let tokens: [[String]]
     let language: String
     
     var ml_language: TranslateLanguage {
@@ -28,35 +28,31 @@ struct Story: Identifiable, Codable {
         }
     }
     
-    enum Token: Codable {
-        case word(String)
-        case newLine
-    }
-    
     init(id: UUID = UUID(), title: String, text: String, language: String) {
         self.id = id
         self.title = title
         self.language = language
         
-        var tokens: [Token] = []
+        var tokens: [[String]] = []
         let paragraphTokenizer = NLTokenizer(unit: .paragraph)
         
         paragraphTokenizer.string = String(text)
         paragraphTokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { paragraphRange, _ in
             let paragraph = String(text[paragraphRange])
+            var p_tokens: [String] = []
             
             let wordTokenizer = NLTokenizer(unit: .word)
             wordTokenizer.string = paragraph
             wordTokenizer.enumerateTokens(in: paragraph.startIndex..<paragraph.endIndex) { wordRange, _ in
-                let token = Token.word(String(paragraph[wordRange]))
-                tokens.append(token)
+                let token = String(paragraph[wordRange])
+                p_tokens.append(token)
+                
                 return true
             }
             
-            tokens.append(.newLine)
+            tokens.append(p_tokens)
             return true
         }
-        
         
         
         if !tokens.isEmpty {

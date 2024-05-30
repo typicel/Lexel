@@ -10,7 +10,7 @@ import SwiftUI
 import MLKit
 
 class TranslationService: ObservableObject {
-    let translator: Translator
+    var translator: Translator
     var source: TranslateLanguage
     var target: TranslateLanguage
     
@@ -26,8 +26,14 @@ class TranslationService: ObservableObject {
         self.translator = translate
     }
     
-    func getTranslation(for word: String) async -> String? {
+    func setSourceTranslation(lang: TranslateLanguage) {
+        let toptions = TranslatorOptions(sourceLanguage: lang, targetLanguage: .english)
+        let translate = Translator.translator(options: toptions)
         
+        self.translator = translate
+    }
+    
+    func getTranslation(for word: String) async -> String? {
         do {
             try await self.translator.downloadModelIfNeeded(with: self.conds)
             let result = try await self.translator.translate(word)
@@ -36,7 +42,7 @@ class TranslationService: ObservableObject {
             return result
         }
         catch {
-            print("Lol")
+            print(error)
             return ""
         }
     }
