@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		504F69499CC809008D8EC397 /* Pods_VocabApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27D98160D1E789058813FB4 /* Pods_VocabApp.framework */; };
 		C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607C09C2C02772600A0FD12 /* TranslationService.swift */; };
+		C60E86932C09865600E2B6CB /* VocabWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* VocabWord.swift */; };
+		C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */; };
 		C6333B942C01936A0044E7BA /* VocabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* VocabApp.swift */; };
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
@@ -26,6 +28,8 @@
 		A90DE37CEAD7ED7EE8612B1E /* Pods-VocabApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VocabApp.debug.xcconfig"; path = "Target Support Files/Pods-VocabApp/Pods-VocabApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C27D98160D1E789058813FB4 /* Pods_VocabApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C607C09C2C02772600A0FD12 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
+		C60E86922C09865600E2B6CB /* VocabWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabWord.swift; sourceTree = "<group>"; };
+		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* VocabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6333B932C01936A0044E7BA /* VocabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,10 +72,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C60E86912C09863900E2B6CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C6FE78E12C06D561004D0C64 /* Story.swift */,
+				C60E86922C09865600E2B6CB /* VocabWord.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		C6333B872C0193690044E7BA = {
 			isa = PBXGroup;
 			children = (
-				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6333B922C01936A0044E7BA /* VocabApp */,
 				C6333B912C01936A0044E7BA /* Products */,
 				939E95C656793DF9B317587A /* Pods */,
@@ -91,10 +103,11 @@
 			isa = PBXGroup;
 			children = (
 				C6A910542C096431007756BB /* Views */,
-				C6333B932C01936A0044E7BA /* VocabApp.swift */,
-				C6FE78E12C06D561004D0C64 /* Story.swift */,
+				C60E86912C09863900E2B6CB /* Models */,
 				C607C09C2C02772600A0FD12 /* TranslationService.swift */,
+				C6333B932C01936A0044E7BA /* VocabApp.swift */,
 				C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */,
+				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6333B972C01936B0044E7BA /* Assets.xcassets */,
 				C6333B992C01936B0044E7BA /* Preview Content */,
 				C6A910512C08FBDC007756BB /* Flow */,
@@ -124,6 +137,7 @@
 			children = (
 				C6333B952C01936A0044E7BA /* ContentView.swift */,
 				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
+				C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,7 +285,9 @@
 				C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
+				C60E86932C09865600E2B6CB /* VocabWord.swift in Sources */,
 				C6333B942C01936A0044E7BA /* VocabApp.swift in Sources */,
+				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,
 				C6FE78E22C06D561004D0C64 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

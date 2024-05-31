@@ -118,7 +118,7 @@ struct AddStorySheet: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Add") { addStory() }
-                        .disabled(title.isEmpty || text.isEmpty || language == nil)
+                        .disabled(title.isEmpty || text.isEmpty)
                 }
             }
         }

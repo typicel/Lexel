@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MLKit
+import SwiftData
 
 extension Collection {
     func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
@@ -22,11 +23,18 @@ struct VocabParagraph: View {
 
     @GestureState private var isDetectingLongPress = false
     @State private var completedLongPress = false
-    @State private var selectedWord: Int? = nil
-    @State private var selectedParagraph: Int? = nil
+    @State private var selectedWord: String? = nil
+    @State private var selectedWordIndex: Int? = nil
+    @State private var selectedParagraphIndex: Int? = nil
 
     @State private var translatedWord: String? = nil
     @State private var startTranslation: Bool = false
+   
+    @Query var vocabWordEntry: [VocabWord]
+    
+//    @Query(filter: #Predicate<VocabWord> { vocabWord in
+//        vocabWord.word == selectedWord ?? ""
+//    }, sort: \VocabWord.word) var vocabWordEntry: VocabWord
     
     init(story: Story, translator: TranslationService) {
         self.story = story
@@ -59,12 +67,10 @@ struct VocabParagraph: View {
             Divider()
             
             VStack {
-                if let word = translatedWord {
-                    Text(word)
-                        .font(.largeTitle)
+                if let definition = translatedWord {
+                    FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
                 }
             }
-            .background(Color.red)
             .frame(width: UIScreen.main.bounds.width * 0.35)
             
             Spacer()
@@ -82,12 +88,13 @@ struct VocabParagraph: View {
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
         Text(word)
             .font(.title)
-            .background(index == selectedWord && selectedParagraph == paragraph ? Color.yellow : Color.clear)
+            .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
                 print("Long pressed on \(word)")
                 self.startTranslation = true
-                self.selectedWord = index
-                self.selectedParagraph = paragraph
+                self.selectedWordIndex = index
+                self.selectedWord = word
+                self.selectedParagraphIndex = paragraph
                 Task {
                     await self.translateWord(word)
                     self.tts.play(text: word, lang: self.story.language)
@@ -95,6 +102,7 @@ struct VocabParagraph: View {
             }
     }
 }
+
 
 #Preview {
     VocabParagraph(story: Story.sampleData[3], translator: TranslationService(sourceLanguage: Story.sampleData[3].ml_language))
