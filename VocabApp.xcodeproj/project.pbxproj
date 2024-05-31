@@ -11,6 +11,7 @@
 		C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607C09C2C02772600A0FD12 /* TranslationService.swift */; };
 		C60E86932C09865600E2B6CB /* VocabWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* VocabWord.swift */; };
 		C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */; };
+		C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86962C0A4FC300E2B6CB /* LibraryView.swift */; };
 		C6333B942C01936A0044E7BA /* VocabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* VocabApp.swift */; };
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		C607C09C2C02772600A0FD12 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
 		C60E86922C09865600E2B6CB /* VocabWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabWord.swift; sourceTree = "<group>"; };
 		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
+		C60E86962C0A4FC300E2B6CB /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* VocabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6333B932C01936A0044E7BA /* VocabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				C6333B952C01936A0044E7BA /* ContentView.swift */,
 				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
 				C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */,
+				C60E86962C0A4FC300E2B6CB /* LibraryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
+				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
 				C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,

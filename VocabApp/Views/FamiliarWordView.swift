@@ -6,13 +6,11 @@ import SwiftData
 
 struct FamiliarWordView: View {
     @Environment(\.modelContext) var modelContext
-    let word: String
-    let language: String
-    let definition: String
-
-    @Query private var vocabWordEntry: [VocabWord]
+    var word: String
+    var language: String
+    var definition: String
     
-    @State private var fam: Familiarity = .new
+    @Query private var vocabWordEntry: [VocabWord]
     
     private func addWordToDict() {
         let newWord = VocabWord(word: word, language: language, def: definition)
@@ -27,34 +25,46 @@ struct FamiliarWordView: View {
         self._vocabWordEntry = Query(filter: #Predicate {
             $0.word == word
         })
-        
-        if !vocabWordEntry.isEmpty {
-            self.fam = vocabWordEntry[0].familiarity
-        }
-
     }
     
     var body: some View {
         VStack {
-            Text(word)
+            Text(definition)
                 .font(.largeTitle)
             
-            if vocabWordEntry.isEmpty {
+            if !self.vocabWordEntry.isEmpty {
+                Word(vocabWord: vocabWordEntry[vocabWordEntry.startIndex])
+            } else {
                 Button("Add to Dictionary") {
                     addWordToDict()
                 }
-            } else {
-                Picker("Familiarity Level", selection: $fam) {
-                    Text("New").tag(Familiarity.new)
-                    Text("Seen").tag(Familiarity.seen)
-                    Text("Familiar").tag(Familiarity.familiar)
-                    Text("Mastered").tag(Familiarity.mastered)
-                }
-                .pickerStyle(.segmented)
+                .buttonStyle(.borderedProminent)
+                .padding()
+
             }
         }
     }
 }
+
+struct Word: View {
+    @Environment(\.modelContext) var modelContext
+    @Bindable var vocabWord: VocabWord
+    
+    var body: some View {
+        Picker("Familiarity Level", selection: $vocabWord.familiarity) {
+            Text("New").tag(Familiarity.new)
+            Text("Seen").tag(Familiarity.seen)
+            Text("Familiar").tag(Familiarity.familiar)
+            Text("Mastered").tag(Familiarity.mastered)
+        }
+        .pickerStyle(.segmented)
+        .onChange(of: vocabWord.familiarity) {
+            try! modelContext.save()
+        }
+        .padding()
+    }
+}
+
 #Preview {
     FamiliarWordView(word: "eine", language: "de-DE", definition: "a")
 }

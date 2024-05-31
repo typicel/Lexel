@@ -20,9 +20,9 @@ struct VocabParagraph: View {
     let translator: TranslationService
     
     private var tts: TTSService
+    
+    @Environment(\.modelContext) var modelContext
 
-    @GestureState private var isDetectingLongPress = false
-    @State private var completedLongPress = false
     @State private var selectedWord: String? = nil
     @State private var selectedWordIndex: Int? = nil
     @State private var selectedParagraphIndex: Int? = nil
@@ -30,12 +30,6 @@ struct VocabParagraph: View {
     @State private var translatedWord: String? = nil
     @State private var startTranslation: Bool = false
    
-    @Query var vocabWordEntry: [VocabWord]
-    
-//    @Query(filter: #Predicate<VocabWord> { vocabWord in
-//        vocabWord.word == selectedWord ?? ""
-//    }, sort: \VocabWord.word) var vocabWordEntry: VocabWord
-    
     init(story: Story, translator: TranslationService) {
         self.story = story
         self.tts = TTSService()
@@ -69,6 +63,12 @@ struct VocabParagraph: View {
             VStack {
                 if let definition = translatedWord {
                     FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
+                        .padding()
+                }
+                
+                
+                Button("delete all") {
+                    try! modelContext.delete(model: VocabWord.self)
                 }
             }
             .frame(width: UIScreen.main.bounds.width * 0.35)

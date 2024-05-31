@@ -13,7 +13,7 @@ struct VocabApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LibraryView()
         }
         .modelContainer(for: [Story.self, VocabWord.self])
     }
