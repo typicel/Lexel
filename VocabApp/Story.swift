@@ -4,8 +4,52 @@
 import Foundation
 import MLKit
 import NaturalLanguage
+import SwiftData
 
-func processNewlines(in array: [[String]]) -> [[String]] {
+@Model
+class Story: Identifiable {
+    let id: String
+    let title: String
+    let tokens: [[String]]
+    let language: String
+    
+    var ml_language: TranslateLanguage {
+        switch language {
+        case "de-DE":
+            return .german
+        case "en-US":
+            return .english
+        case "ja-JP":
+            return .japanese
+        case "zh-CN":
+            return .chinese
+        case "ko-KR":
+            return .korean
+        case _:
+            return .english
+        }
+    }
+    
+    init(title: String, text: String, language: String) {
+        self.id = UUID().uuidString
+        self.title = title
+        self.language = language
+        
+        var tokens: [[String]] = []
+        let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
+        for p in paragraphs {
+            let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
+            tokens.append(combinePunctuation(tokenizedWords))
+        }
+        
+        tokens = processNewlines(in: tokens)
+        self.tokens = tokens
+        print(tokens)
+
+    }
+}
+
+private func processNewlines(in array: [[String]]) -> [[String]] {
     var result: [[String]] = []
     
     for sublist in array {
@@ -31,7 +75,6 @@ private func combinePunctuation(_ input: [String]) -> [String] {
         if token == " " {
             // Skip single spaces
             continue
-//        } else if (token.count == 1 && token[token.startIndex].isPunctuation) || token == "\n"{
         } else if (token.count == 1 && token[token.startIndex].isPunctuation) {
             // Combine punctuation with the previous word
             if let word = previousWord {
@@ -58,47 +101,6 @@ private func combinePunctuation(_ input: [String]) -> [String] {
     return result
 }
 
-struct Story: Identifiable, Codable {
-    let id: UUID
-    let title: String
-    let tokens: [[String]]
-    let language: String
-    
-    var ml_language: TranslateLanguage {
-        switch language {
-        case "de-DE":
-            return .german
-        case "en-US":
-            return .english
-        case "ja-JP":
-            return .japanese
-        case "zh-CN":
-            return .chinese
-        case "ko-KR":
-            return .korean
-        case _:
-            return .english
-        }
-    }
-    
-    init(id: UUID = UUID(), title: String, text: String, language: String) {
-        self.id = id
-        self.title = title
-        self.language = language
-        
-        var tokens: [[String]] = []
-        let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
-        for p in paragraphs {
-            let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
-            tokens.append(combinePunctuation(tokenizedWords))
-        }
-        
-        tokens = processNewlines(in: tokens)
-        self.tokens = tokens
-        print(tokens)
-
-    }
-}
 
 extension Story {
     static let sampleData: [Story] =
