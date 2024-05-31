@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		504F69499CC809008D8EC397 /* Pods_VocabApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C27D98160D1E789058813FB4 /* Pods_VocabApp.framework */; };
 		C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607C09C2C02772600A0FD12 /* TranslationService.swift */; };
-		C6333B942C01936A0044E7BA /* VocabAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* VocabAppApp.swift */; };
+		C6333B942C01936A0044E7BA /* VocabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* VocabApp.swift */; };
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
-		C6A9104C2C0845F7007756BB /* SwiftUIFlow in Frameworks */ = {isa = PBXBuildFile; productRef = C6A9104B2C0845F7007756BB /* SwiftUIFlow */; };
+		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
+		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
+		C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A910522C09011D007756BB /* CFTokenizer.swift */; };
 		C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */; };
 		C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */; };
 		C6FE78E22C06D561004D0C64 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* Story.swift */; };
@@ -25,10 +27,13 @@
 		C27D98160D1E789058813FB4 /* Pods_VocabApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VocabApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C607C09C2C02772600A0FD12 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* VocabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6333B932C01936A0044E7BA /* VocabAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabAppApp.swift; sourceTree = "<group>"; };
+		C6333B932C01936A0044E7BA /* VocabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
+		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
+		C6A910522C09011D007756BB /* CFTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTokenizer.swift; sourceTree = "<group>"; };
 		C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabParagraph.swift; sourceTree = "<group>"; };
 		C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextToSpeech .swift"; sourceTree = "<group>"; };
 		C6FE78E12C06D561004D0C64 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
@@ -39,7 +44,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C6A9104C2C0845F7007756BB /* SwiftUIFlow in Frameworks */,
 				504F69499CC809008D8EC397 /* Pods_VocabApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -67,6 +71,7 @@
 		C6333B872C0193690044E7BA = {
 			isa = PBXGroup;
 			children = (
+				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6333B922C01936A0044E7BA /* VocabApp */,
 				C6333B912C01936A0044E7BA /* Products */,
 				939E95C656793DF9B317587A /* Pods */,
@@ -85,14 +90,14 @@
 		C6333B922C01936A0044E7BA /* VocabApp */ = {
 			isa = PBXGroup;
 			children = (
-				C6333B932C01936A0044E7BA /* VocabAppApp.swift */,
-				C6333B952C01936A0044E7BA /* ContentView.swift */,
-				C6333B972C01936B0044E7BA /* Assets.xcassets */,
-				C6333B992C01936B0044E7BA /* Preview Content */,
-				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
+				C6A910542C096431007756BB /* Views */,
+				C6333B932C01936A0044E7BA /* VocabApp.swift */,
+				C6FE78E12C06D561004D0C64 /* Story.swift */,
 				C607C09C2C02772600A0FD12 /* TranslationService.swift */,
 				C6FE78DF2C06D192004D0C64 /* TextToSpeech .swift */,
-				C6FE78E12C06D561004D0C64 /* Story.swift */,
+				C6333B972C01936B0044E7BA /* Assets.xcassets */,
+				C6333B992C01936B0044E7BA /* Preview Content */,
+				C6A910512C08FBDC007756BB /* Flow */,
 			);
 			path = VocabApp;
 			sourceTree = "<group>";
@@ -103,6 +108,24 @@
 				C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C6A910512C08FBDC007756BB /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+				C6A9104D2C08E99C007756BB /* FlowLayout.swift */,
+				C6A9104F2C08EA85007756BB /* FlowView.swift */,
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		C6A910542C096431007756BB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6333B952C01936A0044E7BA /* ContentView.swift */,
+				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +148,6 @@
 			);
 			name = VocabApp;
 			packageProductDependencies = (
-				C6A9104B2C0845F7007756BB /* SwiftUIFlow */,
 			);
 			productName = VocabApp;
 			productReference = C6333B902C01936A0044E7BA /* VocabApp.app */;
@@ -156,7 +178,6 @@
 			);
 			mainGroup = C6333B872C0193690044E7BA;
 			packageReferences = (
-				C6A9104A2C0845F7007756BB /* XCRemoteSwiftPackageReference "SwiftUIFlow" */,
 			);
 			productRefGroup = C6333B912C01936A0044E7BA /* Products */;
 			projectDirPath = "";
@@ -244,10 +265,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */,
+				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
+				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
 				C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */,
+				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
-				C6333B942C01936A0044E7BA /* VocabAppApp.swift in Sources */,
+				C6333B942C01936A0044E7BA /* VocabApp.swift in Sources */,
 				C6FE78E22C06D561004D0C64 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,25 +488,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C6A9104A2C0845F7007756BB /* XCRemoteSwiftPackageReference "SwiftUIFlow" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ciaranrobrien/SwiftUIFlow?tab=readme-ov-file";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C6A9104B2C0845F7007756BB /* SwiftUIFlow */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C6A9104A2C0845F7007756BB /* XCRemoteSwiftPackageReference "SwiftUIFlow" */;
-			productName = SwiftUIFlow;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C6333B882C0193690044E7BA /* Project object */;
 }

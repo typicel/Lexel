@@ -5,6 +5,59 @@ import Foundation
 import MLKit
 import NaturalLanguage
 
+func processNewlines(in array: [[String]]) -> [[String]] {
+    var result: [[String]] = []
+    
+    for sublist in array {
+        if sublist.count == 1 && sublist[0] == "\n" {
+            // If the sublist is a single newline character and there's a previous sublist in the result
+            if var lastSublist = result.popLast() {
+                lastSublist.append("\n")
+                result.append(lastSublist)
+            }
+        } else {
+            result.append(sublist)
+        }
+    }
+    
+    return result
+}
+
+private func combinePunctuation(_ input: [String]) -> [String] {
+    var result: [String] = []
+    var previousWord: String? = nil
+
+    for token in input {
+        if token == " " {
+            // Skip single spaces
+            continue
+//        } else if (token.count == 1 && token[token.startIndex].isPunctuation) || token == "\n"{
+        } else if (token.count == 1 && token[token.startIndex].isPunctuation) {
+            // Combine punctuation with the previous word
+            if let word = previousWord {
+                result.append(word + token)
+                previousWord = nil
+            } else {
+                result.append(token + input[0])
+                previousWord = input[0]
+            }
+        } else {
+            // If there's a previous word pending, add it to the result
+            if let word = previousWord {
+                result.append(word)
+            }
+            previousWord = token
+        }
+    }
+
+    // Add the last word if it exists
+    if let word = previousWord {
+        result.append(word)
+    }
+
+    return result
+}
+
 struct Story: Identifiable, Codable {
     let id: UUID
     let title: String
@@ -34,33 +87,16 @@ struct Story: Identifiable, Codable {
         self.language = language
         
         var tokens: [[String]] = []
-        let paragraphTokenizer = NLTokenizer(unit: .paragraph)
-        
-        paragraphTokenizer.string = String(text)
-        paragraphTokenizer.enumerateTokens(in: text.startIndex..<text.endIndex) { paragraphRange, _ in
-            let paragraph = String(text[paragraphRange])
-            var p_tokens: [String] = []
-            
-            let wordTokenizer = NLTokenizer(unit: .word)
-            wordTokenizer.string = paragraph
-            wordTokenizer.enumerateTokens(in: paragraph.startIndex..<paragraph.endIndex) { wordRange, _ in
-                let token = String(paragraph[wordRange])
-                p_tokens.append(token)
-                
-                return true
-            }
-            
-            tokens.append(p_tokens)
-            return true
+        let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
+        for p in paragraphs {
+            let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
+            tokens.append(combinePunctuation(tokenizedWords))
         }
         
-        
-        if !tokens.isEmpty {
-            tokens.removeLast()
-        }
-        
-        
+        tokens = processNewlines(in: tokens)
         self.tokens = tokens
+        print(tokens)
+
     }
 }
 
@@ -131,72 +167,12 @@ extension Story {
               おしまい
               """,
               language: "ja-JP"),
-        Story(title: "HSK 2 Practice Sentences (Traditional)",
+        Story(title: "汉字的魅力",
               text: """
-"我去火車站後面。
-              星期二同學請我去飯館吃飯。
-              星期日很冷。
-              漂亮的女人是誰？
-              我要買六七個椅子。
-              餵？你請說話！
-              他中午去飯館。
-              魚真便宜！
-              羊肉真好吃！
-              媽媽笑了。
-              生日快樂！
-              姐姐喜歡打籃球。
-              我家有媽媽、爸爸、妹妹和我。
-              和弟弟跑步吧。
-              穿紅衣服的是服務員。
-              我賣了一百件衣服
-              我穿過房間看見一個女人。
-              坐公共汽車去上班。
-              為什麼要幫助你？
-              看完報紙休息。
-              哥哥比弟弟高。
-              我喜歡的運動是：游泳、踢足球。
-              別唱歌了，跳舞吧。
-              考試的時間很長。
-              早上出公司。
-              我去年去中國三次。
-              我們準備一起再玩（兒）一小時。
-              從家到學校很遠。
-              讓大家起牀吧。
-              但是我覺得您可以喝咖啡。
-              雪是白的。
-              電腦賣得貴。
-              在機場等飛機。
-              右邊第一個男人是我丈夫。
-              我能懂你。
-              房間非常漂亮。
-              四號去教室。
-              希望它離公司近。
-              給你介紹我妹妹。
-              可能他正在忙。
-              公司旁邊有學校。
-              身體生病了，要吃藥。
-              我已經找出問題了，晚上問你。
-              西瓜也要一起洗。
-              今天天氣晴/陰。
-              最左邊的是哥哥的妻子。
-              我知道他走得慢。
-              每個新題都很有意思。
-              哥哥的眼睛是什麼顏色的？
-              你有什麼事情？
-              爸爸送我去飯館。
-              牛奶不好喝。
-              那個男人賣票。
-              請喝杯茶吧。
-              我們坐出租車去火車站。
-              家裡沒吃的了，我們去買點兒吧。
-              先生，請問您什麼時候開始點菜？
-              我都快吃完了。
-              中午我們去飯店吃吧。
-              我想休息幾分鐘。
-              你的房間號是多少？
-              我去過一回北京。
-              我哥哥開了一家公司
-""",
+                中国方块字以其独特的风貌与功能延续了几千年，让今人可以清晰地看懂古代时期的文字所表达的内容。如果心细，今人还能感受到古人的喜怒哀乐；汉字记录下来的历史真真切切，让我们对有文字以来的中华文明感慨，继而感激。
+                  我们的感激来自殷商以来的甲骨文、金文的发明，来自稍加训练就可以看懂的大篆、小篆；两千年前的汉隶与今之文字已无大异，这是世界上任何一个民族都没有的便利，当然就是一种幸福。五千年汉字的一脉相承，让我们面对它时沾沾自喜，尽管我们不知古人的读音如何，但古人的所思所想我们会了然于心。与古人沟通，在中国人看来并非难事，无论是《诗经》的“关关睢鸠，在河之洲；窈窕淑女，君子好逑”，还是《论语》的“仁者乐山，智者乐水”，今天无论谁读来都会会心一笑。
+                  其实，我们与古人相隔不远，因为有汉字。汉字一字一义乃至多义，为我们提供了信息传达的丰富与方便。人类文明的每一次进步，都是信息传递的结果。世界范围内影响人类文明进程的一百个人中就有东汉的蔡伦，纸张的发明不只是书写的便利，更在于信息的浓缩。这种浓缩依赖汉字的精辟。汉字，尤其古汉语，能将复杂的事物表达得极为简洁：“为山九仞，功亏一篑”(《尚书》)；也能表述得极富哲理：“有无相生，难易相成”(《老子》)；还能表述得极为优美：“投我以桃，报之以李”(《诗经》)；更能表述得极为通达：“见善则迁，有过则改”（《周易》）。汉字的优势，我们过去认知不深，曾有一段时间迷惘，
+                """,
               language: "zh-CN"),
     ]
 }

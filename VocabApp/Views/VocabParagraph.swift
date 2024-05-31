@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MLKit
-import SwiftUIFlow
 
 extension Collection {
     func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
@@ -24,7 +23,8 @@ struct VocabParagraph: View {
     @GestureState private var isDetectingLongPress = false
     @State private var completedLongPress = false
     @State private var selectedWord: Int? = nil
-    
+    @State private var selectedParagraph: Int? = nil
+
     @State private var translatedWord: String? = nil
     @State private var startTranslation: Bool = false
     
@@ -37,27 +37,35 @@ struct VocabParagraph: View {
     var body: some View {
         HStack {
             ScrollView {
-                ForEach(self.story.tokens, id: \.self) { paragraph in
-                    VFlow(alignment: .leading) {
+                Text(self.story.title)
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(alignment: .leading)
+                Divider()
+                ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
+                    FlowView(.vertical, alignment: .leading) {
                         ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
-                            self.item(for: element, index: offset)
+                                self.item(for: element, paragraph: poffset, index: offset)
                         }
                     }
+                    .padding([.leading, .trailing])
                 }
-                .padding()
+                .padding([.bottom, .top], 10)
+                .padding([.leading, .trailing])
             }
-//            .frame(width: UIScreen.main.bounds.width * 0.75)
+            .frame(width: UIScreen.main.bounds.width * 0.65)
             
             Spacer()
+            Divider()
             
             VStack {
                 if let word = translatedWord {
                     Text(word)
-                        .font(.title)
-                        .background(Color.blue)
+                        .font(.largeTitle)
                 }
             }
             .background(Color.red)
+            .frame(width: UIScreen.main.bounds.width * 0.35)
             
             Spacer()
         }
@@ -71,13 +79,15 @@ struct VocabParagraph: View {
         self.translatedWord = translation
     }
 
-    private func item(for word: String, index: Int) -> some View {
+    private func item(for word: String, paragraph: Int, index: Int) -> some View {
         Text(word)
             .font(.title)
+            .background(index == selectedWord && selectedParagraph == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
                 print("Long pressed on \(word)")
                 self.startTranslation = true
                 self.selectedWord = index
+                self.selectedParagraph = paragraph
                 Task {
                     await self.translateWord(word)
                     self.tts.play(text: word, lang: self.story.language)

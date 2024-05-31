@@ -1,10 +1,8 @@
-//VocabApp
+// VocabApp
 // Created by enzo on 5/28/24
 
 import Foundation
 import AVFoundation
-import MLKit
-
 
 class TTSService {
     let synthesizer: AVSpeechSynthesizer
