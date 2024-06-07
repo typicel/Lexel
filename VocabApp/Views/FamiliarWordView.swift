@@ -25,22 +25,29 @@ struct FamiliarWordView: View {
         self._vocabWordEntry = Query(filter: #Predicate {
             $0.word == word
         })
+        
     }
     
     var body: some View {
-        VStack {
-            Text(definition)
-                .font(.largeTitle)
-            
-            if !self.vocabWordEntry.isEmpty {
-                Word(vocabWord: vocabWordEntry[vocabWordEntry.startIndex])
-            } else {
+        if !self.vocabWordEntry.isEmpty {
+            Word(vocabWord: vocabWordEntry[vocabWordEntry.startIndex])
+        } else {
+            VStack {
+                
+                HStack(alignment: .firstTextBaseline) {
+                    Text(word)
+                        .font(.largeTitle)
+                    .padding()
+                    
+                    Text(definition)
+                        .font(.title2)
+                }
+                
+                
                 Button("Add to Dictionary") {
                     addWordToDict()
                 }
                 .buttonStyle(.borderedProminent)
-                .padding()
-
             }
         }
     }
@@ -51,20 +58,54 @@ struct Word: View {
     @Bindable var vocabWord: VocabWord
     
     var body: some View {
-        Picker("Familiarity Level", selection: $vocabWord.familiarity) {
-            Text("New").tag(Familiarity.new)
-            Text("Seen").tag(Familiarity.seen)
-            Text("Familiar").tag(Familiarity.familiar)
-            Text("Mastered").tag(Familiarity.mastered)
+        VStack {
+            HStack(alignment: .firstTextBaseline) {
+                Text(vocabWord.word)
+                    .font(.largeTitle)
+                    .padding([.trailing])
+                
+                TextField("", text: $vocabWord.definition)
+                    .onChange(of: vocabWord.definition) {
+                        try! modelContext.save()
+                    }
+                    .autocorrectionDisabled()
+                    .textInputAutocapitalization(.never)
+                    .font(.title2)
+            }
+            
+            Picker("Familiarity Level", selection: $vocabWord.familiarity) {
+                Text("New").tag(Familiarity.new)
+                Text("Seen").tag(Familiarity.seen)
+                Text("Familiar").tag(Familiarity.familiar)
+                Text("Mastered").tag(Familiarity.mastered)
+            }
+            .pickerStyle(.segmented)
+            .onChange(of: vocabWord.familiarity) {
+                try! modelContext.save()
+            }
+            
+            HStack {
+                
+                Button("Delete", systemImage: "trash") {
+                    modelContext.delete(vocabWord)
+                    try! modelContext.save()
+                }
+                .font(.headline)
+                .padding([.top])
+                .buttonStyle(.borderedProminent)
+                .tint(.red)
+                
+                Spacer()
+            }
+
         }
-        .pickerStyle(.segmented)
-        .onChange(of: vocabWord.familiarity) {
-            try! modelContext.save()
-        }
-        .padding()
+        .padding(50)
     }
 }
 
 #Preview {
-    FamiliarWordView(word: "eine", language: "de-DE", definition: "a")
+    MainActor.assumeIsolated {
+        FamiliarWordView(word: "Strasse", language: "de-DE", definition: "Road")
+            .modelContainer(for: [Story.self, VocabWord.self])
+    }
 }

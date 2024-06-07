@@ -13,7 +13,7 @@ class Story: Identifiable {
     let tokens: [[String]]
     let language: String
     
-    var ml_language: TranslateLanguage {
+    var mlLanguage: TranslateLanguage {
         switch language {
         case "de-DE":
             return .german

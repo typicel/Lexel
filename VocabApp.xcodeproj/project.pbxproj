@@ -16,6 +16,7 @@
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
+		C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */; };
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A910522C09011D007756BB /* CFTokenizer.swift */; };
@@ -37,6 +38,7 @@
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		C6A910522C09011D007756BB /* CFTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTokenizer.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */,
 				C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */,
 				C60E86962C0A4FC300E2B6CB /* LibraryView.swift */,
+				C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
 				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
+				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6FE78E02C06D192004D0C64 /* TextToSpeech .swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,

@@ -42,10 +42,9 @@ struct LibraryView: View {
                     
                 }
                 .navigationDestination(for: Int.self) {
-                    VocabParagraph(story: stories[$0], translator: TranslationService(sourceLanguage: stories[$0].ml_language))
-                        .padding()
+                    VocabParagraph(story: stories[$0], translator: TranslationService(sourceLanguage: stories[$0].mlLanguage))
                 }
-                .navigationTitle("Bookshelf")
+                .navigationTitle("Lexel")
                 .listStyle(.inset)
                 
                 Spacer()
@@ -63,15 +62,16 @@ struct LibraryView: View {
                     Text("Add a story to start learning")
                 }, actions: {
                     Button("Add Story") { isShowingAddStorySheet = true }
-                    
                 })
             }
         }
-        .navigationSplitViewStyle(.automatic)
+        .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isShowingAddStorySheet) { AddStorySheet() }
         
-        }
     }
+}
+
+
 
 struct AddStorySheet: View {
     @Environment(\.dismiss) private var dismiss
