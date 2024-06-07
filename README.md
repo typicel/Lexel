@@ -1,3 +1,3 @@
 # Lexel
 
-Learn by reading
+An App
