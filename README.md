@@ -1,3 +1,3 @@
-# Vocab App
+# Lexel
 
-##!@#
+Learn by reading
