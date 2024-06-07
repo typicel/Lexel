@@ -33,7 +33,7 @@
 		C60E86922C09865600E2B6CB /* VocabWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabWord.swift; sourceTree = "<group>"; };
 		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
 		C60E86962C0A4FC300E2B6CB /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
-		C6333B902C01936A0044E7BA /* VocabApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VocabApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6333B902C01936A0044E7BA /* Lexel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6333B932C01936A0044E7BA /* VocabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		C6333B912C01936A0044E7BA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C6333B902C01936A0044E7BA /* VocabApp.app */,
+				C6333B902C01936A0044E7BA /* Lexel.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,9 +151,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C6333B8F2C01936A0044E7BA /* VocabApp */ = {
+		C6333B8F2C01936A0044E7BA /* Lexel */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C6333B9E2C01936B0044E7BA /* Build configuration list for PBXNativeTarget "VocabApp" */;
+			buildConfigurationList = C6333B9E2C01936B0044E7BA /* Build configuration list for PBXNativeTarget "Lexel" */;
 			buildPhases = (
 				07B3BC0F71AC89F0F0FA3F2D /* [CP] Check Pods Manifest.lock */,
 				C6333B8C2C01936A0044E7BA /* Sources */,
@@ -166,11 +166,11 @@
 			);
 			dependencies = (
 			);
-			name = VocabApp;
+			name = Lexel;
 			packageProductDependencies = (
 			);
 			productName = VocabApp;
-			productReference = C6333B902C01936A0044E7BA /* VocabApp.app */;
+			productReference = C6333B902C01936A0044E7BA /* Lexel.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -188,7 +188,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "VocabApp" */;
+			buildConfigurationList = C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "Lexel" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -203,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C6333B8F2C01936A0044E7BA /* VocabApp */,
+				C6333B8F2C01936A0044E7BA /* Lexel */,
 			);
 		};
 /* End PBXProject section */
@@ -493,7 +493,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "VocabApp" */ = {
+		C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "Lexel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C6333B9C2C01936B0044E7BA /* Debug */,
@@ -502,7 +502,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C6333B9E2C01936B0044E7BA /* Build configuration list for PBXNativeTarget "VocabApp" */ = {
+		C6333B9E2C01936B0044E7BA /* Build configuration list for PBXNativeTarget "Lexel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C6333B9F2C01936B0044E7BA /* Debug */,
