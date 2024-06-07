@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct VocabApp: App {
+struct LexelApp: App {
     
     var body: some Scene {
         WindowGroup {
