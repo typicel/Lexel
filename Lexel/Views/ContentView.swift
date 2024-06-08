@@ -13,33 +13,6 @@ import SwiftData
 struct ContentView: View {
     var body: some View {
         LibraryView()
-//        TabView {
-//            LibraryView()
-//                .tabItem {
-//                    Image(systemName: "books.vertical")
-//                    Text("Library")
-//                }
-//
-//            DictionaryView()
-//                .tabItem {
-//                    Image(systemName: "bookmark")
-//                    Text("Dictionary")
-//                }
-//
-//            Text("Study")
-//                .tabItem {
-//                    Image(systemName: "lightbulb.max.fill")
-//                    Text("Study")
-//                }
-//                .padding()
-//
-//            Text("Settings")
-//                .tabItem {
-//                    Image(systemName: "gear")
-//                    Text("Settings")
-//                }
-//                .padding()
-//        }
     }
 }
 

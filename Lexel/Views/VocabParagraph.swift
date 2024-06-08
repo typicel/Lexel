@@ -123,12 +123,18 @@ struct VocabParagraph: View {
 //            Divider()
             
             VStack {
-                Spacer()
                 if let definition = translatedWord {
                     FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
                         .padding()
+                } else {
+                    Spacer(minLength: UIScreen.main.bounds.height * 0.50)
                 }
+                
                 Spacer()
+                Divider()
+                
+                NotesView(story: story)
+                    .frame(height: UIScreen.main.bounds.height * 0.50)
             }
             .frame(width: UIScreen.main.bounds.width * 0.35)
             
@@ -143,7 +149,7 @@ struct VocabParagraph: View {
 
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
         Text(word)
-            .font(.system(.title, design: fontStyles[selectedFontStyle]))
+            .font(.system(.title, design: fontStyles[self.selectedFontStyle]))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
                 self.startTranslation = true
@@ -154,6 +160,19 @@ struct VocabParagraph: View {
                     await self.translateWord(word)
                     self.tts.play(text: word, lang: self.story.language)
                 }
+            }
+    }
+}
+
+struct NotesView: View {
+    @Bindable var story: Story
+    
+    @Environment(\.modelContext) var modelContext
+    
+    var body: some View {
+        TextEditor(text: $story.notes)
+            .onChange(of: story.notes) {
+                try! modelContext.save()
             }
     }
 }

@@ -12,6 +12,7 @@ class Story: Identifiable {
     let title: String
     let tokens: [[String]]
     let language: String
+    var notes: String
     
     var mlLanguage: TranslateLanguage {
         switch language {
@@ -34,6 +35,7 @@ class Story: Identifiable {
         self.id = UUID().uuidString
         self.title = title
         self.language = language
+        self.notes = ""
         
         var tokens: [[String]] = []
         let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
