@@ -1,8 +1,8 @@
 //
-//  VocabAppApp.swift
-//  VocabApp
+//  LexelApp.swift
+//  Lexel
 //
-//  Created by Tyler McCormick on 5/24/24.
+//  Created by enzo on 5/24/24.
 //
 
 import SwiftUI

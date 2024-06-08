@@ -1,5 +1,9 @@
-//VocabApp
-// Created by enzo on 5/31/24
+//
+//  FamiliarWordView.swift
+//  Lexel
+//
+//  Created by enzo on 5/31/24
+//
 
 import SwiftUI
 import SwiftData
@@ -37,7 +41,7 @@ struct FamiliarWordView: View {
                 HStack(alignment: .firstTextBaseline) {
                     Text(word)
                         .font(.largeTitle)
-                    .padding()
+                        .padding()
                     
                     Text(definition)
                         .font(.title2)
@@ -97,7 +101,7 @@ struct Word: View {
                 
                 Spacer()
             }
-
+            
         }
         .padding(50)
     }

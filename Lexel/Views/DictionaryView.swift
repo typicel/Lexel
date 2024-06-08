@@ -1,5 +1,9 @@
-//VocabApp
-// Created by enzo on 6/1/24
+//
+//  DictionaryView.swift
+//  Lexel
+//
+//  Created by enzo on 6/1/24
+//
 
 import SwiftUI
 import SwiftData

@@ -1,5 +1,9 @@
-// VocabApp
-// Created by enzo on 5/28/24
+//
+//  Story.swift
+//  Lexel
+//
+//  Created by enzo on 5/28/24
+//
 
 import Foundation
 import MLKit
@@ -13,6 +17,7 @@ class Story: Identifiable {
     let tokens: [[String]]
     let language: String
     var notes: String
+    var lastOpened: Date?
     
     var mlLanguage: TranslateLanguage {
         switch language {
@@ -31,11 +36,14 @@ class Story: Identifiable {
         }
     }
     
+ 
+    
     init(title: String, text: String, language: String) {
         self.id = UUID().uuidString
         self.title = title
         self.language = language
         self.notes = ""
+        self.lastOpened = nil
         
         var tokens: [[String]] = []
         let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)

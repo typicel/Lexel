@@ -1,6 +1,6 @@
 //
 //  LibraryView.swift
-//  VocabApp
+//  Lexel
 //
 //  Created by enzo on 5/24/24.
 //
@@ -29,8 +29,20 @@ struct LibraryView: View {
                 List {
                     ForEach(stories.enumeratedArray(), id: \.offset) { offset, element in
                         NavigationLink(value: offset) {
-                            HStack {
-                                Text(element.title)
+                            VStack(alignment: .leading) {
+                                HStack(alignment: .firstTextBaseline) {
+                                    Text(element.title)
+                                        .font(.title3)
+                                        .bold()
+                                
+                                    Text(element.language.suffix(2))
+                                        .font(.caption)
+                                }
+                                if let date = element.lastOpened {
+                                    Text("\(self.relativeTimeString(for: date))")
+                                        .font(.subheadline)
+                                        .foregroundColor(.gray)
+                                }
                             }
                         }
                     }
@@ -77,6 +89,17 @@ struct LibraryView: View {
         .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isShowingAddStorySheet) { AddStorySheet() }
         
+    }
+    
+    func relativeTimeString(for date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        var string = formatter.localizedString(for: date, relativeTo: Date())
+        if string == "in 0 seconds" {
+            string = "Just now"
+        }
+        
+        return string
     }
 }
 

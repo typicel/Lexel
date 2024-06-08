@@ -1,6 +1,6 @@
 //
 //  VocabParagraph.swift
-//  VocabApp
+//  Lexel
 //
 //  Created by enzo on 5/24/24.
 //
@@ -19,18 +19,17 @@ let colors: [Color] = [.clear, .readerBeige, .readerBlue, .readerGray]
 let fontStyles: [Font.Design] = [.default, .serif]
 
 struct VocabParagraph: View {
-    let story: Story
+    @Bindable var story: Story
     let translator: TranslationService
     private var tts: TTSService
-
     
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
-
+    
     @State private var selectedWord: String? = nil
     @State private var selectedWordIndex: Int? = nil
     @State private var selectedParagraphIndex: Int? = nil
-
+    
     @State private var translatedWord: String? = nil
     @State private var startTranslation: Bool = false
     
@@ -38,89 +37,83 @@ struct VocabParagraph: View {
     
     @AppStorage("readerColor") var selectedColor: Int = 0
     @AppStorage("readerFontStyle") var selectedFontStyle: Int = 0
-   
+    
     init(story: Story, translator: TranslationService) {
         self.story = story
         self.tts = TTSService()
         self.translator = translator
     }
-   
     
     var body: some View {
         HStack {
             ScrollView {
                 HStack{
-                        Spacer()
+                    Spacer()
                     
-                        Text(self.story.title)
-                            .font(.largeTitle)
-                            .bold()
-                            .frame(alignment: .leading)
-                        
-                        Spacer()
-                        
-                        Button {
-                           showSettingsPopover = true
-                        } label: {
-                            Image(systemName: "textformat")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
+                    Text(self.story.title)
+                        .font(.largeTitle)
+                        .bold()
+                        .frame(alignment: .leading)
+                    
+                    Spacer()
+                    
+                    Button {
+                        showSettingsPopover = true
+                    } label: {
+                        Image(systemName: "textformat")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height: 30)
+                    }
+                    .padding([.trailing])
+                    .padding()
+                    .popover(isPresented: $showSettingsPopover) {
+                        VStack {
+                            Picker("Font Style", selection: $selectedFontStyle) {
+                                Text("Sans-Serif").tag(0)
+                                Text("Serif").tag(1)
+                            }
+                            .pickerStyle(.segmented)
+                            .onChange(of: self.selectedFontStyle) {
+                                UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
+                            }
+                            
+                            HStack {
+                                ForEach(colors.enumeratedArray(), id: \.offset) { offset, color in
+                                    Circle()
+                                        .stroke(offset == selectedColor ? Color.blue : Color.gray, lineWidth: offset == selectedColor ? 4 : 2)
+                                        .fill(color)
+                                        .frame(width: 30, height: 30)
+                                        .onTapGesture {
+                                            UserDefaults.standard.setValue(offset, forKey: "readerColor")
+                                        }
+                                }
+                            }
                         }
-                        .padding([.trailing])
-                        
+                        .background (
+                            colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.8)
+                            
+                        )
                         .padding()
-                        .popover(isPresented: $showSettingsPopover) {
-                            VStack {
-                                
-                                Picker("Font Style", selection: $selectedFontStyle) {
-                                    Text("Sans-Serif").tag(0)
-                                    Text("Serif").tag(1)
-                                }
-                                .pickerStyle(.segmented)
-                                .onChange(of: self.selectedFontStyle) {
-                                    UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
-                                }
-                                
-                                HStack {
-                                    ForEach(colors.enumeratedArray(), id: \.offset) { offset, color in
-                                        Circle()
-                                            .stroke(offset == selectedColor ? Color.blue : Color.gray, lineWidth: offset == selectedColor ? 4 : 2)
-                                            .fill(color)
-                                            .frame(width: 30, height: 30)
-                                            .onTapGesture {
-                                                UserDefaults.standard.setValue(offset, forKey: "readerColor")
-                                            }
-                                    }
-                                }
-                            }
-                            .background (
-                                colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.8)
-
-                            )
-                            .padding()
-                        }
-
                     }
+                    
+                }
                 
-                    Divider()
-                    ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
-                        FlowView(.vertical, alignment: .leading) {
-                            ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
-                                    self.item(for: element, paragraph: poffset, index: offset)
-                            }
+                Divider()
+                ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
+                    FlowView(.vertical, alignment: .leading) {
+                        ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
+                            self.item(for: element, paragraph: poffset, index: offset)
                         }
-                        .padding([.leading, .trailing])
                     }
-                    .padding([.bottom, .top], 10)
                     .padding([.leading, .trailing])
+                }
+                .padding([.bottom, .top], 10)
+                .padding([.leading, .trailing])
                 
             }
             .background(colors[selectedColor])
             .frame(width: UIScreen.main.bounds.width * 0.65)
-            
-//            Spacer()
-//            Divider()
             
             VStack {
                 if let definition = translatedWord {
@@ -140,13 +133,21 @@ struct VocabParagraph: View {
             
             Spacer()
         }
+        .onAppear { // this is dumb but I need both to handle when first story is tapped on and when it changes
+            story.lastOpened = Date()
+            try! modelContext.save()
+        }
+        .onChange(of: self.story){
+            story.lastOpened = Date()
+            try! modelContext.save()
+        }
     }
     
     private func translateWord(_ word: String) async {
         let translation: String? = await self.translator.getTranslation(for: word)
         self.translatedWord = translation
     }
-
+    
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
         Text(word)
             .font(.system(.title, design: fontStyles[self.selectedFontStyle]))
