@@ -10,53 +10,89 @@ import MLKit
 import NaturalLanguage
 import SwiftData
 
-@Model
-class Story: Identifiable {
-    let id: String
-    let title: String
-    let tokens: [[String]]
-    let language: String
-    var notes: String
-    var lastOpened: Date?
+enum LexelSchemaV1: VersionedSchema {
     
-    var mlLanguage: TranslateLanguage {
-        switch language {
-        case "de-DE":
-            return .german
-        case "en-US":
-            return .english
-        case "ja-JP":
-            return .japanese
-        case "zh-CN":
-            return .chinese
-        case "ko-KR":
-            return .korean
-        case _:
-            return .english
+    static var models: [any PersistentModel.Type] {
+        [Story.self, VocabWord.self]
+    }
+    
+    static var versionIdentifier: Schema.Version = Schema.Version(1, 0, 0)
+    
+    @Model
+    class Story: Identifiable {
+        let id: String
+        let title: String
+        let tokens: [[String]]
+        let language: String
+        var notes: String
+        var lastOpened: Date?
+        
+        var mlLanguage: TranslateLanguage {
+            switch language {
+            case "de-DE":
+                return .german
+            case "en-US":
+                return .english
+            case "ja-JP":
+                return .japanese
+            case "zh-CN":
+                return .chinese
+            case "ko-KR":
+                return .korean
+            case _:
+                return .english
+            }
+        }
+        
+        
+        
+        init(title: String, text: String, language: String) {
+            self.id = UUID().uuidString
+            self.title = title
+            self.language = language
+            self.notes = ""
+            self.lastOpened = nil
+            
+            var tokens: [[String]] = []
+            let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
+            for p in paragraphs {
+                let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
+                tokens.append(combinePunctuation(tokenizedWords))
+            }
+            
+            tokens = processNewlines(in: tokens)
+            self.tokens = tokens
+            print(tokens)
+            
         }
     }
     
- 
     
-    init(title: String, text: String, language: String) {
-        self.id = UUID().uuidString
-        self.title = title
-        self.language = language
-        self.notes = ""
-        self.lastOpened = nil
+    @Model
+    class VocabWord {
+        @Attribute(.unique) let word: String
+        let language: String
+        var familiarity: Familiarity
+        var definition: String
+        var timesTapped: Int
         
-        var tokens: [[String]] = []
-        let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
-        for p in paragraphs {
-            let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
-            tokens.append(combinePunctuation(tokenizedWords))
+        init(word: String, language: String, def: String) {
+            self.word = word
+            self.language = language
+            self.definition = def
+            self.timesTapped = 0
+            self.familiarity = .new
         }
         
-        tokens = processNewlines(in: tokens)
-        self.tokens = tokens
-        print(tokens)
-
+        func setFamiliarity(to newFam: Familiarity) {
+            self.familiarity = newFam
+        }
+        
+        func setDefinition(to newDef: String) {
+            self.definition = newDef
+        }
     }
+    
 }
 
 private func processNewlines(in array: [[String]]) -> [[String]] {
@@ -80,7 +116,7 @@ private func processNewlines(in array: [[String]]) -> [[String]] {
 private func combinePunctuation(_ input: [String]) -> [String] {
     var result: [String] = []
     var previousWord: String? = nil
-
+    
     for token in input {
         if token == " " {
             // Skip single spaces
@@ -102,12 +138,12 @@ private func combinePunctuation(_ input: [String]) -> [String] {
             previousWord = token
         }
     }
-
+    
     // Add the last word if it exists
     if let word = previousWord {
         result.append(word)
     }
-
+    
     return result
 }
 
@@ -118,8 +154,8 @@ extension Story {
         Story(title: "Freundinnen",
               text: "Ricarda ist 21 Jahre alt und wohnt in Lübeck. Lübeck ist eine sehr schöne Stadt im Norden von Deutschland. Ricarda studiert Medizin an der Universität von Lübeck. Sie hat viele Freunde dort.",
               language: "de-DE"),
-       Story(title: "Test2",
-             text: """
+        Story(title: "Test2",
+              text: """
 그러면 그냥 그냥 시작
 자, 여기부터 한국말로! 저희들은 여기부터 한국말로 합니다
 간단하게 이름 소개해주세요
@@ -134,7 +170,7 @@ extension Story {
 언제부터 키웠어요? 9개월 정도 키웠습니다
 강아지 키우니까 어때요? 뭐가 제일 좋아요? 집에 오면 반겨주는 게 너무 행복해요
 """,
-             language: "ko-KR"),
+              language: "ko-KR"),
         Story(title: "Susanne schreibt einen Brief (A1)",
               text: """
               Lieber Thomas!
@@ -150,7 +186,7 @@ extension Story {
               
               「あなたは足が早くても、わたしの方が勝ちますよ」
               と、カメが言いました。
-
+              
               　すると、ウサギは、
               「そんな事を言ったって、口先だけだ。では、競争しよう？　そうすれば、わかる」
               と、言い、
@@ -158,24 +194,24 @@ extension Story {
               と、カメは言いました。
               「キツネが公平で利口だから、あれに頼もう」
               と、ウサギは言いました。
-
+              
               　そこでキツネが、競争を始める合図をしました。
-
+              
               　たちまち、足の早いウサギがカメを引き離しました。
               　しかし、カメはあきらめずに、休まず歩き続けました。
-
+              
               　ウサギは足が早いと思って安心しているものですから、途中で大きな木を見つけると、その木かげでひと休みしました。
-
+              
               　それからしばらくして、ウサギは起き上がりました。
               「あれ？　少し眠ってしまったか。・・・まあいい、どうせカメはまだ後ろにいるはず。あぁーあ」
               　ウサギは大きくのびをすると、そのままゴールに向かいました。
-
+              
               「よーし、もうすぐゴールだ・・・と、・・・あれ？」
               　自分が勝ったと思っていたのに、何とカメが先にゴールしていたのです。
-
+              
               　才能はあっても、いいかげんにやっていて駄目になる人はたくさんいます。
               　また、才能はなくても、真面目で辛抱強い人は、才能がある人に勝つ事もあるのです。
-
+              
               おしまい
               """,
               language: "ja-JP"),
