@@ -44,8 +44,6 @@ enum LexelSchemaV1: VersionedSchema {
             }
         }
         
-        
-        
         init(title: String, text: String, language: String) {
             self.id = UUID().uuidString
             self.title = title

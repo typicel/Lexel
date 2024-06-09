@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		249154BA03B5693C1C061E88 /* Pods_Lexel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6096BBC0E544F78F27E219F /* Pods_Lexel.framework */; };
 		C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607C09C2C02772600A0FD12 /* TranslationService.swift */; };
-		C60E86932C09865600E2B6CB /* VocabWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* VocabWord.swift */; };
+		C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* Familiarity.swift */; };
 		C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */; };
 		C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86962C0A4FC300E2B6CB /* LibraryView.swift */; };
 		C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* LexelApp.swift */; };
@@ -20,9 +20,10 @@
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A910522C09011D007756BB /* CFTokenizer.swift */; };
+		C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */; };
 		C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */; };
 		C6FE78E02C06D192004D0C64 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78DF2C06D192004D0C64 /* TextToSpeech.swift */; };
-		C6FE78E22C06D561004D0C64 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* Story.swift */; };
+		C6FE78E22C06D561004D0C64 /* LexelSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* LexelSchema.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,7 +32,7 @@
 		A582B2B9253124E857562307 /* Pods-Lexel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lexel.debug.xcconfig"; path = "Target Support Files/Pods-Lexel/Pods-Lexel.debug.xcconfig"; sourceTree = "<group>"; };
 		A90DE37CEAD7ED7EE8612B1E /* Pods-VocabApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VocabApp.debug.xcconfig"; path = "Target Support Files/Pods-VocabApp/Pods-VocabApp.debug.xcconfig"; sourceTree = "<group>"; };
 		C607C09C2C02772600A0FD12 /* TranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationService.swift; sourceTree = "<group>"; };
-		C60E86922C09865600E2B6CB /* VocabWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabWord.swift; sourceTree = "<group>"; };
+		C60E86922C09865600E2B6CB /* Familiarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Familiarity.swift; sourceTree = "<group>"; };
 		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
 		C60E86962C0A4FC300E2B6CB /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* Lexel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,9 +44,10 @@
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		C6A910522C09011D007756BB /* CFTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTokenizer.swift; sourceTree = "<group>"; };
+		C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPlan.swift; sourceTree = "<group>"; };
 		C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabParagraph.swift; sourceTree = "<group>"; };
 		C6FE78DF2C06D192004D0C64 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
-		C6FE78E12C06D561004D0C64 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
+		C6FE78E12C06D561004D0C64 /* LexelSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelSchema.swift; sourceTree = "<group>"; };
 		E6096BBC0E544F78F27E219F /* Pods_Lexel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lexel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,8 +85,9 @@
 		C60E86912C09863900E2B6CB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C6FE78E12C06D561004D0C64 /* Story.swift */,
-				C60E86922C09865600E2B6CB /* VocabWord.swift */,
+				C6FE78E12C06D561004D0C64 /* LexelSchema.swift */,
+				C60E86922C09865600E2B6CB /* Familiarity.swift */,
+				C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,14 +292,15 @@
 				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
 				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
+				C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6FE78E02C06D192004D0C64 /* TextToSpeech.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
-				C60E86932C09865600E2B6CB /* VocabWord.swift in Sources */,
+				C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,
 				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,
-				C6FE78E22C06D561004D0C64 /* Story.swift in Sources */,
+				C6FE78E22C06D561004D0C64 /* LexelSchema.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

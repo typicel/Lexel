@@ -78,7 +78,15 @@ struct Word: View {
             }
             
             Picker("Familiarity Level", selection: $vocabWord.familiarity) {
-                Text("New").tag(Familiarity.new)
+                HStack {
+                    Circle()
+                        .fill(.red)
+                        .frame(width: 10, height: 10)
+                        
+                    Text("New")
+                }
+                .tag(Familiarity.new)
+                
                 Text("Seen").tag(Familiarity.seen)
                 Text("Familiar").tag(Familiarity.familiar)
                 Text("Mastered").tag(Familiarity.mastered)

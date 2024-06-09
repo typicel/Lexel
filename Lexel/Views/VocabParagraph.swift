@@ -17,6 +17,7 @@ extension Collection {
 
 let colors: [Color] = [.clear, .readerBeige, .readerBlue, .readerGray]
 let fontStyles: [Font.Design] = [.default, .serif]
+//let familiarityColors: [Color] = [
 
 struct VocabParagraph: View {
     @Bindable var story: Story
@@ -47,59 +48,21 @@ struct VocabParagraph: View {
     var body: some View {
         HStack {
             ScrollView {
-                HStack{
-                    Spacer()
-                    
-                    Text(self.story.title)
-                        .font(.largeTitle)
-                        .bold()
-                        .frame(alignment: .leading)
-                    
-                    Spacer()
-                    
-                    Button {
-                        showSettingsPopover = true
-                    } label: {
-                        Image(systemName: "textformat")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                    }
-                    .padding([.trailing])
-                    .padding()
-                    .popover(isPresented: $showSettingsPopover) {
-                        VStack {
-                            Picker("Font Style", selection: $selectedFontStyle) {
-                                Text("Sans-Serif").tag(0)
-                                Text("Serif").tag(1)
-                            }
-                            .pickerStyle(.segmented)
-                            .onChange(of: self.selectedFontStyle) {
-                                UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
-                            }
-                            
-                            HStack {
-                                ForEach(colors.enumeratedArray(), id: \.offset) { offset, color in
-                                    Circle()
-                                        .stroke(offset == selectedColor ? Color.blue : Color.gray, lineWidth: offset == selectedColor ? 4 : 2)
-                                        .fill(color)
-                                        .frame(width: 30, height: 30)
-                                        .onTapGesture {
-                                            UserDefaults.standard.setValue(offset, forKey: "readerColor")
-                                        }
-                                }
-                            }
-                        }
-                        .background (
-                            colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.8)
-                            
-                        )
-                        .padding()
-                    }
-                    
-                }
+//                HStack{
+//                    Button {
+//                        showSettingsPopover = true
+//                    } label: {
+//                        Image(systemName: "textformat")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 30, height: 30)
+//                    }
+//                    .padding([.trailing])
+//                    .padding()
+//
+//                }
                 
-                Divider()
+//                Divider()
                 ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
                     FlowView(.vertical, alignment: .leading) {
                         ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
@@ -113,25 +76,67 @@ struct VocabParagraph: View {
                 
             }
             .background(colors[selectedColor])
-            .frame(width: UIScreen.main.bounds.width * 0.65)
             
-            VStack {
-                if let definition = translatedWord {
-                    FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
-                        .padding()
-                } else {
-                    Spacer(minLength: UIScreen.main.bounds.height * 0.50)
-                }
-                
-                Spacer()
-                Divider()
-                
-                NotesView(story: story)
-                    .frame(height: UIScreen.main.bounds.height * 0.50)
+//            VStack {
+//                if let definition = translatedWord {
+//                    FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
+//                        .padding()
+//                } else {
+//                    Spacer(minLength: UIScreen.main.bounds.height * 0.50)
+//                }
+//                
+//                Spacer()
+//                Divider()
+//                
+//                NotesView(story: story)
+//                    .frame(height: UIScreen.main.bounds.height * 0.50)
+//            }
+//            .frame(width: UIScreen.main.bounds.width * 0.35)
+//            
+//            Spacer()
+        }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text(self.story.title).font(.title).bold()
             }
-            .frame(width: UIScreen.main.bounds.width * 0.35)
             
-            Spacer()
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button {
+                   showSettingsPopover = true
+                } label: {
+                    Image(systemName: "textformat")
+                }
+                .popover(isPresented: $showSettingsPopover) {
+                    VStack {
+                        Picker("Font Style", selection: $selectedFontStyle) {
+                            Text("Sans-Serif").tag(0)
+                            Text("Serif").tag(1)
+                        }
+                        .pickerStyle(.segmented)
+                        .onChange(of: self.selectedFontStyle) {
+                            UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
+                        }
+                        
+                        HStack {
+                            ForEach(colors.enumeratedArray(), id: \.offset) { offset, color in
+                                Circle()
+                                    .stroke(offset == selectedColor ? Color.blue : Color.gray, lineWidth: offset == selectedColor ? 4 : 2)
+                                    .fill(color)
+                                    .frame(width: 30, height: 30)
+                                    .onTapGesture {
+                                        UserDefaults.standard.setValue(offset, forKey: "readerColor")
+                                    }
+                            }
+                        }
+                    }
+                    .background (
+                        colorScheme == .dark ? Color.black.opacity(0.8) : Color.white.opacity(0.8)
+                        
+                    )
+                    .padding()
+                }
+
+            }
         }
         .onAppear { // this is dumb but I need both to handle when first story is tapped on and when it changes
             story.lastOpened = Date()
