@@ -65,7 +65,6 @@ enum LexelSchemaV1: VersionedSchema {
         }
     }
     
-    
     @Model
     class VocabWord {
         @Attribute(.unique) let word: String

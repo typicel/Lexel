@@ -68,9 +68,6 @@ struct Word: View {
                     .padding([.trailing])
                 
                 TextField("", text: $vocabWord.definition)
-                    .onChange(of: vocabWord.definition) {
-                        try! modelContext.save()
-                    }
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .font(.title2)
@@ -91,9 +88,6 @@ struct Word: View {
                 Text("Mastered").tag(Familiarity.mastered)
             }
             .pickerStyle(.segmented)
-            .onChange(of: vocabWord.familiarity) {
-                try! modelContext.save()
-            }
             
             HStack {
                 

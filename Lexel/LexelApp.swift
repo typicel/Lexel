@@ -14,6 +14,7 @@ typealias Story = LexelSchemaV1.Story
 @main
 struct LexelApp: App {
     let container: ModelContainer
+    let context: ModelContext
     
     init() {
         do {
@@ -21,6 +22,8 @@ struct LexelApp: App {
                 for: VocabWord.self, Story.self,
                 migrationPlan: LexelMigrationPlan.self
             )
+            self.context = ModelContext(self.container)
+            self.context.autosaveEnabled = true
         } catch {
             fatalError("Failed to initialize model container")
         }
@@ -31,6 +34,6 @@ struct LexelApp: App {
         WindowGroup {
             LibraryView()
         }
-        .modelContainer(self.container)
+        .modelContext(self.context)
     }
 }
