@@ -15,6 +15,14 @@ extension Collection {
     }
 }
 
+extension String {
+    func stripPunctuation() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+                            .trimmingCharacters(in: .punctuationCharacters)
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+}
+
 let colors: [Color] = [.clear, .readerBeige, .readerBlue, .readerGray]
 let fontStyles: [Font.Design] = [.default, .serif]
 
@@ -135,15 +143,15 @@ struct VocabParagraph: View {
     }
     
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
-        WordView(word: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
+        WordView(word: word.stripPunctuation(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .font(.system(.title, design: fontStyles[self.selectedFontStyle]))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
-                self.selectedWord = word
+                self.selectedWord = word.stripPunctuation()
                 self.selectedWordIndex = index
                 self.selectedParagraphIndex = paragraph
                 Task {
-                    await self.translateWord(word)
+                    await self.translateWord(word.stripPunctuation())
                     self.tts.play(text: word, lang: self.story.language)
                 }
             }
@@ -160,20 +168,22 @@ struct VocabParagraph: View {
 
 struct WordView: View {
     let word: String
+    let displayWord: String
     let showFamiliarityHighlight: Bool
 
     @Query var vocabWordEntry: [VocabWord]
     
-    init(word: String, showFamiliarityHighlight: Bool) {
+    init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
         self._vocabWordEntry = Query(filter: #Predicate {
             $0.word == word
         })
         self.word = word
+        self.displayWord = displayWord
         self.showFamiliarityHighlight = showFamiliarityHighlight
     }
     
     var body: some View {
-        Text(word)
+        Text(displayWord)
             .foregroundColor(.black)
             .padding([.leading, .trailing], 0.2)
             .background(!vocabWordEntry.isEmpty && showFamiliarityHighlight ? familiarityColors[vocabWordEntry[0].familiarity.rawValue-1] : .clear)
