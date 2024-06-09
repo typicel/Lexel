@@ -7,8 +7,10 @@ import CoreFoundation.CFStringTokenizer
 
 let kCFStringTokenizerTokenNone = 0
 
+typealias Token = String
+
 extension String {
-    func tokenize(unit: CFOptionFlags) -> [String] {
+    func tokenize(unit: CFOptionFlags) -> [Token] {
         let str = self as CFString
         let tokenizer: CFStringTokenizer = CFStringTokenizerCreate(
             kCFAllocatorDefault,
@@ -18,7 +20,7 @@ extension String {
             CFLocaleCopyCurrent()
         )
         
-        var tokens: [String] = []
+        var tokens: [Token] = []
         
         var tokenType = CFStringTokenizerAdvanceToNextToken(tokenizer)
         while tokenType.rawValue != 0 {

@@ -54,7 +54,7 @@ struct LibraryView: View {
                     
                 }
                 .navigationDestination(for: Int.self) {
-                    VocabParagraph(story: stories[$0], translator: TranslationService(sourceLanguage: stories[$0].mlLanguage))
+                    VocabParagraph(story: stories[$0])
                 }
                 .navigationTitle("Lexel")
                 .listStyle(.inset)

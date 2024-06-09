@@ -9,7 +9,12 @@ import Foundation
 import SwiftUI
 import MLKit
 
-class TranslationService: ObservableObject {
+protocol ITranslator {
+    func translate(word: String) async -> String
+}
+
+class TranslationService: ObservableObject, ITranslator {
+    
     var translator: Translator
     var source: TranslateLanguage
     var target: TranslateLanguage
@@ -33,7 +38,7 @@ class TranslationService: ObservableObject {
         self.translator = translate
     }
     
-    func getTranslation(for word: String) async -> String? {
+    func translate(word: String) async -> String {
         do {
             try await self.translator.downloadModelIfNeeded(with: self.conds)
             let result = try await self.translator.translate(word)

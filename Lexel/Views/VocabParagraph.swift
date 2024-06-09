@@ -9,6 +9,7 @@ import SwiftUI
 import MLKit
 import SwiftData
 import AVFoundation
+import NaturalLanguage
 
 extension Collection {
     func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
@@ -32,29 +33,31 @@ struct Constants {
 
 struct VocabParagraph: View {
     @Bindable var story: Story
-    let translator: TranslationService
     
+    // Environment vars
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
-    
+
+    // Natural Language and TTS
+    @State var nlp: NLPService
     @State private var synthesizer: AVSpeechSynthesizer?
     
+    // State relating to the currently selected word and its translation
     @State private var selectedWord: String? = nil
     @State private var selectedWordIndex: Int? = nil
     @State private var selectedParagraphIndex: Int? = nil
-    
     @State private var translatedWord: String? = nil
-    @State private var startTranslation: Bool = false
     
+    // Popover state vars
     @State private var showSettingsPopover: Bool = false
     @State private var showFamiliarPopover: Bool = false
     
     @AppStorage("readerColor") var selectedColor: Int = 0
     @State private var selectedFontStyle: Int = 0
     
-    init(story: Story, translator: TranslationService) {
+    init(story: Story) {
         self.story = story
-        self.translator = translator
+        self.nlp = NLPService(lang: story.mlLanguage)
         if let style = UserDefaults.standard.value(forKey: "readerFontStyle") {
             self.selectedFontStyle = style as! Int
         }
@@ -74,8 +77,8 @@ struct VocabParagraph: View {
                         .padding([.leading, .trailing])
                     }
                     .frame(width: geo.size.width * 0.8)
-                    .padding([.bottom, .top], 10)
-                    .padding([.leading, .trailing])
+//                    .padding([.bottom, .top], 10)
+//                    .padding([.leading, .trailing])
                 }
                 Spacer()
             }
@@ -124,13 +127,9 @@ struct VocabParagraph: View {
             }
             .onChange(of: self.story){
                 story.lastOpened = Date()
+                self.nlp = NLPService(lang: story.mlLanguage)
             }
         }
-    }
-    
-    private func translateWord(_ word: String) async {
-        let translation: String? = await self.translator.getTranslation(for: word)
-        self.translatedWord = translation
     }
     
     private func makeIsPresented(wordIndex: Int, paragraphIndex: Int) -> Binding<Bool> {
@@ -143,7 +142,6 @@ struct VocabParagraph: View {
     }
     
     func speak(text: String, lang: String){
-        
         let utterance = AVSpeechUtterance(string: text)
         let voice = AVSpeechSynthesisVoice(language: lang)
         
@@ -157,17 +155,24 @@ struct VocabParagraph: View {
         self.synthesizer?.speak(utterance)
     }
     
+    private func handleWordTap(for word: String, at location: (Int, Int)) async {
+        let lemma = self.nlp.lemmatize(word: word.stripPunctuation())
+        
+        self.selectedWord = lemma
+        self.selectedWordIndex = location.0
+        self.selectedParagraphIndex = location.1
+        
+        self.translatedWord = await self.nlp.translate(word: lemma)
+        self.speak(text: lemma, lang: self.story.language)
+    }
+    
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
         WordView(word: word.stripPunctuation(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .font(.system(.title, design: Constants.fontStyles[self.selectedFontStyle]))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
-                self.selectedWord = word.stripPunctuation()
-                self.selectedWordIndex = index
-                self.selectedParagraphIndex = paragraph
                 Task {
-                    await self.translateWord(word.stripPunctuation())
-                    self.speak(text: word, lang: self.story.language)
+                    await handleWordTap(for: word, at: (index, paragraph))
                 }
             }
             .popover(isPresented: self.makeIsPresented(wordIndex: index, paragraphIndex: paragraph)) {
@@ -181,49 +186,10 @@ struct VocabParagraph: View {
     }
 }
 
-struct WordView: View {
-    let word: String
-    let displayWord: String
-    let showFamiliarityHighlight: Bool
-    
-    @Query var wordQuery: [VocabWord]
-    var vocabWord: VocabWord? { wordQuery.first }
-    
-    init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
-        self._wordQuery = Query(filter: #Predicate {
-            $0.word == word
-        })
-        
-        self.word = word
-        self.displayWord = displayWord
-        self.showFamiliarityHighlight = showFamiliarityHighlight
-    }
-    
-    var body: some View {
-        Text(displayWord)
-            .foregroundColor(.black)
-            .padding([.leading, .trailing], 0.2)
-            .background(vocabWord != nil && showFamiliarityHighlight ? Constants.familiarityColors[vocabWord!.familiarity.rawValue-1] : .clear)
-    }
-}
-
-struct NotesView: View {
-    @Bindable var story: Story
-    
-    @Environment(\.modelContext) var modelContext
-    
-    var body: some View {
-        TextEditor(text: $story.notes)
-            .onChange(of: story.notes) {
-                try! modelContext.save()
-            }
-    }
-}
-
 
 #Preview {
     MainActor.assumeIsolated {
-        VocabParagraph(story: Story.sampleData[2], translator: TranslationService(sourceLanguage: Story.sampleData[2].mlLanguage))
+        VocabParagraph(story: Story.sampleData[2])
             .modelContainer(for: [Story.self, VocabWord.self])
     }
 }
