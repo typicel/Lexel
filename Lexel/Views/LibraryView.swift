@@ -65,14 +65,14 @@ struct LibraryView: View {
                     Label("Add Story", systemImage: "plus.circle")
                 }
                 
-                Button("Delete Data") {
-                    do {
-                        try context.delete(model: Story.self)
-                        try context.delete(model: VocabWord.self)
-                    } catch {
-                        fatalError(error.localizedDescription)
-                    }
-                }
+//                Button("Delete Data") {
+//                    do {
+//                        try context.delete(model: Story.self)
+//                        try context.delete(model: VocabWord.self)
+//                    } catch {
+//                        fatalError(error.localizedDescription)
+//                    }
+//                }
                 
             }
         } detail: {

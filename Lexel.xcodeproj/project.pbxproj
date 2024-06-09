@@ -113,6 +113,7 @@
 		C6333B922C01936A0044E7BA /* Lexel */ = {
 			isa = PBXGroup;
 			children = (
+				C6E5C2232C152CA9001ABDBA /* Components */,
 				C6A910542C096431007756BB /* Views */,
 				C60E86912C09863900E2B6CB /* Models */,
 				C607C09C2C02772600A0FD12 /* TranslationService.swift */,
@@ -153,6 +154,13 @@
 				C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C6E5C2232C152CA9001ABDBA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

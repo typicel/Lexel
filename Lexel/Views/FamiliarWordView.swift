@@ -36,12 +36,10 @@ struct FamiliarWordView: View {
         if !self.vocabWordEntry.isEmpty {
             Word(vocabWord: vocabWordEntry[vocabWordEntry.startIndex])
         } else {
-            VStack {
-                
+            VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
                     Text(word)
                         .font(.largeTitle)
-                        .padding()
                     
                     Text(definition)
                         .font(.title2)
@@ -53,6 +51,7 @@ struct FamiliarWordView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
+            .padding(20)
         }
     }
 }
@@ -111,7 +110,7 @@ struct Word: View {
             }
             
         }
-        .padding(50)
+        .padding(20)
     }
 }
 
