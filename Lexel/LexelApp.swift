@@ -25,6 +25,7 @@ struct LexelApp: App {
             self.context = ModelContext(self.container)
             self.context.autosaveEnabled = true
         } catch {
+            print(error.localizedDescription)
             fatalError("Failed to initialize model container")
         }
 
@@ -35,5 +36,6 @@ struct LexelApp: App {
             LibraryView()
         }
         .modelContext(self.context)
+        .environmentObject(ThemeManager())
     }
 }

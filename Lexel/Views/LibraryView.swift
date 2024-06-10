@@ -103,14 +103,6 @@ struct AddStorySheet: View {
     @State private var language: String = "en-US"
     @State private var text: String = "Add story text here"
     
-    private var allowedLanguages: [(String, String)] = [
-        ("English", "en-US"),
-        ("German", "de-DE"),
-        ("Spanish", "es-ES"),
-        ("French", "fr-FR"),
-        ("Korean", "ko-KR"),
-        ("Japanese", "ja-JP")
-    ]
     
     func addStory() {
         let newStory = Story(title: title, text: text, language: language) // this is never called if language is null so it's fine
@@ -124,7 +116,7 @@ struct AddStorySheet: View {
                 TextField("Story Title", text: $title)
                     .autocorrectionDisabled()
                 Picker("Source Language", selection: $language) {
-                    ForEach(allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
+                    ForEach(Constants.allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
                         Text(lang.0).tag(lang.1)
                     }
                 }

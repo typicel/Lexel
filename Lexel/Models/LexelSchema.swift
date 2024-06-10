@@ -20,12 +20,12 @@ enum LexelSchemaV1: VersionedSchema {
     
     @Model
     class Story: Identifiable {
-        let id: String
-        let title: String
-        let tokens: [[String]]
-        let language: String
+        var id: String
+        var title: String
+        var language: String
         var notes: String
         var lastOpened: Date?
+        var text: String
         
         var mlLanguage: TranslateLanguage {
             switch language {
@@ -44,14 +44,8 @@ enum LexelSchemaV1: VersionedSchema {
             }
         }
         
-        init(title: String, text: String, language: String) {
-            self.id = UUID().uuidString
-            self.title = title
-            self.language = language
-            self.notes = ""
-            self.lastOpened = nil
-            
-            var tokens: [[String]] = []
+        var tokens: [[Token]] {
+            var tokens: [[Token]] = []
             let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
             for p in paragraphs {
                 let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
@@ -59,9 +53,16 @@ enum LexelSchemaV1: VersionedSchema {
             }
             
             tokens = processNewlines(in: tokens)
-            self.tokens = tokens
-            print(tokens)
-            
+            return tokens
+        }
+        
+        init(title: String, text: String, language: String) {
+            self.id = UUID().uuidString
+            self.title = title
+            self.language = language
+            self.notes = ""
+            self.lastOpened = nil
+            self.text = text
         }
     }
     

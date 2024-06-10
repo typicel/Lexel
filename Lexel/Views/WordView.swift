@@ -13,6 +13,9 @@ struct WordView: View {
     let displayWord: String
     let showFamiliarityHighlight: Bool
     
+    @EnvironmentObject var themeManager: ThemeManager
+    @Environment(\.colorScheme) var colorScheme
+    
     @Query var wordQuery: [VocabWord]
     var vocabWord: VocabWord? { wordQuery.first }
     
@@ -28,7 +31,10 @@ struct WordView: View {
     
     var body: some View {
         Text(displayWord)
-            .foregroundColor(.black)
+            .foregroundColor(
+                themeManager.selectedTheme.textColor != nil ? themeManager.selectedTheme.textColor :
+                    (colorScheme == .dark ? .white : .black)
+            )
             .padding([.leading, .trailing], 0.2)
             .background(vocabWord != nil && showFamiliarityHighlight ? Constants.familiarityColors[vocabWord!.familiarity.rawValue-1] : .clear)
     }

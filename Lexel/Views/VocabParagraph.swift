@@ -26,9 +26,17 @@ extension String {
 }
 
 struct Constants {
-    static let colors: [Color] = [.clear, .readerBeige, .readerBlue, .readerGray]
+        static let themes: [ReaderTheme] = [ClearReaderTheme(), SepiaReaderTheme(), BlueReaderTheme(), GrayReaderTheme()]
     static let fontStyles: [Font.Design] = [.default, .serif]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
+    static let allowedLanguages: [(String, String)] = [
+        ("English", "en-US"),
+        ("German", "de-DE"),
+        ("Spanish", "es-ES"),
+        ("French", "fr-FR"),
+        ("Korean", "ko-KR"),
+        ("Japanese", "ja-JP")
+    ]
 }
 
 struct VocabParagraph: View {
@@ -37,6 +45,7 @@ struct VocabParagraph: View {
     // Environment vars
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
+    @EnvironmentObject private var themeManager: ThemeManager
 
     // Natural Language and TTS
     @State var nlp: NLPService
@@ -52,7 +61,7 @@ struct VocabParagraph: View {
     @State private var showSettingsPopover: Bool = false
     @State private var showFamiliarPopover: Bool = false
     
-    @AppStorage("readerColor") var selectedColor: Int = 0
+    @State private var selectedTheme: Int = 0
     @State private var selectedFontStyle: Int = 0
     
     init(story: Story) {
@@ -77,12 +86,11 @@ struct VocabParagraph: View {
                         .padding([.leading, .trailing])
                     }
                     .frame(width: geo.size.width * 0.8)
-//                    .padding([.bottom, .top], 10)
-//                    .padding([.leading, .trailing])
                 }
                 Spacer()
             }
-            .background(Constants.colors[selectedColor])
+//            .background(Constants.themes[self.selectedTheme].readerColor)
+            .background(themeManager.selectedTheme.readerColor)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(self.story.title).font(.title).bold()
@@ -106,13 +114,13 @@ struct VocabParagraph: View {
                             }
                             
                             HStack {
-                                ForEach(Constants.colors.enumeratedArray(), id: \.offset) { offset, color in
+                                ForEach(Constants.themes.enumeratedArray(), id: \.offset) { offset, theme in
                                     Circle()
-                                        .stroke(offset == selectedColor ? Color.blue : Color.gray, lineWidth: offset == selectedColor ? 4 : 2)
-                                        .fill(color)
+                                        .stroke(offset == selectedTheme ? Color.blue : Color.gray, lineWidth: offset == selectedTheme ? 4 : 2)
+                                        .fill(theme.readerColor)
                                         .frame(width: 30, height: 30)
                                         .onTapGesture {
-                                            UserDefaults.standard.setValue(offset, forKey: "readerColor")
+                                            self.themeManager.setTheme(theme)
                                         }
                                 }
                             }
@@ -156,7 +164,7 @@ struct VocabParagraph: View {
     }
     
     private func handleWordTap(for word: String, at location: (Int, Int)) async {
-        let lemma = self.nlp.lemmatize(word: word.stripPunctuation())
+        let lemma = self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
         
         self.selectedWord = lemma
         self.selectedWordIndex = location.0

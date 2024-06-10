@@ -25,6 +25,8 @@
 		C6E5C22B2C16628D001ABDBA /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22A2C16628D001ABDBA /* NotesView.swift */; };
 		C6E5C22D2C166359001ABDBA /* LemmatizeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22C2C166359001ABDBA /* LemmatizeService.swift */; };
 		C6E5C22F2C166AA1001ABDBA /* NLPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22E2C166AA1001ABDBA /* NLPService.swift */; };
+		C6E5C2312C16A178001ABDBA /* EditStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2302C16A178001ABDBA /* EditStoryView.swift */; };
+		C6E5C2332C16A7A1001ABDBA /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2322C16A7A0001ABDBA /* ThemeManager.swift */; };
 		C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */; };
 		C6FE78E02C06D192004D0C64 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78DF2C06D192004D0C64 /* TextToSpeech.swift */; };
 		C6FE78E22C06D561004D0C64 /* LexelSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* LexelSchema.swift */; };
@@ -53,6 +55,8 @@
 		C6E5C22A2C16628D001ABDBA /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		C6E5C22C2C166359001ABDBA /* LemmatizeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemmatizeService.swift; sourceTree = "<group>"; };
 		C6E5C22E2C166AA1001ABDBA /* NLPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLPService.swift; sourceTree = "<group>"; };
+		C6E5C2302C16A178001ABDBA /* EditStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStoryView.swift; sourceTree = "<group>"; };
+		C6E5C2322C16A7A0001ABDBA /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabParagraph.swift; sourceTree = "<group>"; };
 		C6FE78DF2C06D192004D0C64 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		C6FE78E12C06D561004D0C64 /* LexelSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelSchema.swift; sourceTree = "<group>"; };
@@ -125,14 +129,15 @@
 				C6A910542C096431007756BB /* Views */,
 				C60E86912C09863900E2B6CB /* Models */,
 				C607C09C2C02772600A0FD12 /* TranslationService.swift */,
-				C6333B932C01936A0044E7BA /* LexelApp.swift */,
 				C6FE78DF2C06D192004D0C64 /* TextToSpeech.swift */,
 				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6E5C22C2C166359001ABDBA /* LemmatizeService.swift */,
 				C6E5C22E2C166AA1001ABDBA /* NLPService.swift */,
+				C6333B932C01936A0044E7BA /* LexelApp.swift */,
 				C6333B972C01936B0044E7BA /* Assets.xcassets */,
 				C6333B992C01936B0044E7BA /* Preview Content */,
 				C6A910512C08FBDC007756BB /* Flow */,
+				C6E5C2322C16A7A0001ABDBA /* ThemeManager.swift */,
 			);
 			path = Lexel;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 				C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */,
 				C6E5C2282C16626D001ABDBA /* WordView.swift */,
 				C6E5C22A2C16628D001ABDBA /* NotesView.swift */,
+				C6E5C2302C16A178001ABDBA /* EditStoryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,8 +317,10 @@
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* TranslationService.swift in Sources */,
+				C6E5C2312C16A178001ABDBA /* EditStoryView.swift in Sources */,
 				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
 				C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */,
+				C6E5C2332C16A7A1001ABDBA /* ThemeManager.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6FE78E02C06D192004D0C64 /* TextToSpeech.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,

@@ -13,7 +13,7 @@ protocol ITranslator {
     func translate(word: String) async -> String
 }
 
-class TranslationService: ObservableObject, ITranslator {
+class MLTranslationService: ObservableObject, ITranslator {
     
     var translator: Translator
     var source: TranslateLanguage

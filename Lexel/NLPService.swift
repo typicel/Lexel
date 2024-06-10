@@ -14,8 +14,8 @@ class NLPService {
     let translator: ITranslator
     
     init(lang: TranslateLanguage) {
-        self.lemma = LemmatizeService()
-        self.translator = TranslationService(sourceLanguage: lang)
+        self.lemma = NLLemmaService()
+        self.translator = MLTranslationService(sourceLanguage: lang)
     }
     
     func translate(word: String) async -> String {

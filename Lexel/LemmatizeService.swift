@@ -14,7 +14,7 @@ protocol ILemmatize {
     func lemmatize(word: String) -> Lemma
 }
 
-class LemmatizeService : ILemmatize {
+class NLLemmaService : ILemmatize {
     func lemmatize(word: String) -> Lemma {
         print("lemmatizing \(word)")
         
