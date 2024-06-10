@@ -2,10 +2,9 @@
 //  ThemeManager.swift
 //  Lexel
 //
-//  Created by Tyler McCormick on 6/9/24.
+//  Created by enzo on 6/9/24.
 //
 
-import Foundation
 import SwiftUI
 
 protocol ReaderTheme {
@@ -13,30 +12,30 @@ protocol ReaderTheme {
     var textColor: Color? { get }
 }
 
-class ThemeManager: ObservableObject {
-    @Published var selectedTheme: ReaderTheme = ClearReaderTheme()
+class ThemeService: ObservableObject {
+    @Published var selectedTheme: ReaderTheme = Clear()
     
     func setTheme(_ theme: ReaderTheme) {
         selectedTheme = theme
     }
 }
 
-struct ClearReaderTheme: ReaderTheme {
+struct Clear: ReaderTheme {
     var readerColor: Color { return .clear }
     var textColor: Color? { return nil }
 }
 
-struct SepiaReaderTheme: ReaderTheme {
+struct Sepia: ReaderTheme {
     var readerColor: Color { return .readerBeige }
     var textColor: Color? { return .black }
 }
 
-struct BlueReaderTheme: ReaderTheme {
+struct Blue: ReaderTheme {
     var readerColor: Color { return .readerBlue }
     var textColor: Color? { return .black }
 }
 
-struct GrayReaderTheme: ReaderTheme {
+struct Gray: ReaderTheme {
     var readerColor: Color { return .readerGray }
     var textColor: Color? { return .black }
 }

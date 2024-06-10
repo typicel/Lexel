@@ -1,8 +1,8 @@
 //
-//  LemmatizeService.swift
+//  NLLemmaService.swift
 //  Lexel
 //
-//  Created by Tyler McCormick on 6/9/24.
+//  Created by enzo on 6/9/24.
 //
 
 import Foundation
@@ -15,13 +15,18 @@ protocol ILemmatize {
 }
 
 class NLLemmaService : ILemmatize {
+    
+    /// Determines the lemma of the given word
+    ///
+    /// - Parameters
+    ///     - word: The word to be lemmatized
+    /// - Returns: The lemma of the given word
     func lemmatize(word: String) -> Lemma {
         print("lemmatizing \(word)")
         
         let tagger = NLTagger(tagSchemes: [.lemma])
         let range = word.startIndex..<word.endIndex
         tagger.string = word
-//        tagger.setLanguage(.german, range: range)
         
         let options: NLTagger.Options = [.omitWhitespace, .omitPunctuation, .joinNames]
         var ret: String = word

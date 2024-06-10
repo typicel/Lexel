@@ -13,7 +13,7 @@ struct WordView: View {
     let displayWord: String
     let showFamiliarityHighlight: Bool
     
-    @EnvironmentObject var themeManager: ThemeManager
+    @EnvironmentObject var themeManager: ThemeService
     @Environment(\.colorScheme) var colorScheme
     
     @Query var wordQuery: [VocabWord]

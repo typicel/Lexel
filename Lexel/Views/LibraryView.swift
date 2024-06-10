@@ -15,12 +15,23 @@ struct LibraryView: View {
     
     @State private var selectedStoryIdx: Int? = 1
     @State private var isShowingAddStorySheet: Bool = false
+    @State private var isShowingEditStorySheet: Bool = false
+    @State private var editingStory: Story? = nil
+    
     @Query private var stories: [Story]
     
     func showSheet() { isShowingAddStorySheet = true }
     
     func deleteItem(_ item: Story) {
         context.delete(item)
+    }
+    
+    func editItem(_ item: Story) {
+        self.editingStory = item
+    }
+    
+    func reset() {
+        self.editingStory = nil
     }
     
     var body: some View {
@@ -44,6 +55,24 @@ struct LibraryView: View {
                                         .foregroundColor(.gray)
                                 }
                             }
+                        }
+                        .swipeActions(allowsFullSwipe: false) {
+                                
+                            Button(role: .destructive) {
+                                context.delete(element)
+                            } label: {
+                                Label("Delete Story", systemImage: "trash")
+                            }
+                            .tint(.red)
+                            
+                            Button {
+                                editingStory = element
+                                isShowingEditStorySheet = true
+                            } label: {
+                                Label("Edit Story", systemImage: "pencil")
+                            }
+                            .tint(.indigo)
+                        
                         }
                     }
                     .onDelete { indexes in
@@ -78,7 +107,13 @@ struct LibraryView: View {
         }
         .navigationSplitViewStyle(.balanced)
         .sheet(isPresented: $isShowingAddStorySheet) { AddStorySheet() }
-        
+        .sheet(item: $editingStory) {
+            reset()
+        } content: { story in
+            EditStoryView(story: story)
+        }
+//        .sheet(isPresented: $isShowingEditStorySheet) { EditStoryView(story: editingStory!) }
+
     }
     
     func relativeTimeString(for date: Date) -> String {

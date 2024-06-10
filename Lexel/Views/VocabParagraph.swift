@@ -26,7 +26,7 @@ extension String {
 }
 
 struct Constants {
-        static let themes: [ReaderTheme] = [ClearReaderTheme(), SepiaReaderTheme(), BlueReaderTheme(), GrayReaderTheme()]
+        static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
     static let fontStyles: [Font.Design] = [.default, .serif]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
     static let allowedLanguages: [(String, String)] = [
@@ -45,7 +45,7 @@ struct VocabParagraph: View {
     // Environment vars
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject private var themeManager: ThemeManager
+    @EnvironmentObject private var themeService: ThemeService
 
     // Natural Language and TTS
     @State var nlp: NLPService
@@ -76,7 +76,7 @@ struct VocabParagraph: View {
         GeometryReader { geo in
             HStack {
                 Spacer()
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
                         FlowView(.vertical, alignment: .leading) {
                             ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
@@ -89,8 +89,7 @@ struct VocabParagraph: View {
                 }
                 Spacer()
             }
-//            .background(Constants.themes[self.selectedTheme].readerColor)
-            .background(themeManager.selectedTheme.readerColor)
+            .background(themeService.selectedTheme.readerColor)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(self.story.title).font(.title).bold()
@@ -120,7 +119,7 @@ struct VocabParagraph: View {
                                         .fill(theme.readerColor)
                                         .frame(width: 30, height: 30)
                                         .onTapGesture {
-                                            self.themeManager.setTheme(theme)
+                                            self.themeService.setTheme(theme)
                                         }
                                 }
                             }
@@ -140,6 +139,12 @@ struct VocabParagraph: View {
         }
     }
     
+    /// Returns a binding that represents if the word at the given indicies is currently selected
+    ///
+    /// - Parameters
+    ///     - wordIndex: Index of the word in each paragraph
+    ///     - paragraphIndex: Index representing the paragraph the word is in
+    /// - Returns: A binding representing if the word is selected
     private func makeIsPresented(wordIndex: Int, paragraphIndex: Int) -> Binding<Bool> {
         return .init(get: {
             return wordIndex == selectedWordIndex && paragraphIndex == selectedParagraphIndex
@@ -149,6 +154,11 @@ struct VocabParagraph: View {
         })
     }
     
+    /// Helper function to generate TTS for a given word
+    ///
+    /// - Parameters
+    ///     - word: The word to be spoken
+    ///     - lang: The language of the word (for accent purposes)
     func speak(text: String, lang: String){
         let utterance = AVSpeechUtterance(string: text)
         let voice = AVSpeechSynthesisVoice(language: lang)
@@ -163,6 +173,10 @@ struct VocabParagraph: View {
         self.synthesizer?.speak(utterance)
     }
     
+    /// Handles the logic for when a word is tapped on
+    /// - Parameters
+    ///     - word: The word that was tapped on
+    ///     - location: A tuple representing the paragraph and location within the paragraph the word is
     private func handleWordTap(for word: String, at location: (Int, Int)) async {
         let lemma = self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
         

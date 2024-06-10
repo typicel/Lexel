@@ -2,7 +2,7 @@
 //  EditStoryView.swift
 //  Lexel
 //
-//  Created by Tyler McCormick on 6/9/24.
+//  Created by enzo on 6/9/24.
 //
 
 import SwiftUI
@@ -12,6 +12,7 @@ struct EditStoryView: View {
     @Bindable var story: Story
     
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) var modelContext
     
     var body: some View {
         NavigationStack {
@@ -33,13 +34,19 @@ struct EditStoryView: View {
                 }
                 
             }
-            .navigationTitle("New Story")
+            .navigationTitle("Edit \"\(story.title)\"")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
                     Button("Cancel") { dismiss() }
                 }
                 
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button("Save") {
+                        try! modelContext.save()
+                        dismiss()
+                    }
+                }
             }
         }
     }

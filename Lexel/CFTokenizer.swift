@@ -1,12 +1,15 @@
-//VocabApp
-// Created by enzo on 5/30/24
+//
+//  CLTokenizer.swift
+//  Lexel
+//
+//  Created by enzo on 5/30/24.
+//
 
 import Foundation
 import CoreFoundation
 import CoreFoundation.CFStringTokenizer
 
 let kCFStringTokenizerTokenNone = 0
-
 typealias Token = String
 
 extension String {

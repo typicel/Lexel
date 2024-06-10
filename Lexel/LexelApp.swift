@@ -36,6 +36,6 @@ struct LexelApp: App {
             LibraryView()
         }
         .modelContext(self.context)
-        .environmentObject(ThemeManager())
+        .environmentObject(ThemeService())
     }
 }
