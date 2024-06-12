@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  VocabApp
+//  Lexel
 //
 //  Created by enzo on 5/24/24.
 //

@@ -37,5 +37,6 @@ struct LexelApp: App {
         }
         .modelContext(self.context)
         .environmentObject(ThemeService())
+        .environmentObject(MLModelManager())
     }
 }

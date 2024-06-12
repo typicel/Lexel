@@ -26,16 +26,16 @@ extension String {
 }
 
 struct Constants {
-        static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
+    static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
     static let fontStyles: [Font.Design] = [.default, .serif]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
-    static let allowedLanguages: [(String, String)] = [
-        ("English", "en-US"),
-        ("German", "de-DE"),
-        ("Spanish", "es-ES"),
-        ("French", "fr-FR"),
-        ("Korean", "ko-KR"),
-        ("Japanese", "ja-JP")
+    static let allowedLanguages: [LexelLanguage] = [
+        LexelLanguage("English", "en-US"),
+        LexelLanguage("German", "de-DE"),
+        LexelLanguage("Spanish", "es-ES"),
+        LexelLanguage("French", "fr-FR"),
+        LexelLanguage("Korean", "ko-KR"),
+        LexelLanguage("Japanese", "ja-JP"),
     ]
 }
 
@@ -46,7 +46,7 @@ struct VocabParagraph: View {
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var themeService: ThemeService
-
+    
     // Natural Language and TTS
     @State var nlp: NLPService
     @State private var synthesizer: AVSpeechSynthesizer?
@@ -66,7 +66,7 @@ struct VocabParagraph: View {
     
     init(story: Story) {
         self.story = story
-        self.nlp = NLPService(lang: story.mlLanguage)
+        self.nlp = NLPService(lang: story.language.mlLanguage)
         if let style = UserDefaults.standard.value(forKey: "readerFontStyle") {
             self.selectedFontStyle = style as! Int
         }
@@ -93,6 +93,7 @@ struct VocabParagraph: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text(self.story.title).font(.title).bold()
+                        .foregroundColor(themeService.selectedTheme.textColor)
                 }
                 
                 ToolbarItemGroup(placement: .primaryAction) {
@@ -134,7 +135,7 @@ struct VocabParagraph: View {
             }
             .onChange(of: self.story){
                 story.lastOpened = Date()
-                self.nlp = NLPService(lang: story.mlLanguage)
+                self.nlp = NLPService(lang: story.language.mlLanguage)
             }
         }
     }
@@ -185,11 +186,12 @@ struct VocabParagraph: View {
         self.selectedParagraphIndex = location.1
         
         self.translatedWord = await self.nlp.translate(word: lemma)
-        self.speak(text: lemma, lang: self.story.language)
+        
+        self.speak(text: lemma, lang: self.story.language.bcp47)
     }
     
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
-        WordView(word: word.stripPunctuation(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
+        WordView(word: self.nlp.lemmatize(word: word.stripPunctuation()).lowercased(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .font(.system(.title, design: Constants.fontStyles[self.selectedFontStyle]))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
@@ -199,7 +201,7 @@ struct VocabParagraph: View {
             }
             .popover(isPresented: self.makeIsPresented(wordIndex: index, paragraphIndex: paragraph)) {
                 if let definition = translatedWord {
-                    FamiliarWordView(word: selectedWord!, language: story.language, definition: definition)
+                    FamiliarWordView(word: selectedWord!, language: story.language.bcp47, definition: definition)
                 } else {
                     ProgressView()
                 }

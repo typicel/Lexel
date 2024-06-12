@@ -1,5 +1,5 @@
 //
-//  Story.swift
+//  LexelSchema.swift
 //  Lexel
 //
 //  Created by enzo on 5/28/24
@@ -9,6 +9,18 @@ import Foundation
 import MLKit
 import NaturalLanguage
 import SwiftData
+
+struct LexelToken {
+    
+    // The token that should be displayed
+    var rawToken: Token
+    
+    // The token stripped of any punctuation
+    var word: Token
+    
+    // The base lemma (stem) of the word
+    var lemma: String
+}
 
 enum LexelSchemaV1: VersionedSchema {
     
@@ -22,27 +34,27 @@ enum LexelSchemaV1: VersionedSchema {
     class Story: Identifiable {
         var id: String
         var title: String
-        var language: String
+        var language: LexelLanguage
         var notes: String
         var lastOpened: Date?
         var text: String
         
-        var mlLanguage: TranslateLanguage {
-            switch language {
-            case "de-DE":
-                return .german
-            case "en-US":
-                return .english
-            case "ja-JP":
-                return .japanese
-            case "zh-CN":
-                return .chinese
-            case "ko-KR":
-                return .korean
-            case _:
-                return .english
-            }
-        }
+//        var mlLanguage: TranslateLanguage {
+//            switch language {
+//            case "de-DE":
+//                return .german
+//            case "en-US":
+//                return .english
+//            case "ja-JP":
+//                return .japanese
+//            case "zh-CN":
+//                return .chinese
+//            case "ko-KR":
+//                return .korean
+//            case _:
+//                return .english
+//            }
+//        }
         
         var tokens: [[Token]] {
             var tokens: [[Token]] = []
@@ -56,7 +68,7 @@ enum LexelSchemaV1: VersionedSchema {
             return tokens
         }
         
-        init(title: String, text: String, language: String) {
+        init(title: String, text: String, language: LexelLanguage) {
             self.id = UUID().uuidString
             self.title = title
             self.language = language
@@ -151,7 +163,9 @@ extension Story {
     [
         Story(title: "Freundinnen",
               text: "Ricarda ist 21 Jahre alt und wohnt in Lübeck. Lübeck ist eine sehr schöne Stadt im Norden von Deutschland. Ricarda studiert Medizin an der Universität von Lübeck. Sie hat viele Freunde dort.",
-              language: "de-DE"),
+              language: LexelLanguage("German", "de-DE")
+              ),
+              
         Story(title: "Test2",
               text: """
 그러면 그냥 그냥 시작
@@ -168,7 +182,7 @@ extension Story {
 언제부터 키웠어요? 9개월 정도 키웠습니다
 강아지 키우니까 어때요? 뭐가 제일 좋아요? 집에 오면 반겨주는 게 너무 행복해요
 """,
-              language: "ko-KR"),
+              language: LexelLanguage("Korean", "ko-KR")),
         Story(title: "Susanne schreibt einen Brief (A1)",
               text: """
               Lieber Thomas!
@@ -177,7 +191,7 @@ extension Story {
               
               Herzliche Grüße Deine Susanne Viele Grüße von Mimi!
               """,
-              language: "de-DE"),
+              language: LexelLanguage("German", "de-DE")),
         Story(title: "ウサギとカメ",
               text: """
               カメの足が遅いのを、ウサギがバカにして笑いました。
@@ -212,13 +226,6 @@ extension Story {
               
               おしまい
               """,
-              language: "ja-JP"),
-        Story(title: "汉字的魅力",
-              text: """
-                中国方块字以其独特的风貌与功能延续了几千年，让今人可以清晰地看懂古代时期的文字所表达的内容。如果心细，今人还能感受到古人的喜怒哀乐；汉字记录下来的历史真真切切，让我们对有文字以来的中华文明感慨，继而感激。
-                  我们的感激来自殷商以来的甲骨文、金文的发明，来自稍加训练就可以看懂的大篆、小篆；两千年前的汉隶与今之文字已无大异，这是世界上任何一个民族都没有的便利，当然就是一种幸福。五千年汉字的一脉相承，让我们面对它时沾沾自喜，尽管我们不知古人的读音如何，但古人的所思所想我们会了然于心。与古人沟通，在中国人看来并非难事，无论是《诗经》的“关关睢鸠，在河之洲；窈窕淑女，君子好逑”，还是《论语》的“仁者乐山，智者乐水”，今天无论谁读来都会会心一笑。
-                  其实，我们与古人相隔不远，因为有汉字。汉字一字一义乃至多义，为我们提供了信息传达的丰富与方便。人类文明的每一次进步，都是信息传递的结果。世界范围内影响人类文明进程的一百个人中就有东汉的蔡伦，纸张的发明不只是书写的便利，更在于信息的浓缩。这种浓缩依赖汉字的精辟。汉字，尤其古汉语，能将复杂的事物表达得极为简洁：“为山九仞，功亏一篑”(《尚书》)；也能表述得极富哲理：“有无相生，难易相成”(《老子》)；还能表述得极为优美：“投我以桃，报之以李”(《诗经》)；更能表述得极为通达：“见善则迁，有过则改”（《周易》）。汉字的优势，我们过去认知不深，曾有一段时间迷惘，
-                """,
-              language: "zh-CN"),
+              language: LexelLanguage("Japanese", "ja-JP")),
     ]
 }

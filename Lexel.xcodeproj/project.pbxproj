@@ -12,10 +12,14 @@
 		C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* Familiarity.swift */; };
 		C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */; };
 		C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86962C0A4FC300E2B6CB /* LibraryView.swift */; };
+		C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622C7102C1939DA00188F14 /* LexelLanguage.swift */; };
 		C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* LexelApp.swift */; };
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
+		C69E62DF2C1900400030B5B2 /* AddStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62DE2C1900400030B5B2 /* AddStoryView.swift */; };
+		C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62E02C1902870030B5B2 /* MLModelManager.swift */; };
+		C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */; };
 		C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */; };
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
@@ -40,11 +44,15 @@
 		C60E86922C09865600E2B6CB /* Familiarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Familiarity.swift; sourceTree = "<group>"; };
 		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
 		C60E86962C0A4FC300E2B6CB /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		C622C7102C1939DA00188F14 /* LexelLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelLanguage.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* Lexel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6333B932C01936A0044E7BA /* LexelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C69E62DE2C1900400030B5B2 /* AddStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryView.swift; sourceTree = "<group>"; };
+		C69E62E02C1902870030B5B2 /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
+		C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManagerView.swift; sourceTree = "<group>"; };
 		C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
@@ -128,9 +136,11 @@
 				C60E86912C09863900E2B6CB /* Models */,
 				C607C09C2C02772600A0FD12 /* MLTranslationService.swift */,
 				C6E5C22C2C166359001ABDBA /* NLLemmaService.swift */,
+				C69E62E02C1902870030B5B2 /* MLModelManager.swift */,
 				C6E5C22E2C166AA1001ABDBA /* NLPService.swift */,
 				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6E5C2322C16A7A0001ABDBA /* ThemeService.swift */,
+				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
 				C6333B932C01936A0044E7BA /* LexelApp.swift */,
 				C6333B972C01936B0044E7BA /* Assets.xcassets */,
 				C6333B992C01936B0044E7BA /* Preview Content */,
@@ -167,6 +177,8 @@
 				C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */,
 				C6E5C22A2C16628D001ABDBA /* NotesView.swift */,
 				C6E5C2302C16A178001ABDBA /* EditStoryView.swift */,
+				C69E62DE2C1900400030B5B2 /* AddStoryView.swift */,
+				C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,14 +328,18 @@
 				C607C09D2C02772600A0FD12 /* MLTranslationService.swift in Sources */,
 				C6E5C2312C16A178001ABDBA /* EditStoryView.swift in Sources */,
 				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
+				C69E62DF2C1900400030B5B2 /* AddStoryView.swift in Sources */,
 				C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */,
 				C6E5C2332C16A7A1001ABDBA /* ThemeService.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
 				C6E5C22D2C166359001ABDBA /* NLLemmaService.swift in Sources */,
+				C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */,
+				C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */,
 				C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */,
 				C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */,
+				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,
 				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,
 				C6E5C22B2C16628D001ABDBA /* NotesView.swift in Sources */,

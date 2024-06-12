@@ -21,17 +21,18 @@ struct EditStoryView: View {
                     .autocorrectionDisabled()
                 Picker("Source Language", selection: $story.language) {
                     ForEach(Constants.allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
-                        Text(lang.0).tag(lang.1)
+                        Text(lang.displayName).tag(lang)
                     }
                 }
+                
                 TextEditor(text: $story.text)
                     .frame(height: UIScreen.main.bounds.height * 0.5)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 
-                PasteButton(payloadType: String.self) { string in
-                    story.text = string[0]
-                }
+//                PasteButton(payloadType: String.self) { string in
+//                    story.text = string[0]
+//                }
                 
             }
             .navigationTitle("Edit \"\(story.title)\"")

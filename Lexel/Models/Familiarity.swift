@@ -1,5 +1,5 @@
 //
-//  VocabWord.swift
+//  Familiarity.swift
 //  Lexel
 //
 //  Created by enzo on 5/30/24

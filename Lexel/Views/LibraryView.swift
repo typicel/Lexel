@@ -17,22 +17,16 @@ struct LibraryView: View {
     @State private var isShowingAddStorySheet: Bool = false
     @State private var isShowingEditStorySheet: Bool = false
     @State private var editingStory: Story? = nil
+    @State private var showModelSheet: Bool = false
+    
+    private let modelManager = MLModelManager()
     
     @Query private var stories: [Story]
     
-    func showSheet() { isShowingAddStorySheet = true }
-    
-    func deleteItem(_ item: Story) {
-        context.delete(item)
-    }
-    
-    func editItem(_ item: Story) {
-        self.editingStory = item
-    }
-    
-    func reset() {
-        self.editingStory = nil
-    }
+    private func showSheet() { isShowingAddStorySheet = true }
+    private func deleteItem(_ item: Story) { context.delete(item) }
+    private func editItem(_ item: Story) { self.editingStory = item }
+    private func reset() { self.editingStory = nil }
     
     var body: some View {
         NavigationSplitView {
@@ -40,24 +34,10 @@ struct LibraryView: View {
                 List {
                     ForEach(stories.enumeratedArray(), id: \.offset) { offset, element in
                         NavigationLink(value: offset) {
-                            VStack(alignment: .leading) {
-                                HStack(alignment: .firstTextBaseline) {
-                                    Text(element.title)
-                                        .font(.title3)
-                                        .bold()
-                                
-                                    Text(element.language.suffix(2))
-                                        .font(.caption)
-                                }
-                                if let date = element.lastOpened {
-                                    Text("\(self.relativeTimeString(for: date))")
-                                        .font(.subheadline)
-                                        .foregroundColor(.gray)
-                                }
-                            }
+                            StoryListView(element: element)
                         }
                         .swipeActions(allowsFullSwipe: false) {
-                                
+                            
                             Button(role: .destructive) {
                                 context.delete(element)
                             } label: {
@@ -72,7 +52,7 @@ struct LibraryView: View {
                                 Label("Edit Story", systemImage: "pencil")
                             }
                             .tint(.indigo)
-                        
+                            
                         }
                     }
                     .onDelete { indexes in
@@ -93,6 +73,13 @@ struct LibraryView: View {
                 Button(action: showSheet) {
                     Label("Add Story", systemImage: "plus.circle")
                 }
+                
+                Button {
+                    showModelSheet = true
+                } label: {
+                    Label("Manage Models", systemImage: "slider.vertical.3")
+                }
+                
             }
         } detail: {
             if stories.isEmpty {
@@ -103,89 +90,61 @@ struct LibraryView: View {
                 }, actions: {
                     Button("Add Story") { isShowingAddStorySheet = true }
                 })
+            } else {
+                ForEach(modelManager.getDownloadedModels(), id: \.self) { model in
+                    Text(model.language.rawValue)
+                }
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .sheet(isPresented: $isShowingAddStorySheet) { AddStorySheet() }
+        .sheet(isPresented: $isShowingAddStorySheet) { AddStoryView() }
         .sheet(item: $editingStory) {
             reset()
         } content: { story in
             EditStoryView(story: story)
         }
-//        .sheet(isPresented: $isShowingEditStorySheet) { EditStoryView(story: editingStory!) }
-
-    }
-    
-    func relativeTimeString(for date: Date) -> String {
-        let formatter = RelativeDateTimeFormatter()
-        formatter.unitsStyle = .full
-        var string = formatter.localizedString(for: date, relativeTo: Date())
-        if string == "in 0 seconds" {
-            string = "Just now"
+        .sheet(isPresented: $showModelSheet) {
+            ModelManagerView()
         }
-        
-        return string
     }
 }
 
-
-
-struct AddStorySheet: View {
-    @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) var context
-    
-    @State private var title: String = ""
-    @State private var language: String = "en-US"
-    @State private var text: String = "Add story text here"
-    
-    
-    func addStory() {
-        let newStory = Story(title: title, text: text, language: language) // this is never called if language is null so it's fine
-        context.insert(newStory)
-        dismiss()
+func relativeTimeString(for date: Date) -> String {
+    let formatter = RelativeDateTimeFormatter()
+    formatter.unitsStyle = .full
+    var string = formatter.localizedString(for: date, relativeTo: Date())
+    if string == "in 0 seconds" {
+        string = "Just now"
     }
     
-    var body: some View {
-        NavigationStack {
-            Form {
-                TextField("Story Title", text: $title)
-                    .autocorrectionDisabled()
-                Picker("Source Language", selection: $language) {
-                    ForEach(Constants.allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
-                        Text(lang.0).tag(lang.1)
-                    }
-                }
-                TextEditor(text: $text)
-                    .frame(height: UIScreen.main.bounds.height * 0.5)
-                    .autocorrectionDisabled()
-                    .textInputAutocapitalization(.never)
-                
-                PasteButton(payloadType: String.self) { string in
-                    self.text = string[0]
-                }
-                
-            }
-            .navigationTitle("New Story")
-            .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItemGroup(placement: .topBarLeading) {
-                    Button("Cancel") { dismiss() }
-                }
-                
-                ToolbarItemGroup(placement: .topBarTrailing) {
-                    Button("Add") { addStory() }
-                        .disabled(title.isEmpty || text.isEmpty)
-                }
-            }
-        }
-    }
-    
-    
+    return string
 }
 
 #Preview {
     MainActor.assumeIsolated {
         LibraryView()
             .modelContainer(for: [Story.self, VocabWord.self])
+    }
+}
+
+struct StoryListView: View {
+    let element: Story
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .firstTextBaseline) {
+                Text(element.title)
+                    .font(.title3)
+                    .bold()
+                
+                Text(element.language.shortName)
+                    .font(.caption)
+            }
+            if let date = element.lastOpened {
+                Text("\(relativeTimeString(for: date))")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+        }
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Translation
 
 struct FamiliarWordView: View {
     @Environment(\.modelContext) var modelContext
@@ -15,6 +16,7 @@ struct FamiliarWordView: View {
     var definition: String
     
     @Query private var vocabWordEntry: [VocabWord]
+    @State private var translation: String? = nil
     
     private func addWordToDict() {
         let newWord = VocabWord(word: word, language: language, def: definition)
@@ -38,11 +40,29 @@ struct FamiliarWordView: View {
         } else {
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
-                    Text(word)
-                        .font(.largeTitle)
-                    
-                    Text(definition)
-                        .font(.title2)
+//                    if #available(iOS 18.0, *) {
+//                        Text(word)
+//                            .font(.largeTitle)
+//                            .translationTask(source: Locale(identifier: language).language) { session in
+//                                do {
+//                                    let response = try await session.translate(self.word)
+//                                    self.translation = response.targetText
+//                                } catch {
+//                                    self.translation = ""
+//                                }
+//                                
+//                            }
+//                        
+//                        Text(translation ?? "...")
+//                            .font(.title2)
+//                        
+//                    } else {
+                        Text(word)
+                            .font(.largeTitle)
+                        
+                        Text(definition)
+                            .font(.title2)
+//                    }
                 }
                 
                 
