@@ -74,11 +74,11 @@ struct LibraryView: View {
                     Label("Add Story", systemImage: "plus.circle")
                 }
                 
-                Button {
-                    showModelSheet = true
-                } label: {
-                    Label("Manage Models", systemImage: "slider.vertical.3")
-                }
+//                Button {
+//                    showModelSheet = true
+//                } label: {
+//                    Label("Manage Models", systemImage: "slider.vertical.3")
+//                }
                 
             }
         } detail: {

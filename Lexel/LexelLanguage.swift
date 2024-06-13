@@ -8,7 +8,6 @@
 import Foundation
 import MLKit
 
-
 struct LexelLanguage: Hashable, Codable {
     let displayName: String
     let bcp47: String

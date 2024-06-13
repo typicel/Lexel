@@ -40,7 +40,7 @@ class MLTranslationService: ObservableObject, ITranslator {
     
     func translate(word: String) async -> String {
         do {
-//            try await self.translator.downloadModelIfNeeded(with: self.conds)
+            try await self.translator.downloadModelIfNeeded(with: self.conds)
             print("Translating \(word)")
             let result = try await self.translator.translate(word)
                 

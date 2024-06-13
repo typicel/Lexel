@@ -10,6 +10,7 @@ import MLKit
 import SwiftData
 import AVFoundation
 import NaturalLanguage
+import Translation
 
 extension Collection {
     func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
@@ -64,6 +65,7 @@ struct VocabParagraph: View {
     @State private var selectedTheme: Int = 0
     @State private var selectedFontStyle: Int = 0
     
+    
     init(story: Story) {
         self.story = story
         self.nlp = NLPService(lang: story.language.mlLanguage)
@@ -91,44 +93,7 @@ struct VocabParagraph: View {
             }
             .background(themeService.selectedTheme.readerColor)
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text(self.story.title).font(.title).bold()
-                        .foregroundColor(themeService.selectedTheme.textColor)
-                }
-                
-                ToolbarItemGroup(placement: .primaryAction) {
-                    Button {
-                        showSettingsPopover = true
-                    } label: {
-                        Image(systemName: "textformat")
-                    }
-                    .popover(isPresented: $showSettingsPopover) {
-                        VStack {
-                            Picker("Font Style", selection: $selectedFontStyle) {
-                                Text("Sans-Serif").tag(0)
-                                Text("Serif").tag(1)
-                            }
-                            .pickerStyle(.segmented)
-                            .onChange(of: self.selectedFontStyle) {
-                                UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
-                            }
-                            
-                            HStack {
-                                ForEach(Constants.themes.enumeratedArray(), id: \.offset) { offset, theme in
-                                    Circle()
-                                        .stroke(offset == selectedTheme ? Color.blue : Color.gray, lineWidth: offset == selectedTheme ? 4 : 2)
-                                        .fill(theme.readerColor)
-                                        .frame(width: 30, height: 30)
-                                        .onTapGesture {
-                                            self.themeService.setTheme(theme)
-                                        }
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    
-                }
+                Toolbar(story: self.story, selectedTheme: $selectedTheme, selectedFontStyle: $selectedFontStyle)
             }
             .onAppear { // this is dumb but I need both to handle when first story is tapped on and when it changes
                 story.lastOpened = Date()
@@ -190,8 +155,12 @@ struct VocabParagraph: View {
         self.speak(text: lemma, lang: self.story.language.bcp47)
     }
     
+    private func prepareWord(_ word: String) -> String {
+        self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
+    }
+    
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
-        WordView(word: self.nlp.lemmatize(word: word.stripPunctuation()).lowercased(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
+        WordView(word: self.prepareWord(word), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .font(.system(.title, design: Constants.fontStyles[self.selectedFontStyle]))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
@@ -207,6 +176,56 @@ struct VocabParagraph: View {
                 }
             }
         
+    }
+}
+
+struct Toolbar: ToolbarContent{
+    let story: Story
+    
+    @EnvironmentObject var themeService: ThemeService
+    @Binding var selectedTheme: Int
+    @Binding var selectedFontStyle: Int
+    
+    @State private var showSettingsPopover: Bool = false
+    
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            Text(self.story.title).font(.title).bold()
+                .foregroundColor(themeService.selectedTheme.textColor)
+        }
+        
+        ToolbarItemGroup(placement: .primaryAction) {
+            Button {
+                showSettingsPopover = true
+            } label: {
+                Image(systemName: "textformat")
+            }
+            .popover(isPresented: $showSettingsPopover) {
+                VStack {
+                    Picker("Font Style", selection: $selectedFontStyle) {
+                        Text("Sans-Serif").tag(0)
+                        Text("Serif").tag(1)
+                    }
+                    .pickerStyle(.segmented)
+                    .onChange(of: self.selectedFontStyle) {
+                        UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
+                    }
+                    
+                    HStack {
+                        ForEach(Constants.themes.enumeratedArray(), id: \.offset) { offset, theme in
+                            Circle()
+                                .stroke(offset == selectedTheme ? Color.blue : Color.gray, lineWidth: offset == selectedTheme ? 4 : 2)
+                                .fill(theme.readerColor)
+                                .frame(width: 30, height: 30)
+                                .onTapGesture {
+                                    self.themeService.setTheme(theme)
+                                }
+                        }
+                    }
+                }
+                .padding()
+            }
+        }
     }
 }
 

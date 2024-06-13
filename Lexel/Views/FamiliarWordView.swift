@@ -40,29 +40,11 @@ struct FamiliarWordView: View {
         } else {
             VStack(alignment: .leading) {
                 HStack(alignment: .firstTextBaseline) {
-//                    if #available(iOS 18.0, *) {
-//                        Text(word)
-//                            .font(.largeTitle)
-//                            .translationTask(source: Locale(identifier: language).language) { session in
-//                                do {
-//                                    let response = try await session.translate(self.word)
-//                                    self.translation = response.targetText
-//                                } catch {
-//                                    self.translation = ""
-//                                }
-//                                
-//                            }
-//                        
-//                        Text(translation ?? "...")
-//                            .font(.title2)
-//                        
-//                    } else {
-                        Text(word)
-                            .font(.largeTitle)
-                        
-                        Text(definition)
-                            .font(.title2)
-//                    }
+                    Text(word)
+                        .font(.largeTitle)
+                    
+                    Text(definition)
+                        .font(.title2)
                 }
                 
                 
