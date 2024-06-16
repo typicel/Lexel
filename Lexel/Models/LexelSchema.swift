@@ -10,25 +10,16 @@ import MLKit
 import NaturalLanguage
 import SwiftData
 
-struct LexelToken {
-    
-    // The token that should be displayed
-    var rawToken: Token
-    
-    // The token stripped of any punctuation
-    var word: Token
-    
-    // The base lemma (stem) of the word
-    var lemma: String
-}
+typealias VocabWord = LexelSchemaV1.VocabWord
+typealias Story = LexelSchemaV1.Story
 
-enum LexelSchemaV1: VersionedSchema {
+public enum LexelSchemaV1: VersionedSchema {
     
-    static var models: [any PersistentModel.Type] {
+    public static var models: [any PersistentModel.Type] {
         [Story.self, VocabWord.self]
     }
     
-    static var versionIdentifier: Schema.Version = Schema.Version(1, 0, 0)
+    public static var versionIdentifier: Schema.Version = Schema.Version(1, 0, 0)
     
     @Model
     class Story: Identifiable {
@@ -38,23 +29,6 @@ enum LexelSchemaV1: VersionedSchema {
         var notes: String
         var lastOpened: Date?
         var text: String
-        
-//        var mlLanguage: TranslateLanguage {
-//            switch language {
-//            case "de-DE":
-//                return .german
-//            case "en-US":
-//                return .english
-//            case "ja-JP":
-//                return .japanese
-//            case "zh-CN":
-//                return .chinese
-//            case "ko-KR":
-//                return .korean
-//            case _:
-//                return .english
-//            }
-//        }
         
         var tokens: [[Token]] {
             var tokens: [[Token]] = []
@@ -85,6 +59,7 @@ enum LexelSchemaV1: VersionedSchema {
         var familiarity: Familiarity
         var definition: String
         var timesTapped: Int
+        var lexeme: Set<String>
         
         init(word: String, language: String, def: String) {
             self.word = word
@@ -92,6 +67,11 @@ enum LexelSchemaV1: VersionedSchema {
             self.definition = def
             self.timesTapped = 0
             self.familiarity = .new
+            self.lexeme = []
+        }
+        
+        func appendChild(word: String) {
+            lexeme.insert(word)
         }
         
         func setFamiliarity(to newFam: Familiarity) {

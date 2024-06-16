@@ -1,8 +1,8 @@
 //
-//  AddStoryView.swift
-//  Lexel
+//  AddStory.swift
+//  Lexel-ShareExtension
 //
-//  Created by enzo on 6/11/24.
+//  Created by Tyler McCormick on 6/12/24.
 //
 
 import SwiftUI
@@ -11,17 +11,23 @@ struct AddStoryView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) var context
     
-    @EnvironmentObject var modelManager: MLModelManager
+//    @State private var modelManager: MLModelManager
     
     @State private var title: String = ""
     @State private var language: LexelLanguage = LexelLanguage("English", "en-US")
-    @State private var text: String = "Add story text here"
+    @State private var storyText: String = ""
+    
+    
+    init(text: String) {
+        self.storyText = text
+//        self.modelManager = MLModelManager()
+    }
     
     
     func addStory() {
-        let newStory = Story(title: title, text: text, language: language) // this is never called if language is null so it's fine
+        let newStory = Story(title: title, text: storyText, language: language) // this is never called if language is null so it's fine
         context.insert(newStory)
-        let _ = modelManager.downloadModel(for: newStory.language.mlLanguage)
+//        let _ = modelManager.downloadModel(for: newStory.language.mlLanguage)
         dismiss()
     }
     
@@ -35,7 +41,7 @@ struct AddStoryView: View {
                         Text(lang.displayName).tag(lang)
                     }
                 }
-                TextEditor(text: $text)
+                TextEditor(text: $storyText)
                     .frame(height: UIScreen.main.bounds.height * 0.5)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
@@ -50,14 +56,9 @@ struct AddStoryView: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Add") { addStory() }
-                        .disabled(title.isEmpty || text.isEmpty)
+                        .disabled(title.isEmpty || storyText.isEmpty)
                 }
             }
         }
     }
-}
-
-#Preview {
-    AddStoryView()
-        .environmentObject(MLModelManager())
 }

@@ -30,10 +30,6 @@ struct EditStoryView: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                 
-//                PasteButton(payloadType: String.self) { string in
-//                    story.text = string[0]
-//                }
-                
             }
             .navigationTitle("Edit \"\(story.title)\"")
             .navigationBarTitleDisplayMode(.large)

@@ -21,7 +21,7 @@ struct WordView: View {
     
     init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
         self._wordQuery = Query(filter: #Predicate {
-            $0.word == word
+            $0.word == word || $0.lexeme.contains(word) // should handle the case where a lexeme is tapped on
         })
         
         self.word = word
@@ -31,6 +31,7 @@ struct WordView: View {
     
     var body: some View {
         Text(displayWord)
+            .font(self.themeManager.selectedFont.readerFont)
             .foregroundColor(
                 themeManager.selectedTheme.textColor != nil ? themeManager.selectedTheme.textColor :
                     (colorScheme == .dark ? .white : .black)

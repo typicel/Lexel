@@ -26,9 +26,9 @@ extension String {
     }
 }
 
-struct Constants {
+public struct Constants {
     static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
-    static let fontStyles: [Font.Design] = [.default, .serif]
+    static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Lora()]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
     static let allowedLanguages: [LexelLanguage] = [
         LexelLanguage("English", "en-US"),
@@ -41,12 +41,11 @@ struct Constants {
 }
 
 struct VocabParagraph: View {
-    @Bindable var story: Story
-    
-    // Environment vars
     @Environment(\.modelContext) var modelContext
     @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var themeService: ThemeService
+    
+    @Bindable var story: Story
     
     // Natural Language and TTS
     @State var nlp: NLPService
@@ -62,16 +61,9 @@ struct VocabParagraph: View {
     @State private var showSettingsPopover: Bool = false
     @State private var showFamiliarPopover: Bool = false
     
-    @State private var selectedTheme: Int = 0
-    @State private var selectedFontStyle: Int = 0
-    
-    
     init(story: Story) {
         self.story = story
         self.nlp = NLPService(lang: story.language.mlLanguage)
-        if let style = UserDefaults.standard.value(forKey: "readerFontStyle") {
-            self.selectedFontStyle = style as! Int
-        }
     }
     
     var body: some View {
@@ -93,7 +85,7 @@ struct VocabParagraph: View {
             }
             .background(themeService.selectedTheme.readerColor)
             .toolbar {
-                Toolbar(story: self.story, selectedTheme: $selectedTheme, selectedFontStyle: $selectedFontStyle)
+                Toolbar(story: self.story, themeService: self.themeService)
             }
             .onAppear { // this is dumb but I need both to handle when first story is tapped on and when it changes
                 story.lastOpened = Date()
@@ -103,6 +95,7 @@ struct VocabParagraph: View {
                 self.nlp = NLPService(lang: story.language.mlLanguage)
             }
         }
+        .environmentObject(self.themeService)
     }
     
     /// Returns a binding that represents if the word at the given indicies is currently selected
@@ -144,7 +137,7 @@ struct VocabParagraph: View {
     ///     - word: The word that was tapped on
     ///     - location: A tuple representing the paragraph and location within the paragraph the word is
     private func handleWordTap(for word: String, at location: (Int, Int)) async {
-        let lemma = self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
+        let lemma = self.prepareWord(word)
         
         self.selectedWord = lemma
         self.selectedWordIndex = location.0
@@ -160,8 +153,7 @@ struct VocabParagraph: View {
     }
     
     private func item(for word: String, paragraph: Int, index: Int) -> some View {
-        WordView(word: self.prepareWord(word), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
-            .font(.system(.title, design: Constants.fontStyles[self.selectedFontStyle]))
+        WordView(word: word.stripPunctuation().lowercased(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
                 Task {
@@ -179,14 +171,29 @@ struct VocabParagraph: View {
     }
 }
 
-struct Toolbar: ToolbarContent{
+struct Toolbar: ToolbarContent {
+    let themeService: ThemeService
     let story: Story
     
-    @EnvironmentObject var themeService: ThemeService
-    @Binding var selectedTheme: Int
-    @Binding var selectedFontStyle: Int
-    
+    // MARK: Figure out how to set selectedFont on init
+    @State private var selectedFont: Int = 0
     @State private var showSettingsPopover: Bool = false
+    
+    init(story: Story, themeService: ThemeService) {
+        self.story = story
+        self.themeService = themeService
+        
+        switch themeService.selectedFont { // this is stupid but so am i
+        case is SanFrancisco:
+            self.selectedFont = 0
+        case is NewYork:
+            self.selectedFont = 1
+        case is Lora:
+            self.selectedFont = 2
+        case _:
+            self.selectedFont = 0
+        }
+    }
     
     var body: some ToolbarContent {
         ToolbarItem(placement: .principal) {
@@ -202,19 +209,20 @@ struct Toolbar: ToolbarContent{
             }
             .popover(isPresented: $showSettingsPopover) {
                 VStack {
-                    Picker("Font Style", selection: $selectedFontStyle) {
-                        Text("Sans-Serif").tag(0)
-                        Text("Serif").tag(1)
+                    Picker("Font Style", selection: self.$selectedFont) {
+                        ForEach(Constants.fontStyles.enumeratedArray(), id: \.offset) { offset, font in
+                            Text(font.name).tag(offset)
+                        }
                     }
-                    .pickerStyle(.segmented)
-                    .onChange(of: self.selectedFontStyle) {
-                        UserDefaults.standard.setValue(self.selectedFontStyle, forKey: "readerFontStyle")
+                    .pickerStyle(.automatic)
+                    .onChange(of: self.selectedFont) {
+                        self.themeService.setFont(Constants.fontStyles[self.selectedFont])
                     }
                     
                     HStack {
                         ForEach(Constants.themes.enumeratedArray(), id: \.offset) { offset, theme in
                             Circle()
-                                .stroke(offset == selectedTheme ? Color.blue : Color.gray, lineWidth: offset == selectedTheme ? 4 : 2)
+                                .stroke(theme.name == self.themeService.selectedTheme.name ? Color.blue : Color.gray, lineWidth: theme.name == self.themeService.selectedTheme.name ? 4 : 2)
                                 .fill(theme.readerColor)
                                 .frame(width: 30, height: 30)
                                 .onTapGesture {

@@ -6,6 +6,15 @@ target 'Lexel' do
   use_frameworks!
     pod 'GoogleMLKit/Translate', '3.2.0'
 
-  # Pods for VocabApp
+  # Pods for Lexel 
+
+end
+
+target 'Lexel-ShareExtension' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+    pod 'GoogleMLKit/Translate', '3.2.0'
+
+  # Pods for Lexel 
 
 end

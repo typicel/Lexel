@@ -8,11 +8,11 @@
 import Foundation
 import MLKit
 
-struct LexelLanguage: Hashable, Codable {
+public struct LexelLanguage: Hashable, Codable {
     let displayName: String
     let bcp47: String
     
-    init(_ displayName: String, _ bcp47: String) {
+    public init(_ displayName: String, _ bcp47: String) {
         self.displayName = displayName
         self.bcp47 = bcp47
     }
