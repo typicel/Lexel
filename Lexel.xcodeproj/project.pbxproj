@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		249154BA03B5693C1C061E88 /* Pods_Lexel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6096BBC0E544F78F27E219F /* Pods_Lexel.framework */; };
-		BAA7E511519F19352C415C21 /* Pods_Lexel_ShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CEC14759853CF04A46514A0 /* Pods_Lexel_ShareExtension.framework */; };
 		C607C09D2C02772600A0FD12 /* MLTranslationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C607C09C2C02772600A0FD12 /* MLTranslationService.swift */; };
-		C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86922C09865600E2B6CB /* Familiarity.swift */; };
 		C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */; };
 		C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E86962C0A4FC300E2B6CB /* LibraryView.swift */; };
-		C6109C042C1AB72B00864294 /* Lexel-ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C6109BFA2C1AB72B00864294 /* Lexel-ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C6109C0E2C1ABD3000864294 /* ModelContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6109C0D2C1ABD3000864294 /* ModelContainer.swift */; };
 		C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622C7102C1939DA00188F14 /* LexelLanguage.swift */; };
 		C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* LexelApp.swift */; };
@@ -28,7 +25,10 @@
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A910522C09011D007756BB /* CFTokenizer.swift */; };
 		C6B5362B2C1F900000EF9A35 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6B5362A2C1F900000EF9A35 /* Lora.ttf */; };
-		C6C20FE12C1AC3ED00B9A47F /* LexelLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622C7102C1939DA00188F14 /* LexelLanguage.swift */; };
+		C6C4E9D62C2239DC00BD50EB /* DynamicQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9D52C2239DC00BD50EB /* DynamicQueryView.swift */; };
+		C6C4E9D82C225DF900BD50EB /* String+Strip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9D72C225DF900BD50EB /* String+Strip.swift */; };
+		C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */; };
+		C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DC2C225E8700BD50EB /* Constants.swift */; };
 		C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */; };
 		C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2282C16626D001ABDBA /* WordView.swift */; };
 		C6E5C22B2C16628D001ABDBA /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22A2C16628D001ABDBA /* NotesView.swift */; };
@@ -40,16 +40,6 @@
 		C6FE78E22C06D561004D0C64 /* LexelSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FE78E12C06D561004D0C64 /* LexelSchema.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		C6109C022C1AB72B00864294 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C6333B882C0193690044E7BA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C6109BF92C1AB72B00864294;
-			remoteInfo = "Lexel-ShareExtension";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		C6109C082C1AB72B00864294 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -57,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C6109C042C1AB72B00864294 /* Lexel-ShareExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -73,14 +62,8 @@
 		A90DE37CEAD7ED7EE8612B1E /* Pods-VocabApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VocabApp.debug.xcconfig"; path = "Target Support Files/Pods-VocabApp/Pods-VocabApp.debug.xcconfig"; sourceTree = "<group>"; };
 		AD90714ABAB58C6283A65B2C /* Pods-Lexel-ShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lexel-ShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-Lexel-ShareExtension/Pods-Lexel-ShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		C607C09C2C02772600A0FD12 /* MLTranslationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLTranslationService.swift; sourceTree = "<group>"; };
-		C60E86922C09865600E2B6CB /* Familiarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Familiarity.swift; sourceTree = "<group>"; };
 		C60E86942C09A23200E2B6CB /* FamiliarWordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FamiliarWordView.swift; sourceTree = "<group>"; };
 		C60E86962C0A4FC300E2B6CB /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
-		C6109BFA2C1AB72B00864294 /* Lexel-ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lexel-ShareExtension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6109BFC2C1AB72B00864294 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
-		C6109C012C1AB72B00864294 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C6109C092C1AB8EB00864294 /* AddStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStory.swift; sourceTree = "<group>"; };
-		C6109C0B2C1AB9C600864294 /* Lexel-ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lexel-ShareExtension.entitlements"; sourceTree = "<group>"; };
 		C6109C0C2C1AB9D400864294 /* Lexel.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lexel.entitlements; sourceTree = "<group>"; };
 		C6109C0D2C1ABD3000864294 /* ModelContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelContainer.swift; sourceTree = "<group>"; };
 		C622C7102C1939DA00188F14 /* LexelLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelLanguage.swift; sourceTree = "<group>"; };
@@ -98,6 +81,10 @@
 		C6A910522C09011D007756BB /* CFTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTokenizer.swift; sourceTree = "<group>"; };
 		C6B5362A2C1F900000EF9A35 /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
 		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C6C4E9D52C2239DC00BD50EB /* DynamicQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicQueryView.swift; sourceTree = "<group>"; };
+		C6C4E9D72C225DF900BD50EB /* String+Strip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Strip.swift"; sourceTree = "<group>"; };
+		C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Enumerated.swift"; sourceTree = "<group>"; };
+		C6C4E9DC2C225E8700BD50EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MigrationPlan.swift; sourceTree = "<group>"; };
 		C6E5C2282C16626D001ABDBA /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		C6E5C22A2C16628D001ABDBA /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
@@ -111,14 +98,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C6109BF72C1AB72B00864294 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BAA7E511519F19352C415C21 /* Pods_Lexel_ShareExtension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6333B8D2C01936A0044E7BA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -156,29 +135,15 @@
 			isa = PBXGroup;
 			children = (
 				C6FE78E12C06D561004D0C64 /* LexelSchema.swift */,
-				C60E86922C09865600E2B6CB /* Familiarity.swift */,
 				C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */,
-				C69E62E02C1902870030B5B2 /* MLModelManager.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		C6109BFB2C1AB72B00864294 /* Lexel-ShareExtension */ = {
-			isa = PBXGroup;
-			children = (
-				C6109C0B2C1AB9C600864294 /* Lexel-ShareExtension.entitlements */,
-				C6109BFC2C1AB72B00864294 /* ShareViewController.swift */,
-				C6109C092C1AB8EB00864294 /* AddStory.swift */,
-				C6109C012C1AB72B00864294 /* Info.plist */,
-			);
-			path = "Lexel-ShareExtension";
 			sourceTree = "<group>";
 		};
 		C6333B872C0193690044E7BA = {
 			isa = PBXGroup;
 			children = (
 				C6333B922C01936A0044E7BA /* Lexel */,
-				C6109BFB2C1AB72B00864294 /* Lexel-ShareExtension */,
 				C6333B912C01936A0044E7BA /* Products */,
 				939E95C656793DF9B317587A /* Pods */,
 				B0B9EA9123ED453D115ADA83 /* Frameworks */,
@@ -189,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				C6333B902C01936A0044E7BA /* Lexel.app */,
-				C6109BFA2C1AB72B00864294 /* Lexel-ShareExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,21 +161,23 @@
 		C6333B922C01936A0044E7BA /* Lexel */ = {
 			isa = PBXGroup;
 			children = (
-				C6B5362C2C1F94EB00EF9A35 /* Info.plist */,
-				C6B536272C1F8E5800EF9A35 /* Fonts */,
-				C6109C0C2C1AB9D400864294 /* Lexel.entitlements */,
+				C6C4E9D92C225E5700BD50EB /* Extensions */,
 				C6A910542C096431007756BB /* Views */,
 				C60E86912C09863900E2B6CB /* Models */,
+				C6C4E9DE2C225EEB00BD50EB /* MLKit */,
 				C6E5C22E2C166AA1001ABDBA /* NLPService.swift */,
-				C607C09C2C02772600A0FD12 /* MLTranslationService.swift */,
 				C6E5C22C2C166359001ABDBA /* NLLemmaService.swift */,
 				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6E5C2322C16A7A0001ABDBA /* ThemeService.swift */,
 				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
-				C6333B932C01936A0044E7BA /* LexelApp.swift */,
+				C6C4E9DC2C225E8700BD50EB /* Constants.swift */,
 				C6109C0D2C1ABD3000864294 /* ModelContainer.swift */,
-				C6333B972C01936B0044E7BA /* Assets.xcassets */,
+				C6333B932C01936A0044E7BA /* LexelApp.swift */,
+				C6B536272C1F8E5800EF9A35 /* Fonts */,
 				C6A910512C08FBDC007756BB /* Flow */,
+				C6333B972C01936B0044E7BA /* Assets.xcassets */,
+				C6109C0C2C1AB9D400864294 /* Lexel.entitlements */,
+				C6B5362C2C1F94EB00EF9A35 /* Info.plist */,
 				C6333B992C01936B0044E7BA /* Preview Content */,
 			);
 			path = Lexel;
@@ -247,6 +213,7 @@
 				C6E5C2302C16A178001ABDBA /* EditStoryView.swift */,
 				C69E62DE2C1900400030B5B2 /* AddStoryView.swift */,
 				C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */,
+				C6C4E9D52C2239DC00BD50EB /* DynamicQueryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -259,28 +226,27 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		C6C4E9D92C225E5700BD50EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C6C4E9D72C225DF900BD50EB /* String+Strip.swift */,
+				C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C6C4E9DE2C225EEB00BD50EB /* MLKit */ = {
+			isa = PBXGroup;
+			children = (
+				C69E62E02C1902870030B5B2 /* MLModelManager.swift */,
+				C607C09C2C02772600A0FD12 /* MLTranslationService.swift */,
+			);
+			path = MLKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C6109BF92C1AB72B00864294 /* Lexel-ShareExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C6109C052C1AB72B00864294 /* Build configuration list for PBXNativeTarget "Lexel-ShareExtension" */;
-			buildPhases = (
-				8A84CDF5F040ECE67169D231 /* [CP] Check Pods Manifest.lock */,
-				C6109BF62C1AB72B00864294 /* Sources */,
-				C6109BF72C1AB72B00864294 /* Frameworks */,
-				C6109BF82C1AB72B00864294 /* Resources */,
-				4736C9DDAFFB005298E9B10F /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Lexel-ShareExtension";
-			productName = "Lexel-ShareExtension";
-			productReference = C6109BFA2C1AB72B00864294 /* Lexel-ShareExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		C6333B8F2C01936A0044E7BA /* Lexel */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C6333B9E2C01936B0044E7BA /* Build configuration list for PBXNativeTarget "Lexel" */;
@@ -296,7 +262,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				C6109C032C1AB72B00864294 /* PBXTargetDependency */,
 			);
 			name = Lexel;
 			productName = VocabApp;
@@ -313,9 +278,6 @@
 				LastSwiftUpdateCheck = 1540;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
-					C6109BF92C1AB72B00864294 = {
-						CreatedOnToolsVersion = 15.4;
-					};
 					C6333B8F2C01936A0044E7BA = {
 						CreatedOnToolsVersion = 15.4;
 					};
@@ -335,19 +297,11 @@
 			projectRoot = "";
 			targets = (
 				C6333B8F2C01936A0044E7BA /* Lexel */,
-				C6109BF92C1AB72B00864294 /* Lexel-ShareExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C6109BF82C1AB72B00864294 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6333B8E2C01936A0044E7BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,45 +354,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lexel/Pods-Lexel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4736C9DDAFFB005298E9B10F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lexel-ShareExtension/Pods-Lexel-ShareExtension-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Lexel-ShareExtension/Pods-Lexel-ShareExtension-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Lexel-ShareExtension/Pods-Lexel-ShareExtension-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8A84CDF5F040ECE67169D231 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Lexel-ShareExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B184ECFBD99867BD6EEAE4F0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,19 +374,13 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C6109BF62C1AB72B00864294 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C6C20FE12C1AC3ED00B9A47F /* LexelLanguage.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		C6333B8C2C01936A0044E7BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */,
 				C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */,
+				C6C4E9D62C2239DC00BD50EB /* DynamicQueryView.swift in Sources */,
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* MLTranslationService.swift in Sources */,
@@ -480,15 +389,16 @@
 				C69E62DF2C1900400030B5B2 /* AddStoryView.swift in Sources */,
 				C6E5C2222C1525EB001ABDBA /* MigrationPlan.swift in Sources */,
 				C6E5C2332C16A7A1001ABDBA /* ThemeService.swift in Sources */,
+				C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
 				C6E5C22D2C166359001ABDBA /* NLLemmaService.swift in Sources */,
 				C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */,
 				C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */,
-				C60E86932C09865600E2B6CB /* Familiarity.swift in Sources */,
 				C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */,
 				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
+				C6C4E9D82C225DF900BD50EB /* String+Strip.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,
 				C6109C0E2C1ABD3000864294 /* ModelContainer.swift in Sources */,
 				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,
@@ -500,83 +410,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		C6109C032C1AB72B00864294 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C6109BF92C1AB72B00864294 /* Lexel-ShareExtension */;
-			targetProxy = C6109C022C1AB72B00864294 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		C6109C062C1AB72B00864294 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD90714ABAB58C6283A65B2C /* Pods-Lexel-ShareExtension.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Lexel-ShareExtension/Lexel-ShareExtension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 2XM9FQAP3J;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lexel-ShareExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Lexel-ShareExtension";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.enzottic.Lexel.Lexel-ShareExtension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		C6109C072C1AB72B00864294 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 645AD794B27C0D84BC30FB86 /* Pods-Lexel-ShareExtension.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "Lexel-ShareExtension/Lexel-ShareExtension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 2XM9FQAP3J;
-				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Lexel-ShareExtension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Lexel-ShareExtension";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "me.enzottic.Lexel.Lexel-ShareExtension";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		C6333B9C2C01936B0044E7BA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -779,15 +613,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C6109C052C1AB72B00864294 /* Build configuration list for PBXNativeTarget "Lexel-ShareExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C6109C062C1AB72B00864294 /* Debug */,
-				C6109C072C1AB72B00864294 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "Lexel" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

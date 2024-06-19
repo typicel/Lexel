@@ -12,33 +12,7 @@ import AVFoundation
 import NaturalLanguage
 import Translation
 
-extension Collection {
-    func enumeratedArray() -> Array<(offset: Int, element: Self.Element)> {
-        return Array(self.enumerated())
-    }
-}
 
-extension String {
-    func stripPunctuation() -> String {
-        return self.trimmingCharacters(in: .whitespacesAndNewlines)
-            .trimmingCharacters(in: .punctuationCharacters)
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-}
-
-public struct Constants {
-    static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
-    static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Lora()]
-    static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
-    static let allowedLanguages: [LexelLanguage] = [
-        LexelLanguage("English", "en-US"),
-        LexelLanguage("German", "de-DE"),
-        LexelLanguage("Spanish", "es-ES"),
-        LexelLanguage("French", "fr-FR"),
-        LexelLanguage("Korean", "ko-KR"),
-        LexelLanguage("Japanese", "ja-JP"),
-    ]
-}
 
 struct VocabParagraph: View {
     @Environment(\.modelContext) var modelContext

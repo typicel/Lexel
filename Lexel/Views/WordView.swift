@@ -9,21 +9,21 @@ import SwiftUI
 import SwiftData
 
 struct WordView: View {
+    @EnvironmentObject var themeManager: ThemeService
+    @Environment(\.colorScheme) var colorScheme
+    
     let word: String
     let displayWord: String
     let showFamiliarityHighlight: Bool
-    
-    @EnvironmentObject var themeManager: ThemeService
-    @Environment(\.colorScheme) var colorScheme
     
     @Query var wordQuery: [VocabWord]
     var vocabWord: VocabWord? { wordQuery.first }
     
     init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
         self._wordQuery = Query(filter: #Predicate {
-            $0.word == word || $0.lexeme.contains(word) // should handle the case where a lexeme is tapped on
+            ($0.lexeme.contains(word) ||  $0.word == word) // should handle the case where a lexeme is tapped on
         })
-        
+
         self.word = word
         self.displayWord = displayWord
         self.showFamiliarityHighlight = showFamiliarityHighlight

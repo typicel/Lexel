@@ -10,24 +10,6 @@ import SwiftData
 
 @main
 struct LexelApp: App {
-//    let container: ModelContainer
-//    let context: ModelContext
-//    
-//    init() {
-//        do {
-//            self.container = try ModelContainer(
-//                for: VocabWord.self, Story.self,
-//                migrationPlan: LexelMigrationPlan.self
-//            )
-//            self.context = ModelContext(self.container)
-//            self.context.autosaveEnabled = true
-//        } catch {
-//            print(error.localizedDescription)
-//            fatalError("Failed to initialize model container")
-//        }
-//
-//    }
-    
     let context = ConfigureModelContainer()
     
     var body: some Scene {

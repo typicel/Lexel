@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 struct AddStoryView: View {
     @Environment(\.dismiss) private var dismiss
@@ -19,8 +20,14 @@ struct AddStoryView: View {
     
     
     func addStory() {
-        let newStory = Story(title: title, text: text, language: language) // this is never called if language is null so it's fine
+        let newStory = Story(title: title, text: text, language: language)
         context.insert(newStory)
+        do {
+            try context.save()
+        } catch {
+            os_log("[LEX]: \(error.localizedDescription)")
+        }
+        
         let _ = modelManager.downloadModel(for: newStory.language.mlLanguage)
         dismiss()
     }

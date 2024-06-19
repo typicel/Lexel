@@ -7,11 +7,12 @@
 
 import Foundation
 import NaturalLanguage
+import OSLog
 
 typealias Lemma = String
 
 protocol ILemmatize {
-    func lemmatize(word: String) -> Lemma
+    func lemmatize(word: String) -> Lemma?
 }
 
 class NLLemmaService : ILemmatize {
@@ -21,7 +22,7 @@ class NLLemmaService : ILemmatize {
     /// - Parameters
     ///     - word: The word to be lemmatized
     /// - Returns: The lemma of the given word
-    func lemmatize(word: String) -> Lemma {
+    func lemmatize(word: String) -> Lemma? {
         print("lemmatizing \(word)")
         
         let tagger = NLTagger(tagSchemes: [.lemma])
@@ -29,7 +30,7 @@ class NLLemmaService : ILemmatize {
         tagger.string = word
         
         let options: NLTagger.Options = [.omitWhitespace, .omitPunctuation, .joinNames]
-        var ret: String = word
+        var ret: Lemma? = nil
         
         tagger.enumerateTags(in: range, unit: .word, scheme: .lemma, options: options) { tag, range in
             if let tag = tag {
@@ -38,8 +39,18 @@ class NLLemmaService : ILemmatize {
             return true
         }
         
-        print("\(word): \(ret)")
         return ret
         
+//        if let ret = ret {
+//            os_log("Lemma of \(word) is \(ret)")
+//            return ret
+//        } else {
+//            os_log("Could not lemmatize \(word)")
+//            return nil
+//        }
     }
+}
+
+enum LexelLemmaError : Error {
+   case lemmatizationFailed(String)
 }

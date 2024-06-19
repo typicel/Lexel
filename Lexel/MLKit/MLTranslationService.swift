@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import MLKit
+import OSLog
 
 protocol ITranslator {
     func translate(word: String) async -> String
@@ -48,7 +49,7 @@ class MLTranslationService: ObservableObject, ITranslator {
             return result
         }
         catch {
-            print(error)
+            os_log("[LEX]: \(error.localizedDescription)")
             return ""
         }
     }
