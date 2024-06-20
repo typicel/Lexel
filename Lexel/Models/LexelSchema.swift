@@ -9,6 +9,7 @@ import Foundation
 import MLKit
 import NaturalLanguage
 import SwiftData
+import OSLog
 
 typealias VocabWord = LexelSchemaV1.VocabWord
 typealias Story = LexelSchemaV1.Story
@@ -29,15 +30,14 @@ public enum LexelSchemaV1: VersionedSchema {
         var notes: String
         var lastOpened: Date?
         var text: String
-        
-        var tokens: [[Token]] {
-            var tokens: [[Token]] = []
-            let paragraphs = text.tokenize(unit: kCFStringTokenizerUnitParagraph)
+       
+        var tokens: [[LexelToken]] {
+            var tokens: [[LexelToken]] = []
+            let paragraphs = text.nlTokenize(unit: .paragraph)
             for p in paragraphs {
-                let tokenizedWords = p.tokenize(unit: kCFStringTokenizerUnitWordBoundary)
-                tokens.append(combinePunctuation(tokenizedWords))
+                let tokenizedWords = p.rawValue.nlTokenize(unit: .word)
+                tokens.append(tokenizedWords)
             }
-            
             tokens = processNewlines(in: tokens)
             return tokens
         }
@@ -85,14 +85,14 @@ public enum LexelSchemaV1: VersionedSchema {
     
 }
 
-private func processNewlines(in array: [[String]]) -> [[String]] {
-    var result: [[String]] = []
+private func processNewlines(in array: [[LexelToken]]) -> [[LexelToken]] {
+    var result: [[LexelToken]] = []
     
     for sublist in array {
-        if sublist.count == 1 && sublist[0] == "\n" {
+        if sublist.count == 1 && sublist[0].rawValue == "\n" {
             // If the sublist is a single newline character and there's a previous sublist in the result
             if var lastSublist = result.popLast() {
-                lastSublist.append("\n")
+                lastSublist.append(LexelToken(rawValue: "\n", tokenType: .otherWhitespace))
                 result.append(lastSublist)
             }
         } else {

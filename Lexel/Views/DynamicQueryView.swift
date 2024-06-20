@@ -1,6 +1,6 @@
 //
 //  DynamicQueryView.swift
-//  
+//  Lexel
 //
 //  Created by Tyler McCormick on 6/18/24.
 //

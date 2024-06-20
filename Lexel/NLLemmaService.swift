@@ -23,8 +23,6 @@ class NLLemmaService : ILemmatize {
     ///     - word: The word to be lemmatized
     /// - Returns: The lemma of the given word
     func lemmatize(word: String) -> Lemma? {
-        print("lemmatizing \(word)")
-        
         let tagger = NLTagger(tagSchemes: [.lemma])
         let range = word.startIndex..<word.endIndex
         tagger.string = word

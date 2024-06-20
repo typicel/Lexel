@@ -46,7 +46,7 @@ struct VocabParagraph: View {
                 Spacer()
                 ScrollView(showsIndicators: false) {
                     ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
-                        FlowView(.vertical, alignment: .leading) {
+                        FlowView(.vertical, alignment: .leading, horizontalSpacing: 0) {
                             ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
                                 self.item(for: element, paragraph: poffset, index: offset)
                             }
@@ -110,8 +110,8 @@ struct VocabParagraph: View {
     /// - Parameters
     ///     - word: The word that was tapped on
     ///     - location: A tuple representing the paragraph and location within the paragraph the word is
-    private func handleWordTap(for word: String, at location: (Int, Int)) async {
-        let lemma = self.prepareWord(word)
+    private func handleWordTap(for token: LexelToken, at location: (Int, Int)) async {
+        let lemma = self.nlp.lemmatize(word: token.normalizedWord)
         
         self.selectedWord = lemma
         self.selectedWordIndex = location.0
@@ -126,12 +126,14 @@ struct VocabParagraph: View {
         self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
     }
     
-    private func item(for word: String, paragraph: Int, index: Int) -> some View {
-        WordView(word: word.stripPunctuation().lowercased(), displayWord: word, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
+    private func item(for token: LexelToken, paragraph: Int, index: Int) -> some View {
+        WordView(word: token.normalizedWord, displayWord: token.rawValue, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
+                guard token.tokenType == .word else { return }
+                        
                 Task {
-                    await handleWordTap(for: word, at: (index, paragraph))
+                    await handleWordTap(for: token, at: (index, paragraph))
                 }
             }
             .popover(isPresented: self.makeIsPresented(wordIndex: index, paragraphIndex: paragraph)) {

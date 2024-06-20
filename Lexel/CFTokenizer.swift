@@ -13,7 +13,7 @@ let kCFStringTokenizerTokenNone = 0
 typealias Token = String
 
 extension String {
-    func tokenize(unit: CFOptionFlags) -> [Token] {
+    func cfTokenize(unit: CFOptionFlags) -> [Token] {
         let str = self as CFString
         let tokenizer: CFStringTokenizer = CFStringTokenizerCreate(
             kCFAllocatorDefault,

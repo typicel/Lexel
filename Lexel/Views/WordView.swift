@@ -17,11 +17,11 @@ struct WordView: View {
     let showFamiliarityHighlight: Bool
     
     @Query var wordQuery: [VocabWord]
-    var vocabWord: VocabWord? { wordQuery.first }
+//    var vocabWord: VocabWord? { wordQuery.first }
     
     init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
         self._wordQuery = Query(filter: #Predicate {
-            ($0.lexeme.contains(word) ||  $0.word == word) // should handle the case where a lexeme is tapped on
+            $0.word == word
         })
 
         self.word = word
@@ -37,7 +37,7 @@ struct WordView: View {
                     (colorScheme == .dark ? .white : .black)
             )
             .padding([.leading, .trailing], 0.2)
-            .background(vocabWord != nil && showFamiliarityHighlight ? Constants.familiarityColors[vocabWord!.familiarity.rawValue-1] : .clear)
+            .background(wordQuery.count > 0 && showFamiliarityHighlight ? Constants.familiarityColors[wordQuery[0].familiarity.rawValue-1] : .clear)
     }
 }
 

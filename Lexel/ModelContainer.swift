@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import OSLog
 
 public func ConfigureModelContainer() -> ModelContext {
     do {
@@ -17,7 +18,7 @@ public func ConfigureModelContainer() -> ModelContext {
         
         return context
     } catch {
-        print(error.localizedDescription)
+        os_log("\(error.localizedDescription)")
         fatalError("Failed to initialize model container")
     }
 }
