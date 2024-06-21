@@ -9,15 +9,7 @@ import Foundation
 import NaturalLanguage
 import OSLog
 
-struct LexelToken {
-    let rawValue: String
-//    let range: Range<String.Index>
-    let tokenType: NLTag
-    
-    var normalizedWord: String {
-        return rawValue.stripPunctuation().lowercased()
-    }
-}
+
 
 // Only issue with this tokenizer is that it just doesn't seem to care about punctuation
 extension String {

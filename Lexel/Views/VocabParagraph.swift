@@ -6,13 +6,11 @@
 //
 
 import SwiftUI
-import MLKit
+//import MLKit
 import SwiftData
 import AVFoundation
 import NaturalLanguage
 import Translation
-
-
 
 struct VocabParagraph: View {
     @Environment(\.modelContext) var modelContext
@@ -34,6 +32,8 @@ struct VocabParagraph: View {
     // Popover state vars
     @State private var showSettingsPopover: Bool = false
     @State private var showFamiliarPopover: Bool = false
+    
+    @State private var configuration: TranslationSession.Configuration?
     
     init(story: Story) {
         self.story = story
@@ -59,14 +59,16 @@ struct VocabParagraph: View {
             }
             .background(themeService.selectedTheme.readerColor)
             .toolbar {
-                Toolbar(story: self.story, themeService: self.themeService)
+                ReaderToolbar(story: self.story, themeService: self.themeService)
             }
             .onAppear { // this is dumb but I need both to handle when first story is tapped on and when it changes
                 story.lastOpened = Date()
+                try! self.modelContext.save()
             }
             .onChange(of: self.story){
                 story.lastOpened = Date()
                 self.nlp = NLPService(lang: story.language.mlLanguage)
+                try! self.modelContext.save()
             }
         }
         .environmentObject(self.themeService)
@@ -118,22 +120,41 @@ struct VocabParagraph: View {
         self.selectedParagraphIndex = location.1
         
         self.translatedWord = await self.nlp.translate(word: lemma)
+//        self.triggerTranslation()
         
         self.speak(text: lemma, lang: self.story.language.bcp47)
     }
     
-    private func prepareWord(_ word: String) -> String {
-        self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
+//    private func prepareWord(_ word: String) -> String {
+//        self.nlp.lemmatize(word: word.stripPunctuation()).lowercased()
+//    }
+    
+    private func triggerTranslation() {
+        guard configuration == nil else {
+            configuration?.invalidate()
+            return
+        }
+
+        // Let the framework automatically determine the language pairing.
+        configuration = .init()
     }
     
     private func item(for token: LexelToken, paragraph: Int, index: Int) -> some View {
-        WordView(word: token.normalizedWord, displayWord: token.rawValue, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
+        WordView(word: token.lemma, displayWord: token.rawValue, showFamiliarityHighlight: (index != selectedWordIndex || paragraph != selectedParagraphIndex))
             .background(index == selectedWordIndex && selectedParagraphIndex == paragraph ? Color.yellow : Color.clear)
             .onTapGesture {
                 guard token.tokenType == .word else { return }
                         
                 Task {
                     await handleWordTap(for: token, at: (index, paragraph))
+                }
+            }
+            .translationTask(configuration) { session in
+                do {
+                    let response = try await session.translate(token.normalizedWord)
+                    self.translatedWord = response.targetText
+                } catch {
+                    
                 }
             }
             .popover(isPresented: self.makeIsPresented(wordIndex: index, paragraphIndex: paragraph)) {
@@ -147,7 +168,7 @@ struct VocabParagraph: View {
     }
 }
 
-struct Toolbar: ToolbarContent {
+struct ReaderToolbar: ToolbarContent {
     let themeService: ThemeService
     let story: Story
     

@@ -105,6 +105,7 @@ struct LibraryView: View {
             for index in offsets {
                 context.delete(stories[index])
             }
+            try! context.save()
         }
     }
 }

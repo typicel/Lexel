@@ -24,6 +24,8 @@
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6A910532C09011D007756BB /* CFTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A910522C09011D007756BB /* CFTokenizer.swift */; };
+		C6AA9D072C26358200FF68EC /* LexelToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D062C26357F00FF68EC /* LexelToken.swift */; };
+		C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */; };
 		C6B5362B2C1F900000EF9A35 /* Lora.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6B5362A2C1F900000EF9A35 /* Lora.ttf */; };
 		C6C4E9D62C2239DC00BD50EB /* DynamicQueryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9D52C2239DC00BD50EB /* DynamicQueryView.swift */; };
 		C6C4E9D82C225DF900BD50EB /* String+Strip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9D72C225DF900BD50EB /* String+Strip.swift */; };
@@ -80,6 +82,8 @@
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		C6A910522C09011D007756BB /* CFTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFTokenizer.swift; sourceTree = "<group>"; };
+		C6AA9D062C26357F00FF68EC /* LexelToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelToken.swift; sourceTree = "<group>"; };
+		C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NLTag+Codable.swift"; sourceTree = "<group>"; };
 		C6B5362A2C1F900000EF9A35 /* Lora.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lora.ttf; sourceTree = "<group>"; };
 		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C6C4E9D52C2239DC00BD50EB /* DynamicQueryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicQueryView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 			isa = PBXGroup;
 			children = (
 				C6FE78E12C06D561004D0C64 /* LexelSchema.swift */,
+				C6AA9D062C26357F00FF68EC /* LexelToken.swift */,
+				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
 				C6E5C2212C1525EB001ABDBA /* MigrationPlan.swift */,
 			);
 			path = Models;
@@ -172,7 +178,6 @@
 				C6A910522C09011D007756BB /* CFTokenizer.swift */,
 				C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */,
 				C6E5C2322C16A7A0001ABDBA /* ThemeService.swift */,
-				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
 				C6C4E9DC2C225E8700BD50EB /* Constants.swift */,
 				C6109C0D2C1ABD3000864294 /* ModelContainer.swift */,
 				C6333B932C01936A0044E7BA /* LexelApp.swift */,
@@ -232,6 +237,7 @@
 		C6C4E9D92C225E5700BD50EB /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */,
 				C6C4E9D72C225DF900BD50EB /* String+Strip.swift */,
 				C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */,
 			);
@@ -278,7 +284,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1540;
+				LastSwiftUpdateCheck = 1600;
 				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					C6333B8F2C01936A0044E7BA = {
@@ -394,11 +400,13 @@
 				C6E5C2332C16A7A1001ABDBA /* ThemeService.swift in Sources */,
 				C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
+				C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */,
 				C6C4E9E02C22698400BD50EB /* NLTokenizer.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
 				C6E5C22D2C166359001ABDBA /* NLLemmaService.swift in Sources */,
 				C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */,
+				C6AA9D072C26358200FF68EC /* LexelToken.swift in Sources */,
 				C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */,
 				C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */,
 				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
@@ -540,7 +548,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A582B2B9253124E857562307 /* Pods-Lexel.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lexel/Lexel.entitlements;
@@ -558,7 +565,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,7 +586,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 33238C007A4154A08E3F961B /* Pods-Lexel.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Lexel/Lexel.entitlements;
@@ -597,7 +603,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

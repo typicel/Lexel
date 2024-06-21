@@ -30,18 +30,26 @@ public enum LexelSchemaV1: VersionedSchema {
         var notes: String
         var lastOpened: Date?
         var text: String
-       
-        var tokens: [[LexelToken]] {
-            var tokens: [[LexelToken]] = []
-            let paragraphs = text.nlTokenize(unit: .paragraph)
-            for p in paragraphs {
-                let tokenizedWords = p.rawValue.nlTokenize(unit: .word)
-                tokens.append(tokenizedWords)
-            }
-            tokens = processNewlines(in: tokens)
-            return tokens
-        }
+//        
+//        private var _tokens: [[LexelToken]]?
+//       
+//        var tokens: [[LexelToken]] {
+//            if _tokens == nil {
+//                var t: [[LexelToken]] = []
+//                let paragraphs = text.nlTokenize(unit: .paragraph)
+//                for p in paragraphs {
+//                    let tokenizedWords = p.rawValue.nlTokenize(unit: .word)
+//                    t.append(tokenizedWords)
+//                }
+//                _tokens = processNewlines(in: t)
+//            }
+//            
+//            return _tokens!
+//        }
         
+//        @Lazy var tokens: [[LexelToken]]
+        var tokens: [[LexelToken]]
+
         init(title: String, text: String, language: LexelLanguage) {
             self.id = UUID().uuidString
             self.title = title
@@ -49,6 +57,14 @@ public enum LexelSchemaV1: VersionedSchema {
             self.notes = ""
             self.lastOpened = nil
             self.text = text
+            
+            var t: [[LexelToken]] = []
+            let paragraphs = text.nlTokenize(unit: .paragraph)
+            for p in paragraphs {
+                let tokenizedWords = p.rawValue.nlTokenize(unit: .word)
+                t.append(tokenizedWords)
+            }
+            self.tokens = processNewlines(in: t)
         }
     }
     

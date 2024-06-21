@@ -17,7 +17,6 @@ struct WordView: View {
     let showFamiliarityHighlight: Bool
     
     @Query var wordQuery: [VocabWord]
-//    var vocabWord: VocabWord? { wordQuery.first }
     
     init(word: String, displayWord: String, showFamiliarityHighlight: Bool) {
         self._wordQuery = Query(filter: #Predicate {

@@ -11,7 +11,16 @@ import OSLog
 
 public func ConfigureModelContainer() -> ModelContext {
     do {
-        let container = try ModelContainer(for: VocabWord.self, Story.self, migrationPlan: LexelMigrationPlan.self)
+        var inMemory = false
+        
+#if DEBUG
+        if CommandLine.arguments.contains("enable-testing") {
+            inMemory = true
+        }
+#endif
+        
+        let config = ModelConfiguration(for: VocabWord.self, Story.self, isStoredInMemoryOnly: inMemory)
+        let container = try ModelContainer(for: VocabWord.self, Story.self, migrationPlan: LexelMigrationPlan.self, configurations: config)
         
         let context = ModelContext(container)
         context.autosaveEnabled = true
