@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-public struct Constants {
+public enum Constants {
     static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
     static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Lora()]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]

@@ -10,11 +10,11 @@ import SwiftData
 
 @main
 struct LexelApp: App {
-    let context = ConfigureModelContainer()
+    let context = ConfigureModelContext()
     
     var body: some Scene {
         WindowGroup {
-            LibraryView()
+            ContentView()
         }
         .modelContext(self.context)
         .environmentObject(ThemeService())
