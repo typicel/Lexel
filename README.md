@@ -8,6 +8,6 @@ Keep track of all the words you've learned and how familiar you are with them. E
 
 ![A picture of a passage in german in Lexel](assets/image2.jpeg)
 
-![A picture of a passage in german in Lexel](assets/image2.jpeg)
+![A picture of a passage in german in Lexel](assets/image3.jpeg)
 
 
