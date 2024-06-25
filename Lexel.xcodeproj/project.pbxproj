@@ -18,6 +18,8 @@
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
+		C67122F92C2A80CA00061FE5 /* LexelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122F82C2A80CA00061FE5 /* LexelUITests.swift */; };
+		C67122FB2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */; };
 		C69E62DF2C1900400030B5B2 /* AddStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62DE2C1900400030B5B2 /* AddStoryView.swift */; };
 		C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62E02C1902870030B5B2 /* MLModelManager.swift */; };
 		C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */; };
@@ -31,6 +33,9 @@
 		C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */; };
 		C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DC2C225E8700BD50EB /* Constants.swift */; };
 		C6C4E9E02C22698400BD50EB /* NLTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */; };
+		C6D3775D2C293F40008624C4 /* LexelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3775C2C293F40008624C4 /* LexelTests.swift */; };
+		C6D377732C294E8E008624C4 /* Pods_Lexel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D377722C294E8E008624C4 /* Pods_Lexel.framework */; };
+		C6D377772C29E43C008624C4 /* LexelNLPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D377762C29E43C008624C4 /* LexelNLPTests.swift */; };
 		C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2282C16626D001ABDBA /* WordView.swift */; };
 		C6E5C22B2C16628D001ABDBA /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22A2C16628D001ABDBA /* NotesView.swift */; };
 		C6E5C22D2C166359001ABDBA /* NLLemmaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C22C2C166359001ABDBA /* NLLemmaService.swift */; };
@@ -39,6 +44,23 @@
 		C6E5C2332C16A7A1001ABDBA /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6E5C2322C16A7A0001ABDBA /* ThemeService.swift */; };
 		C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C67122FC2C2A80CA00061FE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6333B882C0193690044E7BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6333B8F2C01936A0044E7BA;
+			remoteInfo = Lexel;
+		};
+		C6D3775E2C293F40008624C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C6333B882C0193690044E7BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C6333B8F2C01936A0044E7BA;
+			remoteInfo = Lexel;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C6109C082C1AB72B00864294 /* Embed Foundation Extensions */ = {
@@ -73,6 +95,9 @@
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C67122F82C2A80CA00061FE5 /* LexelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITests.swift; sourceTree = "<group>"; };
+		C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C69E62DE2C1900400030B5B2 /* AddStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStoryView.swift; sourceTree = "<group>"; };
 		C69E62E02C1902870030B5B2 /* MLModelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLModelManager.swift; sourceTree = "<group>"; };
 		C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelManagerView.swift; sourceTree = "<group>"; };
@@ -87,6 +112,10 @@
 		C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Enumerated.swift"; sourceTree = "<group>"; };
 		C6C4E9DC2C225E8700BD50EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLTokenizer.swift; sourceTree = "<group>"; };
+		C6D3775A2C293F40008624C4 /* LexelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D3775C2C293F40008624C4 /* LexelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelTests.swift; sourceTree = "<group>"; };
+		C6D377722C294E8E008624C4 /* Pods_Lexel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Lexel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D377762C29E43C008624C4 /* LexelNLPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelNLPTests.swift; sourceTree = "<group>"; };
 		C6E5C2282C16626D001ABDBA /* WordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordView.swift; sourceTree = "<group>"; };
 		C6E5C22A2C16628D001ABDBA /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		C6E5C22C2C166359001ABDBA /* NLLemmaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLLemmaService.swift; sourceTree = "<group>"; };
@@ -94,6 +123,7 @@
 		C6E5C2302C16A178001ABDBA /* EditStoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditStoryView.swift; sourceTree = "<group>"; };
 		C6E5C2322C16A7A0001ABDBA /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
 		C6F1B1832C01A3A500F4C30C /* VocabParagraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabParagraph.swift; sourceTree = "<group>"; };
+		C6FF277B2C2A7E3F005813DD /* Pods_Lexel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Lexel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6096BBC0E544F78F27E219F /* Pods_Lexel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Lexel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +152,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C67122F32C2A80CA00061FE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D377572C293F40008624C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6D377732C294E8E008624C4 /* Pods_Lexel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -141,6 +186,8 @@
 		B0B9EA9123ED453D115ADA83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C6FF277B2C2A7E3F005813DD /* Pods_Lexel.framework */,
+				C6D377722C294E8E008624C4 /* Pods_Lexel.framework */,
 				E6096BBC0E544F78F27E219F /* Pods_Lexel.framework */,
 				6CEC14759853CF04A46514A0 /* Pods_Lexel_ShareExtension.framework */,
 			);
@@ -171,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				C6333B922C01936A0044E7BA /* Lexel */,
+				C6D3775B2C293F40008624C4 /* LexelTests */,
+				C67122F72C2A80CA00061FE5 /* LexelUITests */,
 				C6333B912C01936A0044E7BA /* Products */,
 				939E95C656793DF9B317587A /* Pods */,
 				B0B9EA9123ED453D115ADA83 /* Frameworks */,
@@ -181,6 +230,8 @@
 			isa = PBXGroup;
 			children = (
 				C6333B902C01936A0044E7BA /* Lexel.app */,
+				C6D3775A2C293F40008624C4 /* LexelTests.xctest */,
+				C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -214,6 +265,15 @@
 				C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C67122F72C2A80CA00061FE5 /* LexelUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C67122F82C2A80CA00061FE5 /* LexelUITests.swift */,
+				C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */,
+			);
+			path = LexelUITests;
 			sourceTree = "<group>";
 		};
 		C6A910512C08FBDC007756BB /* Flow */ = {
@@ -302,6 +362,15 @@
 			path = MLKit;
 			sourceTree = "<group>";
 		};
+		C6D3775B2C293F40008624C4 /* LexelTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6D3775C2C293F40008624C4 /* LexelTests.swift */,
+				C6D377762C29E43C008624C4 /* LexelNLPTests.swift */,
+			);
+			path = LexelTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -322,9 +391,47 @@
 			dependencies = (
 			);
 			name = Lexel;
+			packageProductDependencies = (
+			);
 			productName = VocabApp;
 			productReference = C6333B902C01936A0044E7BA /* Lexel.app */;
 			productType = "com.apple.product-type.application";
+		};
+		C67122F52C2A80CA00061FE5 /* LexelUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C67122FE2C2A80CA00061FE5 /* Build configuration list for PBXNativeTarget "LexelUITests" */;
+			buildPhases = (
+				C67122F22C2A80CA00061FE5 /* Sources */,
+				C67122F32C2A80CA00061FE5 /* Frameworks */,
+				C67122F42C2A80CA00061FE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C67122FD2C2A80CA00061FE5 /* PBXTargetDependency */,
+			);
+			name = LexelUITests;
+			productName = LexelUITests;
+			productReference = C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C6D377592C293F40008624C4 /* LexelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6D377602C293F40008624C4 /* Build configuration list for PBXNativeTarget "LexelTests" */;
+			buildPhases = (
+				C6D377562C293F40008624C4 /* Sources */,
+				C6D377572C293F40008624C4 /* Frameworks */,
+				C6D377582C293F40008624C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C6D3775F2C293F40008624C4 /* PBXTargetDependency */,
+			);
+			name = LexelTests;
+			productName = LexelTests;
+			productReference = C6D3775A2C293F40008624C4 /* LexelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -339,6 +446,14 @@
 					C6333B8F2C01936A0044E7BA = {
 						CreatedOnToolsVersion = 15.4;
 					};
+					C67122F52C2A80CA00061FE5 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C6333B8F2C01936A0044E7BA;
+					};
+					C6D377592C293F40008624C4 = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = C6333B8F2C01936A0044E7BA;
+					};
 				};
 			};
 			buildConfigurationList = C6333B8B2C0193690044E7BA /* Build configuration list for PBXProject "Lexel" */;
@@ -350,11 +465,15 @@
 				Base,
 			);
 			mainGroup = C6333B872C0193690044E7BA;
+			packageReferences = (
+			);
 			productRefGroup = C6333B912C01936A0044E7BA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				C6333B8F2C01936A0044E7BA /* Lexel */,
+				C6D377592C293F40008624C4 /* LexelTests */,
+				C67122F52C2A80CA00061FE5 /* LexelUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -367,6 +486,20 @@
 				C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */,
 				C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */,
 				C6B5362B2C1F900000EF9A35 /* Lora.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C67122F42C2A80CA00061FE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D377582C293F40008624C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +599,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C67122F22C2A80CA00061FE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C67122F92C2A80CA00061FE5 /* LexelUITests.swift in Sources */,
+				C67122FB2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6D377562C293F40008624C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6D3775D2C293F40008624C4 /* LexelTests.swift in Sources */,
+				C6D377772C29E43C008624C4 /* LexelNLPTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C67122FD2C2A80CA00061FE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6333B8F2C01936A0044E7BA /* Lexel */;
+			targetProxy = C67122FC2C2A80CA00061FE5 /* PBXContainerItemProxy */;
+		};
+		C6D3775F2C293F40008624C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C6333B8F2C01936A0044E7BA /* Lexel */;
+			targetProxy = C6D3775E2C293F40008624C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C6333B9C2C01936B0044E7BA /* Debug */ = {
@@ -666,6 +830,94 @@
 			};
 			name = Release;
 		};
+		C67122FF2C2A80CA00061FE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LexelUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lexel;
+			};
+			name = Debug;
+		};
+		C67123002C2A80CA00061FE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LexelUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lexel;
+			};
+			name = Release;
+		};
+		C6D377612C293F40008624C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A582B2B9253124E857562307 /* Pods-Lexel.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LexelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexel.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexel";
+			};
+			name = Debug;
+		};
+		C6D377622C293F40008624C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33238C007A4154A08E3F961B /* Pods-Lexel.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2XM9FQAP3J;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.enzottic.LexelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexel.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexel";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -683,6 +935,24 @@
 			buildConfigurations = (
 				C6333B9F2C01936B0044E7BA /* Debug */,
 				C6333BA02C01936B0044E7BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C67122FE2C2A80CA00061FE5 /* Build configuration list for PBXNativeTarget "LexelUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C67122FF2C2A80CA00061FE5 /* Debug */,
+				C67123002C2A80CA00061FE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6D377602C293F40008624C4 /* Build configuration list for PBXNativeTarget "LexelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6D377612C293F40008624C4 /* Debug */,
+				C6D377622C293F40008624C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

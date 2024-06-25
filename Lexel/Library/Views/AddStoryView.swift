@@ -37,18 +37,23 @@ struct AddStoryView: View {
             Form {
                 TextField("Story Title", text: $title)
                     .autocorrectionDisabled()
+                    .accessibilityIdentifier("storyTitleField")
+                
                 Picker("Source Language", selection: $language) {
                     ForEach(Constants.allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
                         Text(lang.displayName).tag(lang)
                     }
                 }
+                .accessibilityIdentifier("storyLangPicker")
+                
                 TextEditor(text: $text)
                     .frame(height: UIScreen.main.bounds.height * 0.5)
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
+                    .accessibilityIdentifier("storyTextField")
                 
             }
-            .navigationTitle("New Story")
+            .navigationTitle("Add New Story")
             .navigationBarTitleDisplayMode(.large)
             .toolbar {
                 ToolbarItemGroup(placement: .topBarLeading) {
@@ -58,6 +63,7 @@ struct AddStoryView: View {
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Add") { addStory() }
                         .disabled(title.isEmpty || text.isEmpty)
+                        .accessibilityIdentifier("addStory")
                 }
             }
         }

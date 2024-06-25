@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "1A20B65C-83EE-4E36-8E14-2B141DD42595",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Lexel.xcodeproj",
+        "identifier" : "C6D377592C293F40008624C4",
+        "name" : "LexelTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Lexel.xcodeproj",
+        "identifier" : "C67122F52C2A80CA00061FE5",
+        "name" : "LexelUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

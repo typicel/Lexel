@@ -25,6 +25,17 @@ public func ConfigureModelContext() -> ModelContext {
         let context = ModelContext(container)
         context.autosaveEnabled = true
         
+#if DEBUG
+        if CommandLine.arguments.contains("populate") {
+            let story = Story(title: "Der Hund", text: "Hallo, dieses ist mein Hund. Genau.", language: LexelLanguage("German","de-DE"))
+            let story2 = Story(title: "Der Hund 2", text: "Das ist ein big sequel", language: LexelLanguage("German","de-DE"))
+
+            context.insert(story)
+            context.insert(story2)
+            try! context.save()
+        }
+#endif
+        
         return context
     } catch {
         os_log("\(error.localizedDescription)")

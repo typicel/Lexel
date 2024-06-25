@@ -60,6 +60,7 @@ struct LibraryView: View {
                     }
                     .onDelete(perform: deleteItems)
                 }
+                .accessibilityIdentifier("storyList")
 //                .navigationDestination(for: Story.self) { _ in
 //                    if let story = selectedStory {
 //                        VocabParagraph(story: story)
@@ -73,6 +74,7 @@ struct LibraryView: View {
                 Button(action: showSheet) {
                     Label("Add Story", systemImage: "plus.circle")
                 }
+                .accessibilityIdentifier("addStoryButton")
             }
         } detail: {
             if stories.isEmpty {

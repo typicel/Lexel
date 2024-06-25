@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Lexel.xctestplan">
+   </FileRef>
+   <FileRef
       location = "group:Lexel.xcodeproj">
    </FileRef>
    <FileRef

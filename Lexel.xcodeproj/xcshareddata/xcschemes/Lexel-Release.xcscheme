@@ -27,15 +27,19 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:Lexel.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C683F75F2C23DB4A0037958A"
+               BlueprintIdentifier = "C6D377592C293F40008624C4"
                BuildableName = "LexelTests.xctest"
                BlueprintName = "LexelTests"
                ReferencedContainer = "container:Lexel.xcodeproj">
@@ -46,7 +50,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C683F76C2C24C3F10037958A"
+               BlueprintIdentifier = "C6D377662C293F8D008624C4"
                BuildableName = "LexelUITests.xctest"
                BlueprintName = "LexelUITests"
                ReferencedContainer = "container:Lexel.xcodeproj">
