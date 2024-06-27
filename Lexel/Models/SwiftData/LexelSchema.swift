@@ -55,19 +55,24 @@ public enum LexelSchemaV1: VersionedSchema {
     class VocabWord {
         @Attribute(.unique) let word: String
         let language: String
-        var familiarity: Familiarity
+        var familiarityRawValue: Int
         var definition: String
         var timesTapped: Int
         var lexeme: [Lexeme]
         
-        init(word: String, language: String, def: String) {
+        var familiarity: Familiarity {
+            .init(rawValue: familiarityRawValue)!
+        }
+        
+        init(word: String, language: String, def: String, fam: Int = 1) {
             self.word = word
             self.language = language
             self.definition = def
             self.timesTapped = 0
-            self.familiarity = .new
+            self.familiarityRawValue = fam
             self.lexeme = []
         }
+        
         
         func appendLexeme(word: String) {
             // don't append if already exists in array
@@ -76,13 +81,6 @@ public enum LexelSchemaV1: VersionedSchema {
             lexeme.append(Lexeme(word))
         }
         
-        func setFamiliarity(to newFam: Familiarity) {
-            self.familiarity = newFam
-        }
-        
-        func setDefinition(to newDef: String) {
-            self.definition = newDef
-        }
     }
     
     @Model
