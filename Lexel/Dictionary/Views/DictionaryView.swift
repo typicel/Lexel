@@ -9,38 +9,37 @@ import SwiftUI
 import SwiftData
 
 struct DictionaryView: View {
-    @Query var dictEntries: [VocabWord]
     
+    @Query(sort: \VocabWord.familiarityRawValue) private var words: [VocabWord]
+    
+    @State private var selectedEntry: VocabWord?
+
     var body: some View {
         NavigationSplitView {
-            List {
-                ForEach(dictEntries) { entry in
-                    NavigationLink(value: entry) {
-                        Text(entry.word)
+            List(selection: $selectedEntry) {
+                ForEach(words, id: \.self) { wordEntry in
+                    HStack {
+                        Circle()
+                            .fill(Color(Constants.familiarityColors[wordEntry.familiarity.rawValue-1]))
+                            .frame(width: 10, height: 10)
+                        Text(wordEntry.word)
                     }
                 }
             }
-            .listStyle(.inset)
-            .navigationTitle("Dictionary")
-            .navigationDestination(for: VocabWord.self) {
-                Text($0.word)
-            }
+            .accessibilityIdentifier("dictionaryList")
         } detail: {
-          if dictEntries.isEmpty {
-                ContentUnavailableView(label: {
-                    Label("No Stories", systemImage: "book")
-                }, description: {
-                    Text("Add a story to start learning")
-                })
+            if let entry = selectedEntry {
+                Text(entry.word)
+            } else {
+                Text("no thing")
             }
         }
-        .navigationSplitViewStyle(.automatic)
     }
 }
 
 #Preview {
     MainActor.assumeIsolated {
         DictionaryView()
-            .modelContainer(for: [VocabWord.self])
+            .modelContext(ConfigureModelContext())
     }
 }

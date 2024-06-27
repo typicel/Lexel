@@ -12,7 +12,16 @@ import SwiftData
 
 struct ContentView: View {
     var body: some View {
-        LibraryView()
+        TabView {
+            Tab("Library", image: "book") {
+                LibraryView()
+            }
+            
+            Tab("Dictionary", image: "gear") {
+                DictionaryView()
+            }
+        }
+        .tabViewStyle(.tabBarOnly)
     }
 }
 
