@@ -37,22 +37,14 @@ struct FamiliarWordView: View {
         self.language = language
         self.definition = definition
         
-//        if token.lemma == token.normalizedWord { // this word is a lemma, check for it explicitly
-//            os_log("token is a lemma")
         self._vocabWordEntry = Query(filter: #Predicate {
             $0.word == token.lemma
         })
-//        } else {
-//            os_log("token is a lexeme")
-//            self._vocabWordEntry = Query(filter: #Predicate {
-//                $0.lexeme.map { $0.string }.contains(token.normalizedWord)
-//            })
-//        }
     }
     
     var body: some View {
         if !self.vocabWordEntry.isEmpty {
-            Word(vocabWord: vocabWordEntry.first!)
+            EditableWorldView(vocabWord: vocabWordEntry.first!)
                 .onAppear {
                     if isLexeme {
                         vocabWordEntry.first!.appendLexeme(word: token.normalizedWord)
@@ -88,7 +80,7 @@ struct FamiliarWordView: View {
     }
 }
 
-struct Word: View {
+struct EditableWorldView: View {
     @Environment(\.modelContext) var modelContext
     @Bindable var vocabWord: VocabWord
     
@@ -111,7 +103,7 @@ struct Word: View {
                 }
             }
             
-            Picker("Familiarity Level", selection: $vocabWord.familiarity) {
+            Picker("Familiarity Level", selection: $vocabWord.familiarityRawValue) {
                 HStack {
                     Circle()
                         .fill(.red)
@@ -119,13 +111,16 @@ struct Word: View {
                         
                     Text("New")
                 }
-                .tag(Familiarity.new)
+                .tag(1)
                 
-                Text("Seen").tag(Familiarity.seen)
-                Text("Familiar").tag(Familiarity.familiar)
-                Text("Mastered").tag(Familiarity.mastered)
+                Text("Seen").tag(2)
+                Text("Familiar").tag(3)
+                Text("Mastered").tag(4)
             }
             .pickerStyle(.segmented)
+            .onChange(of: vocabWord.familiarity) {
+                try! modelContext.save()
+            }
             
             HStack {
                 

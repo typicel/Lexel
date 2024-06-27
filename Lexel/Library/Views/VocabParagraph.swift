@@ -42,9 +42,14 @@ struct VocabParagraph: View {
     
     var body: some View {
         GeometryReader { geo in
+            
             HStack {
                 Spacer()
                 ScrollView(showsIndicators: false) {
+                    Text(self.story.title)
+                        .font(themeService.selectedFont.readerFont(with: 36))
+                        .foregroundColor(themeService.selectedTheme.textColor)
+                    
                     ForEach(self.story.tokens.enumeratedArray(), id: \.offset) { poffset, paragraph in
                         FlowView(.vertical, alignment: .leading, horizontalSpacing: 0) {
                             ForEach(paragraph.enumeratedArray(), id: \.offset) { offset, element in
@@ -189,10 +194,6 @@ struct ReaderToolbar: ToolbarContent {
     }
     
     var body: some ToolbarContent {
-        ToolbarItem(placement: .principal) {
-            Text(self.story.title).font(.title).bold()
-                .foregroundColor(themeService.selectedTheme.textColor)
-        }
         
         ToolbarItemGroup(placement: .primaryAction) {
             Button {

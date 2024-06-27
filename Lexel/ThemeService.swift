@@ -17,7 +17,10 @@ protocol ReaderTheme {
 protocol ReaderFont {
     var name: String { get }
     var readerFont: Font { get }
+    
+    func readerFont(with size: CGFloat) -> Font
 }
+
 
 class ThemeService: ObservableObject {
     @Published var selectedTheme: ReaderTheme
@@ -111,14 +114,26 @@ struct Gray: ReaderTheme {
 struct SanFrancisco: ReaderFont, Equatable, Hashable {
     var name: String { return "San Francisco" }
     var readerFont: Font { return .system(.title, design: .default)}
+    
+    func readerFont(with size: CGFloat) -> Font {
+        return .system(size: size, design: .default)
+    }
 }
 
 struct NewYork: ReaderFont, Equatable, Hashable {
     var name: String { return "New York" }
     var readerFont: Font { return .system(.title, design: .serif) }
+    
+    func readerFont(with size: CGFloat) -> Font {
+        return .system(size: size, design: .serif)
+    }
 }
 
 struct Lora: ReaderFont, Equatable, Hashable {
     var name: String { return "Lora" }
     var readerFont: Font { return .custom("Lora", size: 24)}
+    
+    func readerFont(with size: CGFloat) -> Font {
+        return .custom("Lora", size: size)
+    }
 }

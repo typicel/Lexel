@@ -2,6 +2,8 @@
 //  WordView.swift
 //  Lexel
 //
+//  Represents each tapable word in a VocabParagraph View
+//
 //  Created by enzo on 6/9/24.
 //
 

@@ -18,6 +18,7 @@
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
+		C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */; };
 		C67122F92C2A80CA00061FE5 /* LexelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122F82C2A80CA00061FE5 /* LexelUITests.swift */; };
 		C67122FB2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */; };
 		C69E62DF2C1900400030B5B2 /* AddStoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C69E62DE2C1900400030B5B2 /* AddStoryView.swift */; };
@@ -95,6 +96,7 @@
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C6333B972C01936B0044E7BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListView.swift; sourceTree = "<group>"; };
 		C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67122F82C2A80CA00061FE5 /* LexelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITests.swift; sourceTree = "<group>"; };
 		C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -139,7 +141,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C60F4E812C26881F00A75F3C /* CoreData */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoreData; sourceTree = "<group>"; };
 		C60F4E862C26914B00A75F3C /* SwiftData */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C60F4E872C26915100A75F3C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SwiftData; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -198,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				C60F4E862C26914B00A75F3C /* SwiftData */,
-				C60F4E812C26881F00A75F3C /* CoreData */,
 				C6AA9D062C26357F00FF68EC /* LexelToken.swift */,
 				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
 				C6109C0D2C1ABD3000864294 /* ModelContainer.swift */,
@@ -209,6 +209,7 @@
 		C60F4E882C26A10600A75F3C /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */,
 				C60F4E892C26A11600A75F3C /* LexemePill.swift */,
 			);
 			path = Components;
@@ -571,6 +572,7 @@
 			files = (
 				C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */,
 				C6F1B1842C01A3A500F4C30C /* VocabParagraph.swift in Sources */,
+				C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */,
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* MLTranslationService.swift in Sources */,
 				C6E5C2312C16A178001ABDBA /* EditStoryView.swift in Sources */,
