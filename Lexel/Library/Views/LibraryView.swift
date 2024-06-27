@@ -61,12 +61,6 @@ struct LibraryView: View {
                     .onDelete(perform: deleteItems)
                 }
                 .accessibilityIdentifier("storyList")
-//                .navigationDestination(for: Story.self) { _ in
-//                    if let story = selectedStory {
-//                        VocabParagraph(story: story)
-//                    }
-//                }
-                .navigationTitle("Lexel")
                 .listStyle(.inset)
                 
                 Spacer()
@@ -130,24 +124,3 @@ func relativeTimeString(for date: Date) -> String {
     }
 }
 
-struct StoryListView: View {
-    let story: Story
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .firstTextBaseline) {
-                Text(story.title)
-                    .font(.title3)
-                    .bold()
-                
-                Text(story.language.shortName)
-                    .font(.caption)
-            }
-            if let date = story.lastOpened {
-                Text("\(relativeTimeString(for: date))")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-        }
-    }
-}
