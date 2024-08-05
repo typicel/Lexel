@@ -12,13 +12,13 @@ public enum Constants {
     static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
     static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Lora()]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
-    static let allowedLanguages: [LexelLanguage] = [
-        LexelLanguage("English", "en-US"),
-        LexelLanguage("German", "de-DE"),
-        LexelLanguage("Spanish", "es-ES"),
-        LexelLanguage("French", "fr-FR"),
-        LexelLanguage("Korean", "ko-KR"),
-        LexelLanguage("Japanese", "ja-JP"),
+    static let allowedLanguages: [Language] = [
+        Language("English", "en-US"),
+        Language("German", "de-DE"),
+        Language("Spanish", "es-ES"),
+        Language("French", "fr-FR"),
+        Language("Korean", "ko-KR"),
+        Language("Japanese", "ja-JP"),
     ]
 }
 

@@ -7,14 +7,13 @@
 
 import SwiftUI
 import SwiftData
-import AVFoundation
 import NaturalLanguage
-import Translation
 
 struct StoryView: View {
     @EnvironmentObject var themeService: ThemeService
-    @State private var viewModel: StoryViewModel
-    
+    @EnvironmentObject var library: LibraryViewModel
+    @ObservedObject var viewModel: StoryViewModel
+
     init(story: Story) {
         viewModel = StoryViewModel(story: story)
         viewModel.fetchTokens()
@@ -30,24 +29,31 @@ struct StoryView: View {
                         .foregroundColor(themeService.selectedTheme.textColor)
                     
                     FlowView(.vertical, alignment: .leading, horizontalSpacing: 0) {
-                        ForEach(viewModel.tokens, id: \.self) { token in
+                        ForEach(viewModel.story.typedTokens, id: \.self) { token in
                             Text(token.value!)
+                                .foregroundColor(themeService.selectedTheme.textColor)
+                                .font(.title)
                                 .onTapGesture {
                                     Task {
                                         await viewModel.handleTapGesture(for: token)
                                     }
                                 }
+                                .background(viewModel.backgroundColor(for: token))
                         }
                     }
-                    Spacer()
                 }
                 .frame(width: geo.size.width * 0.8)
-                .background(themeService.selectedTheme.readerColor)
-                .toolbar {
-                    ReaderToolbar()
-                }
+                
+                Spacer()
+            }
+            .background(themeService.selectedTheme.readerColor)
+            .toolbar {
+                ReaderToolbar()
             }
             .environmentObject(self.themeService)
+            .onChange(of: library.selectedStory!) { oldValue, newValue in
+                viewModel.updateStory(with: newValue)
+            }
         }
     }
 }
@@ -69,16 +75,6 @@ struct ReaderToolbar: ToolbarContent {
             }
             .popover(isPresented: $showSettingsPopover) {
                 VStack {
-                    //                    Picker("Font Style", selection: self.$selectedFont) {
-                    //                        ForEach(Constants.fontStyles.enumeratedArray(), id: \.offset) { offset, font in
-                    //                            Text(font.name).tag(offset)
-                    //                        }
-                    //                    }
-                    //                    .pickerStyle(.automatic)
-                    //                    .onChange(of: self.selectedFont) {
-                    //                        self.themeService.setFont(Constants.fontStyles[self.selectedFont])
-                    //                    }
-                    
                     HStack {
                         ForEach(Constants.themes.enumeratedArray(), id: \.offset) { offset, theme in
                             Circle()

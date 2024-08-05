@@ -15,9 +15,8 @@ struct AddStoryView: View {
     @State private var dataManager = DataManager.preview
     
     @State private var title: String = ""
-    @State private var language: LexelLanguage = LexelLanguage("English", "en-US")
+    @State private var language: Language = Constants.allowedLanguages[0]
     @State private var text: String = ""
-    
     
     func addStory() {
         dataManager.insertStory(title: title, text: text, language: language.bcp47)
@@ -32,8 +31,8 @@ struct AddStoryView: View {
                     .accessibilityIdentifier("storyTitleField")
                 
                 Picker("Source Language", selection: $language) {
-                    ForEach(Constants.allowedLanguages.enumeratedArray(), id: \.offset) { _, lang in
-                        Text(lang.displayName).tag(lang)
+                    ForEach(Constants.allowedLanguages, id: \.self) { lang in
+                        Text(lang.name).tag(lang)
                     }
                 }
                 .accessibilityIdentifier("storyLangPicker")

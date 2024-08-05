@@ -21,14 +21,19 @@ class LibraryViewModel: ObservableObject {
         dataManager.stories
     }
     
-    var anyCancellable: AnyCancellable?
+    var cancellables = Set<AnyCancellable>()
     
     init(dataManager: DataManager = .preview) {
         self.dataManager = dataManager
         
-        anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
-            self?.objectWillChange.send()
-        }
+//        dataManager
+//            .objectWillChange
+//            .sink(receiveValue: { [weak self] (_) in self?.objectWillChange.send() })
+//            .store(in: &cancellables)
+        
+//        anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
+//            self?.objectWillChange.send()
+//        }
     }
     
     

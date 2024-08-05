@@ -43,7 +43,7 @@ struct LibraryView: View {
                             .tint(.indigo)
                         }
                     }
-                    .onDelete(perform: deleteItems)
+//                    .onDelete(perform: deleteItems)
                 }
                 .accessibilityIdentifier("storyList")
                 .listStyle(.inset)
@@ -69,7 +69,7 @@ struct LibraryView: View {
                     StoryView(story: story)
                         .environmentObject(viewModel)
                 } else {
-                    Text("Welcome to sexel")
+                    Text("Lexel")
                 }
             }
         }
@@ -78,18 +78,8 @@ struct LibraryView: View {
         .sheet(item: $viewModel.editingStory) {
             viewModel.reset()
         } content: { story in
-//            EditStoryView(story: story)
             EditStoryView()
         }
-    }
-    
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-//                context.delete(stories[index])
-            }
-        }
-//        try! context.save()
     }
 }
 

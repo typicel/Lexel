@@ -108,11 +108,18 @@ extension DataManager {
             token.position = position
             position += 1
             
+            switch tag {
+            case .word:
+                token.tappable = true
+            default:
+                token.tappable = false
+            }
+            
             tokens.append(token)
             return true
         }
         
-        story.tokens = NSSet(array: tokens)
+        story.tokens = NSOrderedSet(array: tokens)
     }
     
     func fetchTokensForStory(with id : UUID?) -> Result<[Token], DataManagerError> {

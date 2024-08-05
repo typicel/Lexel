@@ -15,7 +15,6 @@
 		C61AAAF32C561AA800DD0575 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61AAAF22C561AA800DD0575 /* LibraryViewModel.swift */; };
 		C61AAAF62C561E5600DD0575 /* TTSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61AAAF52C561E5600DD0575 /* TTSService.swift */; };
 		C61AAAF82C56234C00DD0575 /* StoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61AAAF72C56234C00DD0575 /* StoryViewModel.swift */; };
-		C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C622C7102C1939DA00188F14 /* LexelLanguage.swift */; };
 		C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B932C01936A0044E7BA /* LexelApp.swift */; };
 		C6333B962C01936A0044E7BA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6333B952C01936A0044E7BA /* ContentView.swift */; };
 		C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B972C01936B0044E7BA /* Assets.xcassets */; };
@@ -24,12 +23,14 @@
 		C6388C512C6033610065671E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6388C502C6033610065671E /* DataManager.swift */; };
 		C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */; };
 		C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740802C60371100FB9C1F /* DictionaryViewModel.swift */; };
-		C64740BB2C606C9300FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740B52C606C9300FB9C1F /* DictionaryEntry+CoreDataClass.swift */; };
-		C64740BC2C606C9300FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740B62C606C9300FB9C1F /* DictionaryEntry+CoreDataProperties.swift */; };
-		C64740BD2C606C9300FB9C1F /* Story+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740B72C606C9300FB9C1F /* Story+CoreDataClass.swift */; };
-		C64740BE2C606C9300FB9C1F /* Story+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740B82C606C9300FB9C1F /* Story+CoreDataProperties.swift */; };
-		C64740BF2C606C9300FB9C1F /* Token+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740B92C606C9300FB9C1F /* Token+CoreDataClass.swift */; };
-		C64740C02C606C9300FB9C1F /* Token+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740BA2C606C9300FB9C1F /* Token+CoreDataProperties.swift */; };
+		C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */; };
+		C64740C92C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */; };
+		C64740CA2C60765C00FB9C1F /* Story+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */; };
+		C64740CB2C60765C00FB9C1F /* Story+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */; };
+		C64740CC2C60765C00FB9C1F /* Token+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */; };
+		C64740CD2C60765C00FB9C1F /* Token+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */; };
+		C64740CF2C60779200FB9C1F /* Story+Typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740CE2C60779200FB9C1F /* Story+Typed.swift */; };
+		C64740D12C6077F700FB9C1F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740D02C6077F700FB9C1F /* Language.swift */; };
 		C64A583D2C5FFF6200C4D58E /* LexelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C64A583B2C5FFF6200C4D58E /* LexelData.xcdatamodeld */; };
 		C67122F92C2A80CA00061FE5 /* LexelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122F82C2A80CA00061FE5 /* LexelUITests.swift */; };
 		C67122FB2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */; };
@@ -39,12 +40,9 @@
 		C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */; };
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
-		C6AA9D072C26358200FF68EC /* LexelToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D062C26357F00FF68EC /* LexelToken.swift */; };
 		C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */; };
-		C6C4E9D82C225DF900BD50EB /* String+Strip.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9D72C225DF900BD50EB /* String+Strip.swift */; };
 		C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */; };
 		C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DC2C225E8700BD50EB /* Constants.swift */; };
-		C6C4E9E02C22698400BD50EB /* NLTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */; };
 		C6D3775D2C293F40008624C4 /* LexelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3775C2C293F40008624C4 /* LexelTests.swift */; };
 		C6D377732C294E8E008624C4 /* Pods_Lexel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6D377722C294E8E008624C4 /* Pods_Lexel.framework */; };
 		C6D377772C29E43C008624C4 /* LexelNLPTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D377762C29E43C008624C4 /* LexelNLPTests.swift */; };
@@ -103,7 +101,6 @@
 		C61AAAF22C561AA800DD0575 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		C61AAAF52C561E5600DD0575 /* TTSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSService.swift; sourceTree = "<group>"; };
 		C61AAAF72C56234C00DD0575 /* StoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryViewModel.swift; sourceTree = "<group>"; };
-		C622C7102C1939DA00188F14 /* LexelLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelLanguage.swift; sourceTree = "<group>"; };
 		C6333B902C01936A0044E7BA /* Lexel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6333B932C01936A0044E7BA /* LexelApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelApp.swift; sourceTree = "<group>"; };
 		C6333B952C01936A0044E7BA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,12 +110,14 @@
 		C6388C502C6033610065671E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListView.swift; sourceTree = "<group>"; };
 		C64740802C60371100FB9C1F /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
-		C64740B52C606C9300FB9C1F /* DictionaryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740B62C606C9300FB9C1F /* DictionaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C64740B72C606C9300FB9C1F /* Story+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740B82C606C9300FB9C1F /* Story+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C64740B92C606C9300FB9C1F /* Token+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740BA2C606C9300FB9C1F /* Token+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C64740CE2C60779200FB9C1F /* Story+Typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+Typed.swift"; sourceTree = "<group>"; };
+		C64740D02C6077F700FB9C1F /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		C64A583C2C5FFF6200C4D58E /* LexelData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LexelData.xcdatamodel; sourceTree = "<group>"; };
 		C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67122F82C2A80CA00061FE5 /* LexelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITests.swift; sourceTree = "<group>"; };
@@ -129,13 +128,10 @@
 		C6A7E8E72C0BCC5E000DF71A /* DictionaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryView.swift; sourceTree = "<group>"; };
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
-		C6AA9D062C26357F00FF68EC /* LexelToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelToken.swift; sourceTree = "<group>"; };
 		C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NLTag+Codable.swift"; sourceTree = "<group>"; };
-		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		C6C4E9D72C225DF900BD50EB /* String+Strip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Strip.swift"; sourceTree = "<group>"; };
+		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Enumerated.swift"; sourceTree = "<group>"; };
 		C6C4E9DC2C225E8700BD50EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NLTokenizer.swift; sourceTree = "<group>"; };
 		C6D3775A2C293F40008624C4 /* LexelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6D3775C2C293F40008624C4 /* LexelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelTests.swift; sourceTree = "<group>"; };
 		C6D377722C294E8E008624C4 /* Pods_Lexel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Lexel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,8 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				C64740822C60377E00FB9C1F /* Models */,
-				C6AA9D062C26357F00FF68EC /* LexelToken.swift */,
-				C622C7102C1939DA00188F14 /* LexelLanguage.swift */,
 				C6388C4E2C6032DC0065671E /* PersistentStore.swift */,
 				C6388C502C6033610065671E /* DataManager.swift */,
 			);
@@ -259,18 +253,16 @@
 		C6333B922C01936A0044E7BA /* Lexel */ = {
 			isa = PBXGroup;
 			children = (
-				C61AAAF42C561E4300DD0575 /* Services */,
+				C64740C12C6072A500FB9C1F /* App */,
 				C64A583F2C602F4800C4D58E /* Pages */,
-				C6C4E9D92C225E5700BD50EB /* Extensions */,
 				C60E86912C09863900E2B6CB /* Data */,
+				C61AAAF42C561E4300DD0575 /* Services */,
+				C6C4E9D92C225E5700BD50EB /* Extensions */,
 				C6C4E9DC2C225E8700BD50EB /* Constants.swift */,
-				C6333B952C01936A0044E7BA /* ContentView.swift */,
-				C6333B932C01936A0044E7BA /* LexelApp.swift */,
-				C64A583B2C5FFF6200C4D58E /* LexelData.xcdatamodeld */,
-				C6333B972C01936B0044E7BA /* Assets.xcassets */,
-				C6109C0C2C1AB9D400864294 /* Lexel.entitlements */,
-				C6B5362C2C1F94EB00EF9A35 /* Info.plist */,
 				C6333B992C01936B0044E7BA /* Preview Content */,
+				C6109C0C2C1AB9D400864294 /* Lexel.entitlements */,
+				C6333B972C01936B0044E7BA /* Assets.xcassets */,
+				C6B5362C2C1F94EB00EF9A35 /* Info.plist */,
 			);
 			path = Lexel;
 			sourceTree = "<group>";
@@ -286,14 +278,25 @@
 		C64740822C60377E00FB9C1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C64740B52C606C9300FB9C1F /* DictionaryEntry+CoreDataClass.swift */,
-				C64740B62C606C9300FB9C1F /* DictionaryEntry+CoreDataProperties.swift */,
-				C64740B72C606C9300FB9C1F /* Story+CoreDataClass.swift */,
-				C64740B82C606C9300FB9C1F /* Story+CoreDataProperties.swift */,
-				C64740B92C606C9300FB9C1F /* Token+CoreDataClass.swift */,
-				C64740BA2C606C9300FB9C1F /* Token+CoreDataProperties.swift */,
+				C64A583B2C5FFF6200C4D58E /* LexelData.xcdatamodeld */,
+				C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */,
+				C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */,
+				C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */,
+				C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */,
+				C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */,
+				C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */,
+				C64740D02C6077F700FB9C1F /* Language.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C64740C12C6072A500FB9C1F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C6333B952C01936A0044E7BA /* ContentView.swift */,
+				C6333B932C01936A0044E7BA /* LexelApp.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		C64A583F2C602F4800C4D58E /* Pages */ = {
@@ -330,7 +333,6 @@
 				C6C4E9DE2C225EEB00BD50EB /* MLKit */,
 				C6E5C22E2C166AA1001ABDBA /* NLPService.swift */,
 				C6E5C22C2C166359001ABDBA /* NLLemmaService.swift */,
-				C6C4E9DF2C22698400BD50EB /* NLTokenizer.swift */,
 			);
 			path = NLP;
 			sourceTree = "<group>";
@@ -381,8 +383,8 @@
 			isa = PBXGroup;
 			children = (
 				C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */,
-				C6C4E9D72C225DF900BD50EB /* String+Strip.swift */,
 				C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */,
+				C64740CE2C60779200FB9C1F /* Story+Typed.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -607,6 +609,7 @@
 				C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */,
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C61AAAF32C561AA800DD0575 /* LibraryViewModel.swift in Sources */,
+				C64740D12C6077F700FB9C1F /* Language.swift in Sources */,
 				C607C09D2C02772600A0FD12 /* MLTranslationService.swift in Sources */,
 				C6E5C2312C16A178001ABDBA /* EditStoryView.swift in Sources */,
 				C60E86972C0A4FC300E2B6CB /* LibraryView.swift in Sources */,
@@ -617,25 +620,22 @@
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
 				C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */,
 				C6388C4F2C6032DC0065671E /* PersistentStore.swift in Sources */,
-				C6C4E9E02C22698400BD50EB /* NLTokenizer.swift in Sources */,
+				C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */,
+				C64740C92C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */,
+				C64740CA2C60765C00FB9C1F /* Story+CoreDataClass.swift in Sources */,
+				C64740CF2C60779200FB9C1F /* Story+Typed.swift in Sources */,
+				C64740CB2C60765C00FB9C1F /* Story+CoreDataProperties.swift in Sources */,
+				C64740CC2C60765C00FB9C1F /* Token+CoreDataClass.swift in Sources */,
+				C64740CD2C60765C00FB9C1F /* Token+CoreDataProperties.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C64A583D2C5FFF6200C4D58E /* LexelData.xcdatamodeld in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
 				C6E5C22D2C166359001ABDBA /* NLLemmaService.swift in Sources */,
-				C622C7112C1939DA00188F14 /* LexelLanguage.swift in Sources */,
-				C6AA9D072C26358200FF68EC /* LexelToken.swift in Sources */,
 				C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */,
 				C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */,
 				C61AAAF62C561E5600DD0575 /* TTSService.swift in Sources */,
 				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
 				C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */,
-				C6C4E9D82C225DF900BD50EB /* String+Strip.swift in Sources */,
-				C64740BB2C606C9300FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */,
-				C64740BC2C606C9300FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */,
-				C64740BD2C606C9300FB9C1F /* Story+CoreDataClass.swift in Sources */,
-				C64740BE2C606C9300FB9C1F /* Story+CoreDataProperties.swift in Sources */,
-				C64740BF2C606C9300FB9C1F /* Token+CoreDataClass.swift in Sources */,
-				C64740C02C606C9300FB9C1F /* Token+CoreDataProperties.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,
 				C6388C512C6033610065671E /* DataManager.swift in Sources */,
 				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,

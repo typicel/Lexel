@@ -16,7 +16,6 @@ class StoryViewModel: ObservableObject {
     // State relating to the currently selected word and its translation
     @Published var selectedWord: Token? = nil
     @Published var selectedWordIndex: Int? = nil
-    //    @Published var selectedParagraphIndex: Int? = nil
     @Published var translatedWord: String? = nil
     
     // Popover state vars
@@ -24,15 +23,20 @@ class StoryViewModel: ObservableObject {
     @Published var showFamiliarPopover: Bool = false
     
     @Published var dataManager: DataManager
-    var anyCancellable: AnyCancellable?
+    var cancellables =  Set<AnyCancellable>()
     
     init(story: Story, dataManager: DataManager = .preview) {
         self.story = story
         self.dataManager = dataManager
-        
-        anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
-            self?.dataManager.objectWillChange.send()
-        }
+    }
+    
+    func updateStory(with story: Story) {
+        self.story = story
+        self.selectedWord = nil
+        self.selectedWordIndex = nil
+        self.translatedWord = nil
+        self.showSettingsPopover = false
+        self.showFamiliarPopover = false
     }
     
     func fetchTokens() {
@@ -46,6 +50,14 @@ class StoryViewModel: ObservableObject {
         }
     }
     
+    func backgroundColor(for token: Token) -> Color {
+        if let index = selectedWordIndex {
+            token.position == index ? Color.yellow : Color.clear
+        } else {
+            Color.clear
+        }
+    }
+    
     func word(for token: Token) -> String {
         if let text = story.rawText {
             let start = text.index(text.startIndex, offsetBy: Int(token.startIndex))
@@ -56,12 +68,13 @@ class StoryViewModel: ObservableObject {
         }
     }
     
+    @MainActor
     func handleTapGesture(for token: Token) async {
-        self.selectedWord = token
-        self.selectedWordIndex = Int(token.position)
+        guard token.tappable else { return }
         
         self.translatedWord = await NLPService.shared.translate(word: token.value!.lowercased(), from: story.language!)
-        
+        self.selectedWord = token
+        self.selectedWordIndex = Int(token.position)
         TTSService.shared.speak(text: token.value!, lang: story.language!) // should be bcp47 format
     }
     

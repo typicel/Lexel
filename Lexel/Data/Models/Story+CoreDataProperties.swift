@@ -21,12 +21,30 @@ extension Story {
     @NSManaged public var lastOpened: Date?
     @NSManaged public var rawText: String?
     @NSManaged public var title: String?
-    @NSManaged public var tokens: NSSet?
+    @NSManaged public var tokens: NSOrderedSet?
 
 }
 
 // MARK: Generated accessors for tokens
 extension Story {
+
+    @objc(insertObject:inTokensAtIndex:)
+    @NSManaged public func insertIntoTokens(_ value: Token, at idx: Int)
+
+    @objc(removeObjectFromTokensAtIndex:)
+    @NSManaged public func removeFromTokens(at idx: Int)
+
+    @objc(insertTokens:atIndexes:)
+    @NSManaged public func insertIntoTokens(_ values: [Token], at indexes: NSIndexSet)
+
+    @objc(removeTokensAtIndexes:)
+    @NSManaged public func removeFromTokens(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInTokensAtIndex:withObject:)
+    @NSManaged public func replaceTokens(at idx: Int, with value: Token)
+
+    @objc(replaceTokensAtIndexes:withTokens:)
+    @NSManaged public func replaceTokens(at indexes: NSIndexSet, with values: [Token])
 
     @objc(addTokensObject:)
     @NSManaged public func addToTokens(_ value: Token)
@@ -35,10 +53,10 @@ extension Story {
     @NSManaged public func removeFromTokens(_ value: Token)
 
     @objc(addTokens:)
-    @NSManaged public func addToTokens(_ values: NSSet)
+    @NSManaged public func addToTokens(_ values: NSOrderedSet)
 
     @objc(removeTokens:)
-    @NSManaged public func removeFromTokens(_ values: NSSet)
+    @NSManaged public func removeFromTokens(_ values: NSOrderedSet)
 
 }
 
