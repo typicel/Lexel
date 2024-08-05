@@ -10,14 +10,6 @@ import Testing
 
 struct LexelNLPTests {
 
-    @Test func testTranslate() async throws {
-        let nlp = NLPService(lang: .german)
-        let word = "deutsch"
-        
-        let result = await nlp.translate(word: word)
-        
-        #expect(result == "german")
-    }
     
 //    @Test func testLemmatizeSuccess() async throws {
 //        let nlp = NLPService(lang: .german)

@@ -11,29 +11,14 @@ import SwiftData
 import OSLog
 
 struct LibraryView: View {
-    @Environment(\.modelContext) private var context
-    
-    @State private var selectedStory: Story? = nil
-    @State private var isShowingAddStorySheet: Bool = false
-    @State private var isShowingEditStorySheet: Bool = false
-    @State private var editingStory: Story? = nil
-    @State private var showModelSheet: Bool = false
-    
-//    private let modelManager = MLModelManager()
-    
-    @Query private var stories: [Story]
-    
-    private func showSheet() { isShowingAddStorySheet = true }
-    private func deleteItem(_ item: Story) { context.delete(item) }
-    private func editItem(_ item: Story) { self.editingStory = item }
-    private func reset() { self.editingStory = nil }
+    @StateObject private var viewModel = LibraryViewModel()
     
     var body: some View {
         NavigationSplitView {
             VStack {
-                List(selection: $selectedStory) {
+                List(selection: $viewModel.selectedStory) {
                     
-                    ForEach(stories, id: \.self) { story in
+                    ForEach(viewModel.stories, id: \.self) { story in
                         NavigationLink(value: story) {
                             StoryListView(story: story)
                         }
@@ -41,7 +26,7 @@ struct LibraryView: View {
                             
                             Button(role: .destructive) {
                                 do {
-                                    try context.save()
+//                                    try context.save()
                                 } catch {
                                     os_log("Failed to save context: \(error.localizedDescription)")
                                 }
@@ -50,8 +35,8 @@ struct LibraryView: View {
                             }
                             
                             Button {
-                                editingStory = story
-                                isShowingEditStorySheet = true
+                                viewModel.editingStory = story
+                                viewModel.isShowingEditStorySheet = true
                             } label: {
                                 Label("Edit Story", systemImage: "pencil")
                             }
@@ -65,44 +50,46 @@ struct LibraryView: View {
                 
                 Spacer()
                 
-                Button(action: showSheet) {
+                Button(action: viewModel.showSheet) {
                     Label("Add Story", systemImage: "plus.circle")
                 }
                 .accessibilityIdentifier("addStoryButton")
             }
         } detail: {
-            if stories.isEmpty {
+            if viewModel.stories.isEmpty {
                 ContentUnavailableView(label: {
                     Label("No Stories", systemImage: "book")
                 }, description: {
                     Text("Add a story to start learning")
                 }, actions: {
-                    Button("Add Story") { isShowingAddStorySheet = true }
+                    Button("Add Story") { viewModel.isShowingAddStorySheet = true }
                 })
             } else {
-                if let story = selectedStory {
-                    VocabParagraph(story: story)
+                if let story = viewModel.selectedStory {
+                    StoryView(story: story)
+                        .environmentObject(viewModel)
                 } else {
                     Text("Welcome to sexel")
                 }
             }
         }
         .navigationSplitViewStyle(.balanced)
-        .sheet(isPresented: $isShowingAddStorySheet) { AddStoryView() }
-        .sheet(item: $editingStory) {
-            reset()
+        .sheet(isPresented: $viewModel.isShowingAddStorySheet) { AddStoryView() }
+        .sheet(item: $viewModel.editingStory) {
+            viewModel.reset()
         } content: { story in
-            EditStoryView(story: story)
+//            EditStoryView(story: story)
+            EditStoryView()
         }
     }
     
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             for index in offsets {
-                context.delete(stories[index])
+//                context.delete(stories[index])
             }
-            try! context.save()
         }
+//        try! context.save()
     }
 }
 
@@ -118,9 +105,6 @@ func relativeTimeString(for date: Date) -> String {
 }
 
 #Preview {
-    MainActor.assumeIsolated {
-        LibraryView()
-            .modelContainer(for: [Story.self, VocabWord.self])
-    }
+    LibraryView()
 }
 

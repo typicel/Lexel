@@ -44,7 +44,8 @@ struct LexelToken: Encodable, Decodable {
         self.rawValue = rawValue
         self.tokenType = tokenType
         let n = rawValue.stripPunctuation().lowercased()
-        self.lemma = NLPService(lang: .english).lemmatize(word: n)
+//        self.lemma = NLPService(lang: .english).lemmatize(word: n)
+        self.lemma = n // MARK - THIS IS TEMPORARY, PLEASE REMEMBER THAT YOU DID THIS
         self.normalizedWord = n
     }
     

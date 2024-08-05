@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="23211.1" systemVersion="24A5298h" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DictionaryEntry" representedClassName="DictionaryEntry" syncable="YES">
+        <attribute name="definition" attributeType="String"/>
+        <attribute name="familiarity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="word" attributeType="String"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DictionaryEntry" inverseName="parent" inverseEntity="DictionaryEntry"/>
+    </entity>
+    <entity name="Story" representedClassName="Story" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="language" attributeType="String"/>
+        <attribute name="lastOpened" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="rawText" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="tokens" toMany="YES" deletionRule="Nullify" destinationEntity="Token" inverseName="story" inverseEntity="Token"/>
+    </entity>
+    <entity name="Token" representedClassName="Token" syncable="YES">
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="length" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="startIndex" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="value" attributeType="String"/>
+        <relationship name="dictionaryEntry" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DictionaryEntry"/>
+        <relationship name="story" maxCount="1" deletionRule="Nullify" destinationEntity="Story" inverseName="tokens" inverseEntity="Story"/>
+    </entity>
+</model>

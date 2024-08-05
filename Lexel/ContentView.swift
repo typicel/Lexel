@@ -26,8 +26,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    MainActor.assumeIsolated {
-        ContentView()
-            .modelContext(ConfigureModelContext())
-    }
+    ContentView()
 }

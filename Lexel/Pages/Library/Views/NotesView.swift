@@ -9,11 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct NotesView: View {
-    @Bindable var story: Story
-    
-    @Environment(\.modelContext) var modelContext
-    
     var body: some View {
-        TextEditor(text: $story.notes)
+        Text("Welcome to notes....")
     }
 }

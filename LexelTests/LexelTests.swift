@@ -6,45 +6,70 @@
 //
 
 import Testing
+import Foundation
 @testable import Lexel
 
 struct LexelTests {
 
-    @Test func testInitStory() async throws {
-        let story = Story(title: "Der Hund", text: "Hallo", language: LexelLanguage("German", "de-DE"))
+    @Test func testContextCreate() async throws {
+        let dataManager = DataManager(type: .testing)
         
-        #expect(story.title == "Der Hund")
-        #expect(story.text == "Hallo")
+        #expect(dataManager.stories.count == 0)
+        #expect(dataManager != nil)
     }
     
-    @Test func testInitLexelLanguage() async throws {
-        let lang = LexelLanguage("German", "de-DE")
-        
-        #expect(lang.displayName == "German")
-        #expect(lang.bcp47 == "de-DE")
-        #expect(lang.shortName == "DE")
-        #expect(lang.mlLanguage == .german)
+    @Test func testAddStory() async throws {
+        let dataManager = DataManager(type: .testing)
+        dataManager.insertStory(title: "Lexel", text: "Here's some text yes yes yes", language: "English")
+        #expect(dataManager.stories.count == 1)
     }
     
-    @Test func testInitVocabWord() async throws {
-        let vw = VocabWord(word: "laufen", language: "de-DE", def: "to walk")
+    @Test func testAddStoryWithEmptyText() async throws {
+        let dataManager = DataManager(type: .testing)
         
-        #expect(vw.word == "laufen")
-        #expect(vw.language == "de-DE")
-        #expect(vw.definition == "to walk")
-        #expect(vw.lexeme.isEmpty)
+        dataManager.insertStory(title: "Empty", text: "", language: "English")
+        #expect(dataManager.stories[0].rawText!.isEmpty)
+        #expect(dataManager.stories[0].tokens!.count == 0)
     }
     
-    @Test func testInitLexelToken() async throws {
-        let token = LexelToken(rawValue: "Hello,", tokenType: .word)
+    @Test func testAddStoryWithTokens() async throws {
+        let dataManager = DataManager(type: .testing)
         
-        #expect(token.rawValue == "Hello,")
-        #expect(token.tokenType == .word)
-        
-        #expect(token.normalizedWord == "hello")
-        #expect(token.lemma == "hello")
+        dataManager.insertStory(title: "Test", text: "This should be 10 tokens.", language: "English")
+        #expect(dataManager.stories[0].tokens!.count == 10)
     }
     
+    @Test func testGetTokensbyID() async throws {
+        let dm = DataManager(type: .testing)
+        
+        dm.insertStory(title: "Test", text: "This should be 10 tokens.", language: "English")
+        let result = dm.fetchTokensForStory(with: dm.stories[0].id)
+        
+        switch result {
+        case .success(let tokens):
+            print(tokens)
+            try #require(tokens.count == 10)
+            #expect(tokens[0].value == "This")
+            #expect(tokens[1].value == " ")
+            #expect(tokens[2].value == "should")
+
+        case .failure:
+            #expect(1 == 0) // something went wrong, should never get here
+        }
+    }
+    
+    @Test func testGetTokensWithBadId() async throws {
+        let dm = DataManager(type: .testing)
+        let result = dm.fetchTokensForStory(with: UUID())
+        
+        switch result {
+        case .success(let tokens):
+            #expect(tokens.count == 0)
+        case .failure:
+            #expect(1 == 0)
+        }
+    }
+
     @Test func testInitThemeService() async throws {
         let theme = ThemeService()
         

@@ -10,25 +10,17 @@ import OSLog
 
 struct AddStoryView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.modelContext) var context
     
     @EnvironmentObject var modelManager: MLModelManager
+    @State private var dataManager = DataManager.preview
     
     @State private var title: String = ""
     @State private var language: LexelLanguage = LexelLanguage("English", "en-US")
-    @State private var text: String = "Add story text here"
+    @State private var text: String = ""
     
     
     func addStory() {
-        let newStory = Story(title: title, text: text, language: language)
-        context.insert(newStory)
-        do {
-            try context.save()
-        } catch {
-            os_log("[LEX]: \(error.localizedDescription)")
-        }
-        
-        let _ = modelManager.downloadModel(for: newStory.language.mlLanguage)
+        dataManager.insertStory(title: title, text: text, language: language.bcp47)
         dismiss()
     }
     

@@ -13,11 +13,11 @@ struct StoryListView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .firstTextBaseline) {
-                Text(story.title)
+                Text(story.title!)
                     .font(.title3)
                     .bold()
                 
-                Text(story.language.shortName)
+                Text(story.language!)
                     .font(.caption)
             }
             if let date = story.lastOpened {

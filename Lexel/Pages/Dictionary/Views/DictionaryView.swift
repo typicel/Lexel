@@ -10,26 +10,25 @@ import SwiftData
 
 struct DictionaryView: View {
     
-    @Query(sort: \VocabWord.familiarityRawValue) private var words: [VocabWord]
-    
-    @State private var selectedEntry: VocabWord?
+    @StateObject var viewModel = DictionaryViewModel()
+    @State private var selectedEntry: DictionaryEntry?
 
     var body: some View {
         NavigationSplitView {
             List(selection: $selectedEntry) {
-                ForEach(words, id: \.self) { wordEntry in
+                ForEach(viewModel.words, id: \.self) { wordEntry in
                     HStack {
                         Circle()
-                            .fill(Color(Constants.familiarityColors[wordEntry.familiarity.rawValue-1]))
+                            .fill(Color(Constants.familiarityColors[Int(wordEntry.familiarity)-1]))
                             .frame(width: 10, height: 10)
-                        Text(wordEntry.word)
+                        Text(wordEntry.word!)
                     }
                 }
             }
             .accessibilityIdentifier("dictionaryList")
         } detail: {
             if let entry = selectedEntry {
-                Text(entry.word)
+                Text(entry.word!)
             } else {
                 Text("no thing")
             }
@@ -38,8 +37,5 @@ struct DictionaryView: View {
 }
 
 #Preview {
-    MainActor.assumeIsolated {
-        DictionaryView()
-            .modelContext(ConfigureModelContext())
-    }
+    DictionaryView()
 }
