@@ -28,6 +28,8 @@ class DataManager: NSObject, ObservableObject {
     @Published var stories: [Story] = []
     @Published var dictionaryEntries: [DictionaryEntry] = []
     
+    var insertMockData: Bool = false
+    
     init(type: DataManagerType) {
         
         switch type {
@@ -38,6 +40,9 @@ class DataManager: NSObject, ObservableObject {
         case .preview:
             let persistentStore = PersistentStore(inMemory: true)
             self.managedObjectContext = persistentStore.context
+            
+            // insert mock data
+            insertMockData = true
 
         case .testing:
             let persistentStore = PersistentStore(inMemory: true)
@@ -45,7 +50,7 @@ class DataManager: NSObject, ObservableObject {
         }
         
         let storyFR = Story.fetchRequest()
-        storyFR.sortDescriptors = [NSSortDescriptor(key: "title", ascending: false)]
+        storyFR.sortDescriptors = [NSSortDescriptor(key: "lastOpened", ascending: true)]
         storyFRC = NSFetchedResultsController(fetchRequest: storyFR, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         
         let deFR = DictionaryEntry.fetchRequest()
@@ -53,6 +58,13 @@ class DataManager: NSObject, ObservableObject {
         deFRC = NSFetchedResultsController(fetchRequest: deFR, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         
         super.init()
+        
+        if insertMockData {
+            insertStory(title: "Mein Bruder", text: "Hallo Leute dass ist ein Test jaja", language: "de-DE")
+            insertStory(title: "Mein Bruder 2", text: "Sehr gut. Eine sequel", language: "de-DE")
+            insertStory(title: "Mein Bruder 3", text: "Sehr gut. Eine sequel", language: "de-DE")
+            insertStory(title: "Mein Bruder 4", text: "Sehr gut. Eine sequel", language: "de-DE")
+        }
         
         storyFRC.delegate = self
         try? storyFRC.performFetch()
@@ -88,6 +100,7 @@ extension DataManager {
         story.title = title
         story.rawText = text
         story.language = language
+        story.lastOpened = .now
         
         if text.isEmpty {
             story.tokens = []

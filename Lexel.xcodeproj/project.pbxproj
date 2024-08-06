@@ -21,7 +21,7 @@
 		C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */; };
 		C6388C4F2C6032DC0065671E /* PersistentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6388C4E2C6032DC0065671E /* PersistentStore.swift */; };
 		C6388C512C6033610065671E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6388C502C6033610065671E /* DataManager.swift */; };
-		C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */; };
+		C63EABE02C2BBFA7006EDB17 /* StoryGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */; };
 		C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740802C60371100FB9C1F /* DictionaryViewModel.swift */; };
 		C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */; };
 		C64740C92C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */; };
@@ -31,6 +31,11 @@
 		C64740CD2C60765C00FB9C1F /* Token+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */; };
 		C64740CF2C60779200FB9C1F /* Story+Typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740CE2C60779200FB9C1F /* Story+Typed.swift */; };
 		C64740D12C6077F700FB9C1F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740D02C6077F700FB9C1F /* Language.swift */; };
+		C64740D32C6090DA00FB9C1F /* Font+Atkinson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740D22C6090DA00FB9C1F /* Font+Atkinson.swift */; };
+		C64740D92C6091C300FB9C1F /* AtkinsonHyperlegible-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C64740D52C6091C300FB9C1F /* AtkinsonHyperlegible-Bold.ttf */; };
+		C64740DA2C6091C300FB9C1F /* AtkinsonHyperlegible-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C64740D82C6091C300FB9C1F /* AtkinsonHyperlegible-Regular.ttf */; };
+		C64740DB2C6091C300FB9C1F /* AtkinsonHyperlegible-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C64740D62C6091C300FB9C1F /* AtkinsonHyperlegible-BoldItalic.ttf */; };
+		C64740DC2C6091C300FB9C1F /* AtkinsonHyperlegible-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C64740D72C6091C300FB9C1F /* AtkinsonHyperlegible-Italic.ttf */; };
 		C64A583D2C5FFF6200C4D58E /* LexelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C64A583B2C5FFF6200C4D58E /* LexelData.xcdatamodeld */; };
 		C67122F92C2A80CA00061FE5 /* LexelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122F82C2A80CA00061FE5 /* LexelUITests.swift */; };
 		C67122FB2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C67122FA2C2A80CA00061FE5 /* LexelUITestsLaunchTests.swift */; };
@@ -108,7 +113,7 @@
 		C6333B9A2C01936B0044E7BA /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C6388C4E2C6032DC0065671E /* PersistentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStore.swift; sourceTree = "<group>"; };
 		C6388C502C6033610065671E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
-		C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryListView.swift; sourceTree = "<group>"; };
+		C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGridItem.swift; sourceTree = "<group>"; };
 		C64740802C60371100FB9C1F /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
 		C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -118,6 +123,11 @@
 		C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C64740CE2C60779200FB9C1F /* Story+Typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+Typed.swift"; sourceTree = "<group>"; };
 		C64740D02C6077F700FB9C1F /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		C64740D22C6090DA00FB9C1F /* Font+Atkinson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Atkinson.swift"; sourceTree = "<group>"; };
+		C64740D52C6091C300FB9C1F /* AtkinsonHyperlegible-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AtkinsonHyperlegible-Bold.ttf"; sourceTree = "<group>"; };
+		C64740D62C6091C300FB9C1F /* AtkinsonHyperlegible-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AtkinsonHyperlegible-BoldItalic.ttf"; sourceTree = "<group>"; };
+		C64740D72C6091C300FB9C1F /* AtkinsonHyperlegible-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AtkinsonHyperlegible-Italic.ttf"; sourceTree = "<group>"; };
+		C64740D82C6091C300FB9C1F /* AtkinsonHyperlegible-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AtkinsonHyperlegible-Regular.ttf"; sourceTree = "<group>"; };
 		C64A583C2C5FFF6200C4D58E /* LexelData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LexelData.xcdatamodel; sourceTree = "<group>"; };
 		C67122F62C2A80CA00061FE5 /* LexelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C67122F82C2A80CA00061FE5 /* LexelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexelUITests.swift; sourceTree = "<group>"; };
@@ -212,7 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				C6A910512C08FBDC007756BB /* Flow */,
-				C63EABDF2C2BBFA4006EDB17 /* StoryListView.swift */,
+				C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */,
 				C60F4E892C26A11600A75F3C /* LexemePill.swift */,
 			);
 			path = Components;
@@ -299,9 +309,21 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		C64740D42C6091B900FB9C1F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C64740D52C6091C300FB9C1F /* AtkinsonHyperlegible-Bold.ttf */,
+				C64740D62C6091C300FB9C1F /* AtkinsonHyperlegible-BoldItalic.ttf */,
+				C64740D72C6091C300FB9C1F /* AtkinsonHyperlegible-Italic.ttf */,
+				C64740D82C6091C300FB9C1F /* AtkinsonHyperlegible-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		C64A583F2C602F4800C4D58E /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				C64740D42C6091B900FB9C1F /* Fonts */,
 				C6AD49272C277435008FDDF6 /* Library */,
 				C6AD49292C27746B008FDDF6 /* Dictionary */,
 				C69E62E22C1906E20030B5B2 /* ModelManagerView.swift */,
@@ -385,6 +407,7 @@
 				C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */,
 				C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */,
 				C64740CE2C60779200FB9C1F /* Story+Typed.swift */,
+				C64740D22C6090DA00FB9C1F /* Font+Atkinson.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +542,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C64740D92C6091C300FB9C1F /* AtkinsonHyperlegible-Bold.ttf in Resources */,
+				C64740DA2C6091C300FB9C1F /* AtkinsonHyperlegible-Regular.ttf in Resources */,
+				C64740DB2C6091C300FB9C1F /* AtkinsonHyperlegible-BoldItalic.ttf in Resources */,
+				C64740DC2C6091C300FB9C1F /* AtkinsonHyperlegible-Italic.ttf in Resources */,
 				C6333B9B2C01936B0044E7BA /* Preview Assets.xcassets in Resources */,
 				C6333B982C01936B0044E7BA /* Assets.xcassets in Resources */,
 			);
@@ -606,7 +633,7 @@
 			files = (
 				C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */,
 				C6F1B1842C01A3A500F4C30C /* StoryView.swift in Sources */,
-				C63EABE02C2BBFA7006EDB17 /* StoryListView.swift in Sources */,
+				C63EABE02C2BBFA7006EDB17 /* StoryGridItem.swift in Sources */,
 				C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */,
 				C61AAAF32C561AA800DD0575 /* LibraryViewModel.swift in Sources */,
 				C64740D12C6077F700FB9C1F /* Language.swift in Sources */,
@@ -634,6 +661,7 @@
 				C69E62E12C1902870030B5B2 /* MLModelManager.swift in Sources */,
 				C6E5C2292C16626D001ABDBA /* WordView.swift in Sources */,
 				C61AAAF62C561E5600DD0575 /* TTSService.swift in Sources */,
+				C64740D32C6090DA00FB9C1F /* Font+Atkinson.swift in Sources */,
 				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
 				C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,

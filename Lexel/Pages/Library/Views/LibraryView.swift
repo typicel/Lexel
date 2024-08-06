@@ -13,73 +13,107 @@ import OSLog
 struct LibraryView: View {
     @StateObject private var viewModel = LibraryViewModel()
     
+    let rows = [
+        GridItem(.flexible(), spacing: 30),
+        GridItem(.flexible(), spacing: 30),
+        GridItem(.flexible(), spacing: 30)
+    ]
+    
     var body: some View {
-        NavigationSplitView {
-            VStack {
-                List(selection: $viewModel.selectedStory) {
-                    
+        NavigationStack {
+            ScrollView {
+                LazyVGrid(columns: rows, alignment: .center, spacing: 30) {
                     ForEach(viewModel.stories, id: \.self) { story in
                         NavigationLink(value: story) {
-                            StoryListView(story: story)
-                        }
-                        .swipeActions(allowsFullSwipe: false) {
-                            
-                            Button(role: .destructive) {
-                                do {
-//                                    try context.save()
-                                } catch {
-                                    os_log("Failed to save context: \(error.localizedDescription)")
+                            StoryGridItem(story: story)
+                                .onTapGesture {
+                                    viewModel.selectedStory = story
                                 }
-                            } label: {
-                                Label("Delete Story", systemImage: "trash")
-                            }
-                            
-                            Button {
-                                viewModel.editingStory = story
-                                viewModel.isShowingEditStorySheet = true
-                            } label: {
-                                Label("Edit Story", systemImage: "pencil")
-                            }
-                            .tint(.indigo)
                         }
+                        .buttonStyle(PlainButtonStyle())
                     }
-//                    .onDelete(perform: deleteItems)
+                    .sheet(isPresented: $viewModel.isShowingAddStorySheet) { AddStoryView() }
                 }
-                .accessibilityIdentifier("storyList")
-                .listStyle(.inset)
-                
-                Spacer()
-                
-                Button(action: viewModel.showSheet) {
-                    Label("Add Story", systemImage: "plus.circle")
-                }
-                .accessibilityIdentifier("addStoryButton")
-            }
-        } detail: {
-            if viewModel.stories.isEmpty {
-                ContentUnavailableView(label: {
-                    Label("No Stories", systemImage: "book")
-                }, description: {
-                    Text("Add a story to start learning")
-                }, actions: {
-                    Button("Add Story") { viewModel.isShowingAddStorySheet = true }
-                })
-            } else {
-                if let story = viewModel.selectedStory {
+                .padding()
+                .navigationDestination(for: Story.self) { story in
                     StoryView(story: story)
                         .environmentObject(viewModel)
-                } else {
-                    Text("Lexel")
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("New", systemImage: "plus") {
+                        viewModel.isShowingAddStorySheet = true
+                    }
                 }
             }
         }
-        .navigationSplitViewStyle(.balanced)
-        .sheet(isPresented: $viewModel.isShowingAddStorySheet) { AddStoryView() }
-        .sheet(item: $viewModel.editingStory) {
-            viewModel.reset()
-        } content: { story in
-            EditStoryView()
-        }
+        
+        //        NavigationSplitView {
+        //            VStack {
+        //                List(selection: $viewModel.selectedStory) {
+        //
+        //                    ForEach(viewModel.stories, id: \.self) { story in
+        //                        NavigationLink(value: story) {
+        //                            StoryListView(story: story)
+        //                        }
+        //                        .swipeActions(allowsFullSwipe: false) {
+        //
+        //                            Button(role: .destructive) {
+        //                                do {
+        ////                                    try context.save()
+        //                                } catch {
+        //                                    os_log("Failed to save context: \(error.localizedDescription)")
+        //                                }
+        //                            } label: {
+        //                                Label("Delete Story", systemImage: "trash")
+        //                            }
+        //
+        //                            Button {
+        //                                viewModel.editingStory = story
+        //                                viewModel.isShowingEditStorySheet = true
+        //                            } label: {
+        //                                Label("Edit Story", systemImage: "pencil")
+        //                            }
+        //                            .tint(.indigo)
+        //                        }
+        //                    }
+        ////                    .onDelete(perform: deleteItems)
+        //                }
+        //                .accessibilityIdentifier("storyList")
+        //                .listStyle(.inset)
+        //
+        //                Spacer()
+        //
+        //                Button(action: viewModel.showSheet) {
+        //                    Label("Add Story", systemImage: "plus.circle")
+        //                }
+        //                .accessibilityIdentifier("addStoryButton")
+        //            }
+        //        } detail: {
+        //            if viewModel.stories.isEmpty {
+        //                ContentUnavailableView(label: {
+        //                    Label("No Stories", systemImage: "book")
+        //                }, description: {
+        //                    Text("Add a story to start learning")
+        //                }, actions: {
+        //                    Button("Add Story") { viewModel.isShowingAddStorySheet = true }
+        //                })
+        //            } else {
+        //                if let story = viewModel.selectedStory {
+        //                    StoryView(story: story)
+        //                        .environmentObject(viewModel)
+        //                } else {
+        //                    Text("Lexel")
+        //                }
+        //            }
+        //        }
+        //        .navigationSplitViewStyle(.balanced)
+        //        .sheet(item: $viewModel.editingStory) {
+        //            viewModel.reset()
+        //        } content: { story in
+        //            EditStoryView()
+        //        }
     }
 }
 

@@ -18,11 +18,14 @@ protocol ReaderFont {
     var name: String { get }
     var readerFont: Font { get }
     
-    func readerFont(with size: CGFloat) -> Font
+    func readerFontWithSize(_ size: CGFloat) -> Font
 }
 
 
 class ThemeService: ObservableObject {
+    
+    static let shared = ThemeService()
+    
     @Published var selectedTheme: ReaderTheme
     @Published var selectedFont: ReaderFont
     @Published var fontSize: CGFloat
@@ -51,19 +54,19 @@ class ThemeService: ObservableObject {
                 selectedFont = SanFrancisco()
             case "New York":
                 selectedFont = NewYork()
-            case "Lora":
-                selectedFont = Lora()
+            case "AtkinsonHyperlegible-Reader":
+                selectedFont = Atkinson()
             case _:
                 selectedFont = NewYork()
             }
         } else {
-            selectedFont = NewYork()
+            selectedFont = Atkinson()
         }
         
         if let fontSize = UserDefaults.standard.value(forKey: "fontSize") as? CGFloat {
             self.fontSize = fontSize
         } else {
-            self.fontSize = 24.0
+            self.fontSize = 28.0
         }
     }
     
@@ -82,6 +85,8 @@ class ThemeService: ObservableObject {
         UserDefaults.standard.setValue(size, forKey: "fontSize")
     }
 }
+
+// MARK: - Reader Color Themes
 
 struct Clear: ReaderTheme {
     var name: String { return "clear" }
@@ -111,11 +116,13 @@ struct Gray: ReaderTheme {
     var textColor: Color? { return .readerGrayText }
 }
 
+// MARK: - Reader Fonts
+
 struct SanFrancisco: ReaderFont, Equatable, Hashable {
     var name: String { return "San Francisco" }
     var readerFont: Font { return .system(.title, design: .default)}
     
-    func readerFont(with size: CGFloat) -> Font {
+    func readerFontWithSize(_ size: CGFloat) -> Font {
         return .system(size: size, design: .default)
     }
 }
@@ -124,16 +131,36 @@ struct NewYork: ReaderFont, Equatable, Hashable {
     var name: String { return "New York" }
     var readerFont: Font { return .system(.title, design: .serif) }
     
-    func readerFont(with size: CGFloat) -> Font {
+    func readerFontWithSize(_ size: CGFloat) -> Font {
         return .system(size: size, design: .serif)
     }
 }
 
-struct Lora: ReaderFont, Equatable, Hashable {
-    var name: String { return "Lora" }
-    var readerFont: Font { return .custom("Lora", size: 24)}
+struct Lora: ReaderFont {
+    @Environment(\.sizeCategory) var sizeCategory
     
-    func readerFont(with size: CGFloat) -> Font {
-        return .custom("Lora", size: size)
+    var name: String { return "Lora" }
+    var displayName: String { return "Lora" }
+    var readerFont: Font {
+        return .custom("Lora", size: UIFontMetrics.default.scaledValue(for: ThemeService.shared.fontSize))
+    }
+    
+    func readerFontWithSize(_ size: CGFloat) -> Font {
+        let scaledSize = UIFontMetrics.default.scaledValue(for: size)
+        return .custom("Lora", size: scaledSize)
+    }
+}
+
+struct Atkinson: ReaderFont {
+    @Environment(\.sizeCategory) var sizeCategory
+    var name: String { return "AtkinsonHyperlegible-Regular" }
+    var displayName: String { return "Atkinson" }
+    var readerFont: Font {
+        return .custom("AtkinsonHyperlegible-Regular", size: UIFontMetrics.default.scaledValue(for: ThemeService.shared.fontSize))
+    }
+    
+    func readerFontWithSize(_ size: CGFloat) -> Font {
+        let scaledSize = UIFontMetrics.default.scaledValue(for: size)
+        return .custom("AtkinsonHyperlegible-Regular", size: scaledSize)
     }
 }

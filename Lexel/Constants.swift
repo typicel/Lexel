@@ -10,7 +10,7 @@ import SwiftUI
 
 public enum Constants {
     static let themes: [ReaderTheme] = [Clear(), Sepia(), Blue(), Gray()]
-    static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Lora()]
+    static let fontStyles: [ReaderFont] = [SanFrancisco(), NewYork(), Atkinson()]
     static let familiarityColors: [Color] = [.new, .seen, .familiar, .mastered]
     static let allowedLanguages: [Language] = [
         Language("English", "en-US"),

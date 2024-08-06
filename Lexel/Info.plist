@@ -4,7 +4,10 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Lora.ttf</string>
+		<string>AtkinsonHyperlegible-Regular.ttf</string>
+		<string>AtkinsonHyperlegible-BoldItalic.ttf</string>
+		<string>AtkinsonHyperlegible-Bold.ttf</string>
+		<string>AtkinsonHyperlegible-Italic.ttf</string>
 	</array>
 </dict>
 </plist>
