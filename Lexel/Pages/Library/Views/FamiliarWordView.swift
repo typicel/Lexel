@@ -58,7 +58,6 @@ struct FamiliarWordView: View {
                 }
                 .buttonStyle(.borderedProminent)
             }
-            .padding(20)
         }
     }
 }

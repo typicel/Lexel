@@ -84,6 +84,7 @@ class StoryViewModel: ObservableObject {
         self.translatedWord = await NLPService.shared.translate(word: token.value!.lowercased(), from: story.language!)
         self.selectedWord = token
         self.selectedWordIndex = Int(token.position)
+        self.showSettingsPopover = true
         TTSService.shared.speak(text: token.value!, lang: story.language!) // should be bcp47 format
     }
     
