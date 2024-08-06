@@ -60,11 +60,18 @@ class DataManager: NSObject, ObservableObject {
         super.init()
         
         if insertMockData {
+            let dictEntry = DictionaryEntry(context: managedObjectContext)
+            dictEntry.word = "hallo"
+            dictEntry.familiarity = 4
+            dictEntry.definition = "Hello"
+            
             insertStory(title: "Mein Bruder", text: "Hallo Leute dass ist ein Test jaja", language: "de-DE")
             insertStory(title: "Mein Bruder 2", text: "Sehr gut. Eine sequel", language: "de-DE")
             insertStory(title: "Mein Bruder 3", text: "Sehr gut. Eine sequel", language: "de-DE")
             insertStory(title: "Mein Bruder 4", text: "Sehr gut. Eine sequel", language: "de-DE")
+            
         }
+        
         
         storyFRC.delegate = self
         try? storyFRC.performFetch()
@@ -128,6 +135,13 @@ extension DataManager {
                 token.tappable = false
             }
             
+            // search for dict entry
+            if tag == .word {
+                if let dict = self.fetchDictEntry(for: token.value!.lowercased()) {
+                    token.dictionaryEntry = dict
+                }
+            }
+            
             tokens.append(token)
             return true
         }
@@ -154,6 +168,25 @@ extension DataManager {
         }
         
         return .failure(.badUUID("Could not find story with the given id"))
+    }
+}
+
+extension DataManager {
+    func fetchDictEntry(for word: String) -> DictionaryEntry? {
+        let dictFR = NSFetchRequest<DictionaryEntry>(entityName: "DictionaryEntry")
+        dictFR.predicate = NSPredicate(format: "word == %@", word)
+        dictFR.sortDescriptors = [NSSortDescriptor(key: "word", ascending: false)]
+        dictFR.fetchLimit = 1
+        
+        let dictFRC = NSFetchedResultsController(fetchRequest: dictFR, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        try? dictFRC.performFetch()
+        
+        
+        if let dict = dictFRC.fetchedObjects?.first {
+            return dict
+        }
+        
+        return nil
     }
 }
 

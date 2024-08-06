@@ -51,11 +51,20 @@ class StoryViewModel: ObservableObject {
     }
     
     func backgroundColor(for token: Token) -> Color {
+        // If word is selected, should be yellow highlight no matter what
         if let index = selectedWordIndex {
-            token.position == index ? Color.yellow : Color.clear
-        } else {
-            Color.clear
+            if token.position == index {
+                return Color.yellow
+            }
         }
+        
+        // If there's a valid dict entry, should be highlighted with the right color
+        if let dict = token.dictionaryEntry {
+            return Constants.familiarityColors[Int(dict.familiarity)-1]
+        }
+        
+        // If neither are true, just be clear
+        return Color.clear
     }
     
     func word(for token: Token) -> String {
