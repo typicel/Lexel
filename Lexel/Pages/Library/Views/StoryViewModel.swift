@@ -67,25 +67,15 @@ class StoryViewModel: ObservableObject {
         return Color.clear
     }
     
-    func word(for token: Token) -> String {
-        if let text = story.rawText {
-            let start = text.index(text.startIndex, offsetBy: Int(token.startIndex))
-            let end = text.index(start, offsetBy: Int(token.length))
-            return String(text[start..<end])
-        } else {
-            return ""
-        }
-    }
-    
     @MainActor
     func handleTapGesture(for token: Token) async {
         guard token.tappable else { return }
         
-        self.translatedWord = await NLPService.shared.translate(word: token.value!.lowercased(), from: story.language!)
+        self.translatedWord = await NLPService.shared.translate(word: token.value.lowercased(), from: story.language)
         self.selectedWord = token
         self.selectedWordIndex = Int(token.position)
         self.showSettingsPopover = true
-        TTSService.shared.speak(text: token.value!, lang: story.language!) // should be bcp47 format
+        TTSService.shared.speak(text: token.value, lang: story.language) // should be bcp47 format
     }
     
     /// Returns a binding that represents if the word at the given indicies is currently selected

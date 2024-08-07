@@ -16,13 +16,13 @@ extension Token {
         return NSFetchRequest<Token>(entityName: "Token")
     }
 
-    @NSManaged public var id: UUID?
+    @NSManaged public var id: UUID
     @NSManaged public var length: Int64
     @NSManaged public var position: Int64
     @NSManaged public var startIndex: Int64
-    @NSManaged public var value: String?
+    @NSManaged public var value: String
     @NSManaged public var dictionaryEntry: DictionaryEntry?
-    @NSManaged public var story: Story?
+    @NSManaged public var story: Story
     @NSManaged public var tappable: Bool
 
 }

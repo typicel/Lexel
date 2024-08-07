@@ -26,9 +26,9 @@ struct StoryGridItem: View {
                 .foregroundStyle(.white.opacity(0.5))
             
             VStack(alignment: .leading) {
-                Text(story.title!)
+                Text(story.title)
                     .font(.title)
-                Text(displayName[story.language!] ?? "???")
+                Text(displayName[story.language] ?? "???")
             }
             .padding()
         }

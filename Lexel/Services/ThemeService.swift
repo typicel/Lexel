@@ -17,7 +17,6 @@ protocol ReaderTheme {
 protocol ReaderFont {
     var name: String { get }
     var readerFont: Font { get }
-    
     func readerFontWithSize(_ size: CGFloat) -> Font
 }
 

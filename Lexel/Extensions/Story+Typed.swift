@@ -9,6 +9,6 @@ import Foundation
 
 extension Story {
     var typedTokens: [Token] {
-        return (tokens?.array as? [Token] ?? [])
+        return (tokens.array as? [Token] ?? [])
     }
 }

@@ -46,6 +46,7 @@
 		C6A9104E2C08E99C007756BB /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104D2C08E99C007756BB /* FlowLayout.swift */; };
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */; };
+		C6B073082C63380C0041EEE8 /* ScaledFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B073072C63380C0041EEE8 /* ScaledFont.swift */; };
 		C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */; };
 		C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DC2C225E8700BD50EB /* Constants.swift */; };
 		C6D3775D2C293F40008624C4 /* LexelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3775C2C293F40008624C4 /* LexelTests.swift */; };
@@ -139,6 +140,7 @@
 		C6A9104D2C08E99C007756BB /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NLTag+Codable.swift"; sourceTree = "<group>"; };
+		C6B073072C63380C0041EEE8 /* ScaledFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledFont.swift; sourceTree = "<group>"; };
 		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Enumerated.swift"; sourceTree = "<group>"; };
 		C6C4E9DC2C225E8700BD50EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				C6A910512C08FBDC007756BB /* Flow */,
 				C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */,
 				C60F4E892C26A11600A75F3C /* LexemePill.swift */,
+				C6B073072C63380C0041EEE8 /* ScaledFont.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -645,6 +648,7 @@
 				C6E5C2332C16A7A1001ABDBA /* ThemeService.swift in Sources */,
 				C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */,
 				C6A7E8E82C0BCC5E000DF71A /* DictionaryView.swift in Sources */,
+				C6B073082C63380C0041EEE8 /* ScaledFont.swift in Sources */,
 				C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */,
 				C6388C4F2C6032DC0065671E /* PersistentStore.swift in Sources */,
 				C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */,

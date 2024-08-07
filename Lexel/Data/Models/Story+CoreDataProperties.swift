@@ -16,12 +16,12 @@ extension Story {
         return NSFetchRequest<Story>(entityName: "Story")
     }
 
-    @NSManaged public var id: UUID?
-    @NSManaged public var language: String?
-    @NSManaged public var lastOpened: Date?
-    @NSManaged public var rawText: String?
-    @NSManaged public var title: String?
-    @NSManaged public var tokens: NSOrderedSet?
+    @NSManaged public var id: UUID
+    @NSManaged public var language: String
+    @NSManaged public var lastOpened: Date
+    @NSManaged public var rawText: String
+    @NSManaged public var title: String
+    @NSManaged public var tokens: NSOrderedSet
 
 }
 

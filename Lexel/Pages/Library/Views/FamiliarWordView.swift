@@ -9,55 +9,38 @@ import SwiftUI
 import OSLog
 
 struct FamiliarWordView: View {
-    @Environment(\.modelContext) var modelContext
-    var token: Token
-    var language: String
-    var definition: String
-   
-//    var isLexeme: Bool {
-//        return token.lemma != token.normalizedWord
-//    }
-    
-    @State private var translation: String? = nil
+    @EnvironmentObject var svm: StoryViewModel
+    @ObservedObject var dataManager = DataManager.preview
     
     private func addWordToDict() {
-//        let newWord = VocabWord(word: token.lemma, language: language, def: definition)
-//        if isLexeme {
-//            newWord.appendLexeme(word: token.normalizedWord)
-//        }
-//        modelContext.insert(newWord)
-//        try! modelContext.save()
-    }
-    
-    init(token: Token, language: String, definition: String) {
-        self.token = token
-        self.language = language
-        self.definition = definition
+        guard let token = svm.selectedWord, let definition = svm.translatedWord else { return }
+        
+        let dict = dataManager.insertDictEntry(word: token.value.lowercased(), definition: definition, language: svm.story.language)
+        token.dictionaryEntry = dict
     }
     
     var body: some View {
-        if let dictEntry = token.dictionaryEntry {
-            Text(dictEntry.word!)
-        } else {
-            VStack(alignment: .leading) {
-//                if isLexeme {
-//                    Text("\(token.normalizedWord) is a lexeme of:")
-//                        .font(.caption)
-//                        .italic()
-//                }
-                
-                HStack(alignment: .firstTextBaseline) {
-                    Text(token.value!)
-                        .font(.largeTitle)
-                    Text(definition)
-                        .font(.title2)
+        if let token = svm.selectedWord, let definition = svm.translatedWord {
+            if let dictEntry = token.dictionaryEntry {
+                Text(dictEntry.word!)
+            } else {
+                VStack(alignment: .leading) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text(token.value)
+                            .font(.largeTitle)
+                        Text(definition)
+                            .font(.title2)
+                    }
+                    
+                    Button("Add to Dictionary") {
+                        addWordToDict()
+                    }
+                    .buttonStyle(.borderedProminent)
                 }
-                
-                Button("Add to Dictionary") {
-                    addWordToDict()
-                }
-                .buttonStyle(.borderedProminent)
             }
+        } else {
+            Text("")
+                .frame(width: 400)
         }
     }
 }

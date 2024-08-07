@@ -60,18 +60,11 @@ class DataManager: NSObject, ObservableObject {
         super.init()
         
         if insertMockData {
-            let dictEntry = DictionaryEntry(context: managedObjectContext)
-            dictEntry.word = "hallo"
-            dictEntry.familiarity = 4
-            dictEntry.definition = "Hello"
-            
             insertStory(title: "Mein Bruder", text: "Hallo Leute dass ist ein Test jaja", language: "de-DE")
             insertStory(title: "Mein Bruder 2", text: "Sehr gut. Eine sequel", language: "de-DE")
             insertStory(title: "Mein Bruder 3", text: "Sehr gut. Eine sequel", language: "de-DE")
             insertStory(title: "Mein Bruder 4", text: "Sehr gut. Eine sequel", language: "de-DE")
-            
         }
-        
         
         storyFRC.delegate = self
         try? storyFRC.performFetch()
@@ -137,7 +130,7 @@ extension DataManager {
             
             // search for dict entry
             if tag == .word {
-                if let dict = self.fetchDictEntry(for: token.value!.lowercased()) {
+                if let dict = self.fetchDictEntry(for: token.value.lowercased()) {
                     token.dictionaryEntry = dict
                 }
             }
@@ -187,6 +180,17 @@ extension DataManager {
         }
         
         return nil
+    }
+    
+    func insertDictEntry(word: String, definition: String, language: String) -> DictionaryEntry {
+        let dict = DictionaryEntry(context: managedObjectContext)
+        dict.word = word
+        dict.definition = definition
+        dict.familiarity = 1
+        dict.language = language
+        dict.parent = nil
+        
+        return dict
     }
 }
 

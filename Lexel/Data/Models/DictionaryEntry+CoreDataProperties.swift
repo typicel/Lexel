@@ -20,6 +20,7 @@ extension DictionaryEntry {
     @NSManaged public var familiarity: Int16
     @NSManaged public var id: UUID?
     @NSManaged public var word: String?
+    @NSManaged public var language: String?
     @NSManaged public var parent: DictionaryEntry?
 
 }
