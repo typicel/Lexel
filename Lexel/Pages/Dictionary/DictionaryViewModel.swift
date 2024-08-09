@@ -13,11 +13,15 @@ class DictionaryViewModel: ObservableObject {
     @Published var dataManager: DataManager
     var anyCancellable: AnyCancellable?
     
-    init(dataManager: DataManager = .preview) {
+    init(dataManager: DataManager = .shared) {
         self.dataManager = dataManager
         anyCancellable = dataManager.objectWillChange.sink { [weak self] (_) in
             self?.objectWillChange.send()
         }
+    }
+    
+    func delete(_ word: DictionaryEntry) {
+        dataManager.deleteDictEntry(word)
     }
     
     

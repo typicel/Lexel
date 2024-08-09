@@ -18,12 +18,12 @@ class LibraryViewModel: ObservableObject {
     @Published private var dataManager: DataManager
     
     var stories: [Story] {
-        dataManager.stories
+        return dataManager.stories
     }
     
     var cancellables = Set<AnyCancellable>()
     
-    init(dataManager: DataManager = .preview) {
+    init(dataManager: DataManager = .shared) {
         self.dataManager = dataManager
         
 //        dataManager

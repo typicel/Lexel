@@ -7,6 +7,7 @@
 
 import Foundation
 import AVFoundation
+import NaturalLanguage
 
 class TTSService {
     static let shared = TTSService()
@@ -28,5 +29,25 @@ class TTSService {
         
         let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
+    }
+    
+    func speak(text: String) {
+        let recgonizer = NLLanguageRecognizer()
+        let speechSynthesizer = AVSpeechSynthesizer()
+        
+        recgonizer.processString(text)
+        let lang = recgonizer.dominantLanguage!.rawValue
+        
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: lang)
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        speechSynthesizer.speak(utterance)
     }
 }

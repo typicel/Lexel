@@ -9,13 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct StoryView: View {
-    @ObservedObject var themeService: ThemeService = ThemeService.shared
-    @EnvironmentObject var library: LibraryViewModel
+    @State var themeService: ThemeService = ThemeService.shared
     @ObservedObject var viewModel: StoryViewModel
     
     @State private var showingPopover: Bool = false
+    var animation: Namespace.ID
     
-    init(story: Story) {
+    init(story: Story, namespace: Namespace.ID) {
+        animation = namespace
         viewModel = StoryViewModel(story: story)
         viewModel.fetchTokens()
     }
@@ -44,7 +45,7 @@ struct StoryView: View {
             .frame(maxWidth: .infinity)
             .padding()
             .background(themeService.selectedTheme.readerColor)
-            
+
             FamiliarWordView()
                 .environmentObject(viewModel)
                 .frame(maxWidth: 400)
@@ -52,23 +53,18 @@ struct StoryView: View {
         .toolbar {
             ReaderToolbar()
         }
-        .onReceive(library.$selectedStory, perform: { story in
-            if let story = story {
-                viewModel.updateStory(with: story)
-            }
-        })
+        .background(themeService.selectedTheme.readerSidebarColor)
     }
 }
 
 struct ReaderToolbar: ToolbarContent {
-    @ObservedObject var themeService: ThemeService = ThemeService.shared
+    @State var themeService: ThemeService = ThemeService.shared
     
     // MARK: Figure out how to set selectedFont on init
     @State private var selectedFont: Int = 0
     @State private var showSettingsPopover: Bool = false
     
     var body: some ToolbarContent {
-        
         ToolbarItemGroup(placement: .primaryAction) {
             Button {
                 showSettingsPopover = true
@@ -76,7 +72,6 @@ struct ReaderToolbar: ToolbarContent {
                 Image(systemName: "textformat")
             }
             .popover(isPresented: $showSettingsPopover) {
-                List {
                     Picker(selection: $selectedFont, label: Text("Font")) {
                         Text("Sans-Serif").tag(0)
                         Text("Serif").tag(1)
@@ -113,7 +108,6 @@ struct ReaderToolbar: ToolbarContent {
                                 }
                         }
                     }
-                }
                 .padding()
             }
         }

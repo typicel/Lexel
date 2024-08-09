@@ -10,6 +10,7 @@ import SwiftUI
 protocol ReaderTheme {
     var name: String { get }
     var readerColor: Color { get }
+    var readerSidebarColor: Color { get }
     var readerColorBG: Color { get }
     var textColor: Color? { get }
 }
@@ -21,13 +22,13 @@ protocol ReaderFont {
 }
 
 
-class ThemeService: ObservableObject {
+@Observable class ThemeService {
     
     static let shared = ThemeService()
     
-    @Published var selectedTheme: ReaderTheme
-    @Published var selectedFont: ReaderFont
-    @Published var fontSize: CGFloat
+    var selectedTheme: ReaderTheme
+    var selectedFont: ReaderFont
+    var fontSize: CGFloat
     
     init() {
         if let theme = UserDefaults.standard.value(forKey: "readerTheme") as? String {
@@ -88,6 +89,8 @@ class ThemeService: ObservableObject {
 // MARK: - Reader Color Themes
 
 struct Clear: ReaderTheme {
+    var readerSidebarColor: Color { return .clear }
+    
     var name: String { return "clear" }
     var readerColor: Color { return .clear }
     var readerColorBG: Color { return .clear }
@@ -95,6 +98,8 @@ struct Clear: ReaderTheme {
 }
 
 struct Sepia: ReaderTheme {
+    var readerSidebarColor: Color { return .readerBeigeSidebar }
+    
     var name: String { return "sepia" }
     var readerColor: Color { return .readerBeige }
     var readerColorBG: Color { return .readerBeigeBG }
@@ -102,6 +107,8 @@ struct Sepia: ReaderTheme {
 }
 
 struct Blue: ReaderTheme {
+    var readerSidebarColor: Color { return .readerBlueSidebar }
+    
     var name: String { return "blue" }
     var readerColor: Color { return .readerBlue }
     var readerColorBG: Color { return .readerBlue }
@@ -109,6 +116,8 @@ struct Blue: ReaderTheme {
 }
 
 struct Gray: ReaderTheme {
+    var readerSidebarColor: Color { return .readerGraySidebar }
+    
     var name: String { return "gray" }
     var readerColor: Color { return .readerGray }
     var readerColorBG: Color { return .readerBlue }

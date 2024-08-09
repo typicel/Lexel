@@ -23,12 +23,6 @@
 		C6388C512C6033610065671E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6388C502C6033610065671E /* DataManager.swift */; };
 		C63EABE02C2BBFA7006EDB17 /* StoryGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */; };
 		C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740802C60371100FB9C1F /* DictionaryViewModel.swift */; };
-		C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */; };
-		C64740C92C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */; };
-		C64740CA2C60765C00FB9C1F /* Story+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */; };
-		C64740CB2C60765C00FB9C1F /* Story+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */; };
-		C64740CC2C60765C00FB9C1F /* Token+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */; };
-		C64740CD2C60765C00FB9C1F /* Token+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */; };
 		C64740CF2C60779200FB9C1F /* Story+Typed.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740CE2C60779200FB9C1F /* Story+Typed.swift */; };
 		C64740D12C6077F700FB9C1F /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740D02C6077F700FB9C1F /* Language.swift */; };
 		C64740D32C6090DA00FB9C1F /* Font+Atkinson.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64740D22C6090DA00FB9C1F /* Font+Atkinson.swift */; };
@@ -47,6 +41,12 @@
 		C6A910502C08EA85007756BB /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A9104F2C08EA85007756BB /* FlowView.swift */; };
 		C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */; };
 		C6B073082C63380C0041EEE8 /* ScaledFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B073072C63380C0041EEE8 /* ScaledFont.swift */; };
+		C6B0730F2C6422E20041EEE8 /* DictionaryEntry+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B073092C6422E20041EEE8 /* DictionaryEntry+CoreDataClass.swift */; };
+		C6B073102C6422E20041EEE8 /* DictionaryEntry+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B0730A2C6422E20041EEE8 /* DictionaryEntry+CoreDataProperties.swift */; };
+		C6B073112C6422E20041EEE8 /* Story+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B0730B2C6422E20041EEE8 /* Story+CoreDataClass.swift */; };
+		C6B073122C6422E20041EEE8 /* Story+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B0730C2C6422E20041EEE8 /* Story+CoreDataProperties.swift */; };
+		C6B073132C6422E20041EEE8 /* Token+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B0730D2C6422E20041EEE8 /* Token+CoreDataClass.swift */; };
+		C6B073142C6422E20041EEE8 /* Token+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B0730E2C6422E20041EEE8 /* Token+CoreDataProperties.swift */; };
 		C6C4E9DB2C225E6D00BD50EB /* Collection+Enumerated.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */; };
 		C6C4E9DD2C225E8700BD50EB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6C4E9DC2C225E8700BD50EB /* Constants.swift */; };
 		C6D3775D2C293F40008624C4 /* LexelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D3775C2C293F40008624C4 /* LexelTests.swift */; };
@@ -116,12 +116,6 @@
 		C6388C502C6033610065671E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		C63EABDF2C2BBFA4006EDB17 /* StoryGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryGridItem.swift; sourceTree = "<group>"; };
 		C64740802C60371100FB9C1F /* DictionaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryViewModel.swift; sourceTree = "<group>"; };
-		C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C64740CE2C60779200FB9C1F /* Story+Typed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+Typed.swift"; sourceTree = "<group>"; };
 		C64740D02C6077F700FB9C1F /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		C64740D22C6090DA00FB9C1F /* Font+Atkinson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Atkinson.swift"; sourceTree = "<group>"; };
@@ -141,6 +135,12 @@
 		C6A9104F2C08EA85007756BB /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
 		C6AA9D082C263FEB00FF68EC /* NLTag+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NLTag+Codable.swift"; sourceTree = "<group>"; };
 		C6B073072C63380C0041EEE8 /* ScaledFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaledFont.swift; sourceTree = "<group>"; };
+		C6B073092C6422E20041EEE8 /* DictionaryEntry+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C6B0730A2C6422E20041EEE8 /* DictionaryEntry+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictionaryEntry+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C6B0730B2C6422E20041EEE8 /* Story+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C6B0730C2C6422E20041EEE8 /* Story+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Story+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C6B0730D2C6422E20041EEE8 /* Token+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C6B0730E2C6422E20041EEE8 /* Token+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Token+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C6B5362C2C1F94EB00EF9A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C6C4E9DA2C225E6D00BD50EB /* Collection+Enumerated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Enumerated.swift"; sourceTree = "<group>"; };
 		C6C4E9DC2C225E8700BD50EB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -291,13 +291,13 @@
 		C64740822C60377E00FB9C1F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C6B073092C6422E20041EEE8 /* DictionaryEntry+CoreDataClass.swift */,
+				C6B0730A2C6422E20041EEE8 /* DictionaryEntry+CoreDataProperties.swift */,
+				C6B0730B2C6422E20041EEE8 /* Story+CoreDataClass.swift */,
+				C6B0730C2C6422E20041EEE8 /* Story+CoreDataProperties.swift */,
+				C6B0730D2C6422E20041EEE8 /* Token+CoreDataClass.swift */,
+				C6B0730E2C6422E20041EEE8 /* Token+CoreDataProperties.swift */,
 				C64A583B2C5FFF6200C4D58E /* LexelData.xcdatamodeld */,
-				C64740C22C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift */,
-				C64740C32C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift */,
-				C64740C42C60765C00FB9C1F /* Story+CoreDataClass.swift */,
-				C64740C52C60765C00FB9C1F /* Story+CoreDataProperties.swift */,
-				C64740C62C60765C00FB9C1F /* Token+CoreDataClass.swift */,
-				C64740C72C60765C00FB9C1F /* Token+CoreDataProperties.swift */,
 				C64740D02C6077F700FB9C1F /* Language.swift */,
 			);
 			path = Models;
@@ -651,13 +651,7 @@
 				C6B073082C63380C0041EEE8 /* ScaledFont.swift in Sources */,
 				C6AA9D092C263FEE00FF68EC /* NLTag+Codable.swift in Sources */,
 				C6388C4F2C6032DC0065671E /* PersistentStore.swift in Sources */,
-				C64740C82C60765C00FB9C1F /* DictionaryEntry+CoreDataClass.swift in Sources */,
-				C64740C92C60765C00FB9C1F /* DictionaryEntry+CoreDataProperties.swift in Sources */,
-				C64740CA2C60765C00FB9C1F /* Story+CoreDataClass.swift in Sources */,
 				C64740CF2C60779200FB9C1F /* Story+Typed.swift in Sources */,
-				C64740CB2C60765C00FB9C1F /* Story+CoreDataProperties.swift in Sources */,
-				C64740CC2C60765C00FB9C1F /* Token+CoreDataClass.swift in Sources */,
-				C64740CD2C60765C00FB9C1F /* Token+CoreDataProperties.swift in Sources */,
 				C6A910502C08EA85007756BB /* FlowView.swift in Sources */,
 				C64A583D2C5FFF6200C4D58E /* LexelData.xcdatamodeld in Sources */,
 				C6333B962C01936A0044E7BA /* ContentView.swift in Sources */,
@@ -668,6 +662,12 @@
 				C64740D32C6090DA00FB9C1F /* Font+Atkinson.swift in Sources */,
 				C69E62E32C1906E20030B5B2 /* ModelManagerView.swift in Sources */,
 				C64740812C60371100FB9C1F /* DictionaryViewModel.swift in Sources */,
+				C6B0730F2C6422E20041EEE8 /* DictionaryEntry+CoreDataClass.swift in Sources */,
+				C6B073102C6422E20041EEE8 /* DictionaryEntry+CoreDataProperties.swift in Sources */,
+				C6B073112C6422E20041EEE8 /* Story+CoreDataClass.swift in Sources */,
+				C6B073122C6422E20041EEE8 /* Story+CoreDataProperties.swift in Sources */,
+				C6B073132C6422E20041EEE8 /* Token+CoreDataClass.swift in Sources */,
+				C6B073142C6422E20041EEE8 /* Token+CoreDataProperties.swift in Sources */,
 				C6333B942C01936A0044E7BA /* LexelApp.swift in Sources */,
 				C6388C512C6033610065671E /* DataManager.swift in Sources */,
 				C60E86952C09A23200E2B6CB /* FamiliarWordView.swift in Sources */,

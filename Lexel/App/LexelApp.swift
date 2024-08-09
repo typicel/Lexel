@@ -10,11 +10,14 @@ import SwiftData
 
 @main
 struct LexelApp: App {
+    @StateObject private var dataManager = DataManager(type: .normal)
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(dataManager)
+                .environment(\.font, Font.custom("AtkinsonHyperlegible-Regular", size: 14))
         }
-        .environmentObject(ThemeService())
         .environmentObject(MLModelManager())
     }
 }

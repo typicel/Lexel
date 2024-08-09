@@ -11,7 +11,7 @@ struct StoryGridItem: View {
     let story: Story
     
     let displayName: [String:String] = [
-        "de-DE": "Deutsch",
+        "de-DE": "German",
         "en-US": "English",
         "es-ES": "Spanish",
         "fr-FR": "French",

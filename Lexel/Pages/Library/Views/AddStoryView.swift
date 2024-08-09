@@ -12,7 +12,7 @@ struct AddStoryView: View {
     @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject var modelManager: MLModelManager
-    @State private var dataManager = DataManager.preview
+    @State private var dataManager = DataManager.shared
     
     @State private var title: String = ""
     @State private var language: Language = Constants.allowedLanguages[0]

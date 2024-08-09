@@ -67,17 +67,14 @@ class DataManager: NSObject, ObservableObject {
         }
         
         storyFRC.delegate = self
-        try? storyFRC.performFetch()
-        if let newStories = storyFRC.fetchedObjects {
-            self.stories = newStories
-        }
+        refreshStories()
         
         deFRC.delegate = self
-        try? deFRC.performFetch()
-        if let newWords = deFRC.fetchedObjects {
-            self.dictionaryEntries = newWords
-        }
-
+        refreshDictEntries()
+    }
+    
+    func save() {
+        try? managedObjectContext.save()
     }
 }
 
@@ -140,6 +137,7 @@ extension DataManager {
         }
         
         story.tokens = NSOrderedSet(array: tokens)
+        save()
     }
     
     func fetchTokensForStory(with id : UUID?) -> Result<[Token], DataManagerError> {
@@ -162,6 +160,13 @@ extension DataManager {
         
         return .failure(.badUUID("Could not find story with the given id"))
     }
+    
+    func refreshStories() {
+        try? storyFRC.performFetch()
+        if let newStories = storyFRC.fetchedObjects {
+            self.stories = newStories
+        }
+    }
 }
 
 extension DataManager {
@@ -182,16 +187,51 @@ extension DataManager {
         return nil
     }
     
-    func insertDictEntry(word: String, definition: String, language: String) -> DictionaryEntry {
+    func insertDictEntry(for token: Token, definition: String, language: String) {
         let dict = DictionaryEntry(context: managedObjectContext)
-        dict.word = word
+        dict.id = UUID()
+        dict.word = token.value.lowercased()
         dict.definition = definition
         dict.familiarity = 1
         dict.language = language
         dict.parent = nil
+        token.dictionaryEntry = dict
         
-        return dict
+        save()
     }
+    
+    func deleteDictEntry(_ dict: DictionaryEntry) {
+        // need to fetch all tokens with this dict as its dict entry
+        let tokensFR = NSFetchRequest<Token>(entityName: "Token")
+        tokensFR.predicate = NSPredicate(format: "dictionaryEntry.id == %@", dict.id as CVarArg)
+        tokensFR.sortDescriptors = [NSSortDescriptor(key: "position", ascending: true)]
+        
+        let tokenFRC = NSFetchedResultsController(fetchRequest: tokensFR, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        do {
+            try tokenFRC.performFetch()
+        } catch {
+            print("That's fucked: \(error.localizedDescription)")
+        }
+        
+        if let tokens = tokenFRC.fetchedObjects {
+            for token in tokens {
+                token.dictionaryEntry = nil
+            }
+        }
+
+        managedObjectContext.delete(dict)
+        save()
+        
+        // refresh
+        refreshDictEntries()
+        refreshStories()
+    }
+    
+    func refreshDictEntries() {
+        try? deFRC.performFetch()
+        dictionaryEntries = deFRC.fetchedObjects ?? dictionaryEntries
+    }
+    
 }
 
 enum DataManagerError: Error {

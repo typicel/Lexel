@@ -25,8 +25,10 @@ class StoryViewModel: ObservableObject {
     @Published var dataManager: DataManager
     var cancellables =  Set<AnyCancellable>()
     
-    init(story: Story, dataManager: DataManager = .preview) {
+    init(story: Story, dataManager: DataManager = .shared) {
         self.story = story
+        
+        
         self.dataManager = dataManager
     }
     
@@ -75,7 +77,7 @@ class StoryViewModel: ObservableObject {
         self.selectedWord = token
         self.selectedWordIndex = Int(token.position)
         self.showSettingsPopover = true
-        TTSService.shared.speak(text: token.value, lang: story.language) // should be bcp47 format
+        TTSService.shared.speak(text: token.value) // should be bcp47 format
     }
     
     /// Returns a binding that represents if the word at the given indicies is currently selected

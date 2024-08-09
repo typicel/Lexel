@@ -21,14 +21,20 @@ struct DictionaryView: View {
                         Circle()
                             .fill(Color(Constants.familiarityColors[Int(wordEntry.familiarity)-1]))
                             .frame(width: 10, height: 10)
-                        Text(wordEntry.word!)
+                        Text(wordEntry.word)
+                    }
+                    .swipeActions {
+                        Button("Delete") {
+                            viewModel.delete(wordEntry)
+                        }
+                        .tint(.red)
                     }
                 }
             }
             .accessibilityIdentifier("dictionaryList")
         } detail: {
             if let entry = selectedEntry {
-                Text(entry.word!)
+                Text(entry.word)
             } else {
                 Text("no thing")
             }
